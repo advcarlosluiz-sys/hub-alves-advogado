@@ -1,0 +1,10 @@
+# Variáveis de ambiente (contêm chaves de API secretas)
+.env
+.env.local
+.env.*.local
+
+# Node modules
+node_modules/
+
+# Logs
+*.log

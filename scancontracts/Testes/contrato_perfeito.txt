@@ -1,0 +1,52 @@
+CONTRATO DE PRESTAÇÃO DE SERVIÇOS E LOCAÇÃO DE EQUIPAMENTOS
+
+Pelo presente instrumento particular de prestação de serviços e locação de equipamentos, de um lado:
+
+CONTRATANTE: EMPRESA MODELO S.A., pessoa jurídica de direito privado, inscrita no CNPJ sob o nº 12.345.678/0001-99, com sede na Avenida Paulista, 1000, São Paulo/SP, neste ato representada por seus diretores.
+
+CONTRATADA: SOLUÇÕES EFICIENTES LTDA., pessoa jurídica de direito privado, inscrita no CNPJ sob o nº 98.765.432/0001-11, com sede na Rua Fictícia, 500, Rio de Janeiro/RJ, neste ato representada por seu administrador.
+
+Têm entre si, justo e contratado, o seguinte:
+
+CLÁUSULA PRIMEIRA - DO OBJETO
+1.1. O presente contrato tem por objeto a prestação de serviços de manutenção preventiva e corretiva, bem como a locação de 5 (cinco) equipamentos industriais pesados (modelo X-200), pela CONTRATADA à CONTRATANTE.
+
+CLÁUSULA SEGUNDA - DO PREÇO E CONDIÇÕES DE PAGAMENTO
+2.1. Pela locação dos equipamentos e prestação dos serviços, a CONTRATANTE pagará à CONTRATADA o valor mensal fixo de R$ 15.000,00 (quinze mil reais).
+2.2. O valor total estimado deste contrato, para toda a sua vigência, é de R$ 180.000,00 (cento e oitenta mil reais).
+2.3. O pagamento será realizado até o 5º dia útil de cada mês subsequente à prestação, mediante emissão de Nota Fiscal.
+
+CLÁUSULA TERCEIRA - DO REAJUSTE E REEQUILÍBRIO ECONÔMICO
+3.1. O valor mensal será reajustado anualmente com base na variação positiva do IPCA/IBGE (Índice Nacional de Preços ao Consumidor Amplo) acumulado nos últimos 12 meses.
+3.2. Fica assegurado às partes o direito ao reequilíbrio econômico-financeiro deste contrato, caso ocorram fatos supervenientes, imprevisíveis ou de consequências incalculáveis, que tornem a obrigação excessivamente onerosa para uma das partes, nos termos do art. 478 do Código Civil.
+
+CLÁUSULA QUARTA - DA REFORMA TRIBUTÁRIA E IMPACTOS FISCAIS
+4.1. As partes reconhecem a fase de transição e implementação da Reforma Tributária (Emenda Constitucional nº 132/2023), que institui o Imposto sobre Bens e Serviços (IBS) e a Contribuição sobre Bens e Serviços (CBS).
+4.2. Caso as novas legislações, durante a vigência deste contrato, acarretem aumento na carga tributária efetiva incidente sobre a prestação de serviços ou locação objeto deste instrumento, o valor da contraprestação deverá ser repactuado, visando manter o equilíbrio econômico-financeiro original.
+4.3. A CONTRATADA garante o fornecimento de todos os documentos e notas fiscais necessários para que a CONTRATANTE possa apropriar-se dos créditos tributários não cumulativos do IBS/CBS, nos estritos limites permitidos pela legislação.
+
+CLÁUSULA QUINTA - DA VIGÊNCIA E RESCISÃO
+5.1. O presente contrato terá vigência de 12 (doze) meses, iniciando-se em 01 de junho de 2026 e encerrando-se em 31 de maio de 2027, podendo ser renovado mediante aditivo escrito.
+5.2. Qualquer das partes poderá rescindir o contrato sem justa causa, mediante aviso prévio por escrito de 30 (trinta) dias, sem incidência de multas, desde que todas as obrigações pendentes sejam quitadas.
+
+CLÁUSULA SEXTA - DAS PENALIDADES E MULTAS
+6.1. O atraso no pagamento acarretará multa moratória de 2% (dois por cento) sobre o valor da parcela em atraso, além de juros de 1% (um por cento) ao mês, calculados pro rata die.
+6.2. O descumprimento de qualquer outra cláusula contratual sujeitará a parte infratora a uma multa compensatória equivalente a 1 (uma) mensalidade vigente, sem prejuízo de perdas e danos.
+
+CLÁUSULA SÉTIMA - DA PROTEÇÃO DE DADOS (LGPD)
+7.1. As partes comprometem-se a cumprir todas as disposições da Lei Geral de Proteção de Dados (Lei nº 13.709/2018), garantindo o sigilo e a segurança de eventuais dados pessoais compartilhados para a execução deste contrato.
+
+CLÁUSULA OITAVA - DO FORO
+8.1. Fica eleito o foro da comarca da capital do Estado de São Paulo para dirimir quaisquer dúvidas ou litígios decorrentes deste contrato, com renúncia expressa a qualquer outro.
+
+E por estarem assim justas e contratadas, assinam o presente em 2 (duas) vias de igual teor e forma.
+
+São Paulo, 10 de maio de 2026.
+
+________________________________________
+EMPRESA MODELO S.A.
+Contratante
+
+________________________________________
+SOLUÇÕES EFICIENTES LTDA.
+Contratada

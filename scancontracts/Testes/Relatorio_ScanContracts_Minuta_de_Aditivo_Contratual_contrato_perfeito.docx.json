@@ -1,0 +1,102 @@
+{
+  "arquivo": "Minuta_de_Aditivo_Contratual_contrato_perfeito.docx",
+  "status_leitura": "Lido",
+  "tipo_documento": "Aditivo contratual",
+  "confianca_classificacao": 90,
+  "partes": {
+    "contratante": "EMPRESA MODELO S.A.",
+    "contratada": "SOLUÇÕES EFICIENTES LTDA.",
+    "cnpj_cpf_contratante": "",
+    "cnpj_cpf_contratada": ""
+  },
+  "dados_contrato": {
+    "objeto": "Alteração e/ou inclusão de cláusulas no contrato original, visando adequações necessárias em razão de novas diretrizes operacionais e/ou legais.",
+    "tipo_operacao": "",
+    "data_assinatura": "",
+    "data_inicio": "",
+    "data_fim": "",
+    "prazo_meses": "",
+    "renovacao_automatica": "",
+    "valor_mensal": "",
+    "valor_total": "",
+    "forma_pagamento": "",
+    "vencimento_pagamento": "",
+    "indice_reajuste": "",
+    "periodicidade_reajuste": "",
+    "multa_atraso": "",
+    "juros": "",
+    "multa_rescisoria": "",
+    "garantias": "",
+    "foro": "",
+    "assinatura_identificada": ""
+  },
+  "clausulas_detectadas": {
+    "tributos": false,
+    "reforma_tributaria": true,
+    "cbs": false,
+    "ibs": false,
+    "imposto_seletivo": false,
+    "simples_nacional": false,
+    "reequilibrio_economico": false,
+    "repasse_fornecedores": false,
+    "revisao_extraordinaria": false,
+    "servicos_acessorios": false,
+    "emissao_nota_fiscal": false,
+    "creditos_tributarios": false,
+    "alteracao_regulatoria": false
+  },
+  "servicos_e_custos": {
+    "manutencao_inclusa": false,
+    "frete_incluso": false,
+    "seguro_incluso": false,
+    "pecas_inclusas": false,
+    "operador_incluso": false,
+    "assistencia_tecnica_inclusa": false,
+    "servicos_cobrados_a_parte": []
+  },
+  "reforma_tributaria": {
+    "risco": "baixo",
+    "possui_clausula_especifica": true,
+    "permite_repasse_tributario": "",
+    "permite_revisao_por_mudanca_legal": "",
+    "trata_creditos_cliente": "",
+    "trata_alteracao_faturamento": "",
+    "recomendacao": "Incluir cláusula de reequilíbrio econômico-financeiro."
+  },
+  "riscos": {
+    "risco_geral": "baixo",
+    "pontuacao": 90,
+    "risco_juridico": "baixo",
+    "risco_tributario": "baixo",
+    "risco_preco": "não identificado",
+    "risco_margem": "não identificado",
+    "risco_fornecedor": "não identificado",
+    "risco_cliente": "não identificado",
+    "risco_operacional": "não identificado",
+    "risco_documental": "não identificado"
+  },
+  "red_flags": [],
+  "recomendacoes": [
+    "Incluir cláusula de reequilíbrio econômico-financeiro."
+  ],
+  "documentos_sugeridos": [],
+  "prioridade": "baixa",
+  "validacoes_necessarias": {
+    "advogado": [],
+    "contador": [],
+    "financeiro": [],
+    "comercial": []
+  },
+  "resumo_executivo": "O Aditivo Contratual proposto visa a alteração e inclusão de cláusulas no contrato original, com foco em adequações necessárias. A cláusula referente à Reforma Tributária está presente, mas recomenda-se a inclusão de cláusula de reequilíbrio econômico-financeiro.",
+  "dados_extraidos": {
+    "contratante": "EMPRESA MODELO S.A.",
+    "contratada": "SOLUÇÕES EFICIENTES LTDA.",
+    "objeto": "Alteração e/ou inclusão de cláusulas no contrato original.",
+    "foro": "[indicar a comarca]"
+  },
+  "principais_riscos": [
+    "Baixo risco geral identificado."
+  ],
+  "impacto_reforma_tributaria": "O contrato menciona a Reforma Tributária, mas não aborda aspectos como repasse tributário ou revisão por mudança legal.",
+  "impacto_preco_margem": "Não foram identificados riscos relacionados a preço e margem."
+}

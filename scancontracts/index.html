@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScanContracts | Inteligência Contratual</title>
+    <meta name="description" content="ScanContracts — Análise inteligente de contratos com IA. Identifique riscos, impactos da Reforma Tributária e oportunidades de renegociação.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // PDF.js worker config — must be set BEFORE pdfjsLib is used
+        window.PDF_WORKER_SRC = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="dark-theme">
+
+    <!-- Auth Screen (Login / Cadastro) -->
+    <div id="auth-screen" class="auth-overlay active">
+        <div class="auth-card glass">
+            <!-- Logo -->
+            <div style="text-align:center; margin-bottom: 2rem;">
+                <svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:60px; height:60px; display:inline-block;">
+                    <rect width="120" height="120" rx="24" fill="url(#authGrad)"/>
+                    <defs><linearGradient id="authGrad" x1="0" y1="0" x2="120" y2="120"><stop offset="0%" stop-color="#0a192f"/><stop offset="100%" stop-color="#050a14"/></linearGradient></defs>
+                    <rect x="28" y="22" width="50" height="64" rx="6" fill="rgba(255,255,255,0.08)" stroke="#00e5ff" stroke-width="1.5"/>
+                    <line x1="36" y1="38" x2="70" y2="38" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                    <line x1="36" y1="48" x2="70" y2="48" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                    <circle cx="88" cy="82" r="16" fill="#050a14" stroke="#ffd700" stroke-width="2"/>
+                    <path d="M83 82 L87 86 L94 78" stroke="#ffd700" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+                <h1 style="font-family: 'Outfit', sans-serif; font-size: 1.6rem; margin: 0.75rem 0 0.25rem; background: linear-gradient(135deg, #00e5ff, #7b61ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">ScanContracts</h1>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin:0;">Inteligência Contratual com IA</p>
+            </div>
+
+            <!-- Tabs -->
+            <div style="display:flex; gap:0; margin-bottom:1.5rem; border-radius: 8px; overflow:hidden; border: 1px solid rgba(255,255,255,0.08);">
+                <button id="tab-login" onclick="showAuthTab('login')" style="flex:1; padding:0.6rem; background: rgba(0,229,255,0.15); color: #00e5ff; border:none; cursor:pointer; font-family: 'Inter', sans-serif; font-weight:600; font-size:0.9rem;">Entrar</button>
+                <button id="tab-signup" onclick="showAuthTab('signup')" style="flex:1; padding:0.6rem; background: transparent; color: var(--text-muted); border:none; cursor:pointer; font-family: 'Inter', sans-serif; font-weight:600; font-size:0.9rem;">Criar Conta</button>
+            </div>
+
+            <!-- Form -->
+            <div style="display:flex; flex-direction:column; gap:1rem;">
+                <div>
+                    <label style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:0.4rem;">E-mail</label>
+                    <input type="email" id="auth-email" class="form-control" placeholder="seu@email.com" style="margin-bottom:0;">
+                </div>
+                <div>
+                    <label style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:0.4rem;">Senha</label>
+                    <input type="password" id="auth-password" class="form-control" placeholder="••••••••" style="margin-bottom:0;">
+                </div>
+                <div id="auth-name-field" style="display:none;">
+                    <label style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:0.4rem;">Nome / Empresa</label>
+                    <input type="text" id="auth-name" class="form-control" placeholder="Ex: Alves Advocacia" style="margin-bottom:0;">
+                </div>
+                <button id="btn-auth-submit" class="btn btn-primary" style="width:100%; margin-top:0.5rem;">Entrar</button>
+                <div id="auth-message" style="text-align:center; font-size:0.85rem; color:var(--text-muted); min-height:1.2rem;"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="active">
+        <div class="splash-content">
+            <div class="logo-container animate-float">
+                <svg class="main-logo" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="120" height="120" rx="24" fill="url(#grad1)"/>
+                    <defs>
+                        <linearGradient id="grad1" x1="0" y1="0" x2="120" y2="120">
+                            <stop offset="0%" stop-color="#0a192f"/>
+                            <stop offset="100%" stop-color="#050a14"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="28" y="22" width="50" height="64" rx="6" fill="rgba(255,255,255,0.08)" stroke="#00e5ff" stroke-width="1.5"/>
+                    <line x1="36" y1="38" x2="70" y2="38" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                    <line x1="36" y1="48" x2="70" y2="48" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                    <line x1="36" y1="58" x2="58" y2="58" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" opacity="0.3"/>
+                    <rect x="20" y="54" width="80" height="14" rx="4" fill="rgba(0,229,255,0.15)"/>
+                    <line x1="20" y1="61" x2="100" y2="61" stroke="#00e5ff" stroke-width="2" opacity="0.9"/>
+                    <circle cx="88" cy="82" r="16" fill="#050a14" stroke="#ffd700" stroke-width="2"/>
+                    <path d="M83 82 L87 86 L94 78" stroke="#ffd700" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+            </div>
+            <h1 class="animate-fade-in">ScanContracts</h1>
+            <p class="tagline animate-fade-in-delay">Da pasta de contratos ao plano de ação.</p>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Container -->
+    <main id="app-container" class="hidden">
+        <!-- Sidebar / Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-logo">
+                <svg class="nav-logo" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="120" height="120" rx="24" fill="url(#grad2)"/>
+                    <defs>
+                        <linearGradient id="grad2" x1="0" y1="0" x2="120" y2="120">
+                            <stop offset="0%" stop-color="#0a192f"/>
+                            <stop offset="100%" stop-color="#050a14"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="28" y="22" width="50" height="64" rx="6" fill="rgba(255,255,255,0.08)" stroke="#00e5ff" stroke-width="1.5"/>
+                    <line x1="36" y1="38" x2="70" y2="38" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+                    <line x1="36" y1="48" x2="70" y2="48" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+                    <rect x="20" y="54" width="80" height="14" rx="4" fill="rgba(0,229,255,0.15)"/>
+                    <line x1="20" y1="61" x2="100" y2="61" stroke="#00e5ff" stroke-width="2" opacity="0.9"/>
+                    <circle cx="88" cy="82" r="16" fill="#050a14" stroke="#ffd700" stroke-width="2"/>
+                    <path d="M83 82 L87 86 L94 78" stroke="#ffd700" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+                <span>ScanContracts</span>
+            </div>
+            <ul class="nav-links">
+                <li class="active" data-page="dashboard"><i class="icon-dashboard"></i> Dashboard</li>
+                <li data-page="analysis"><i class="icon-scan"></i> Nova Análise</li>
+                <li data-page="history"><i class="icon-history"></i> Histórico</li>
+                <li data-page="settings"><i class="icon-settings"></i> Configurações</li>
+            </ul>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar" id="sidebar-avatar">CA</div>
+                    <div class="user-info">
+                        <span class="user-name" id="sidebar-user-name">Carregando...</span>
+                        <span class="user-role" id="sidebar-user-email" style="font-size:0.7rem;"></span>
+                    </div>
+                </div>
+                <button id="btn-logout" title="Sair" style="background:transparent; border:none; cursor:pointer; color:var(--text-muted); font-size:1.1rem; padding:0.25rem; margin-top:0.5rem; width:100%; text-align:center; border-radius:6px; transition: color 0.2s;" onmouseover="this.style.color='var(--error)'" onmouseout="this.style.color='var(--text-muted)'">⏻ Sair</button>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <section class="content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="search-bar">
+                    <input type="text" placeholder="Buscar contratos, clientes ou riscos...">
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-primary" id="btn-new-analysis">+ Nova Análise</button>
+                    <div class="notifications">
+                        <span class="badge" id="notifications-badge">0</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page: Dashboard -->
+            <div id="page-dashboard" class="page-view active">
+                <div class="dashboard-grid">
+                    <div class="stats-card glass">
+                        <h3>Contratos Analisados</h3>
+                        <div class="stat-value" id="dash-total">0</div>
+                        <div class="stat-change" id="dash-total-sub">Total processado</div>
+                    </div>
+                    <div class="stats-card glass">
+                        <h3>Alto Risco</h3>
+                        <div class="stat-value text-error" id="dash-high-risk">0</div>
+                        <div class="stat-change negative" id="dash-high-risk-sub">Alerta máximo</div>
+                    </div>
+                    <div class="stats-card glass">
+                        <h3>Reforma Tributária</h3>
+                        <div class="stat-value text-warning" id="dash-tax-reform">0</div>
+                        <div class="stat-change" id="dash-tax-reform-sub">Requerem aditivo</div>
+                    </div>
+                    <div class="stats-card glass">
+                        <h3>Score Médio</h3>
+                        <div class="stat-value" id="dash-avg-score">0</div>
+                        <div class="stat-change" id="dash-avg-score-sub">Saúde da carteira</div>
+                    </div>
+                </div>
+
+                <div class="dashboard-main">
+                    <div class="card glass recent-activity">
+                        <div class="card-header">
+                            <h2>Atividade Recente</h2>
+                            <a href="#" class="view-all" id="link-view-all-history">Ver tudo</a>
+                        </div>
+                        <div class="activity-list" id="recent-activity-list">
+                            <!-- Atividades recentes injetadas aqui -->
+                            <div class="activity-item">
+                                <div class="item-details"><span class="item-meta">Nenhuma atividade recente.</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card glass risk-distribution">
+                        <div class="card-header">
+                            <h2>Distribuição de Riscos</h2>
+                        </div>
+                        <div class="chart-container" style="position: relative; height: 200px; width: 100%; display: flex; justify-content: center; align-items: center; margin-top: 1rem;">
+                            <canvas id="riskChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page: New Analysis -->
+            <div id="page-analysis" class="page-view">
+                <div class="analysis-header">
+                    <h1>Nova Análise de Contratos</h1>
+                    <p>Arraste uma pasta ou selecione múltiplos arquivos para iniciar o processamento inteligente.</p>
+                </div>
+
+                <div class="upload-zone glass" id="drop-zone">
+                    <div class="upload-content">
+                        <div class="upload-icon">📁</div>
+                        <h3>Arraste seus arquivos aqui</h3>
+                        <p>Suporta PDF, DOCX, XLSX, CSV e Imagens</p>
+                        <button class="btn btn-secondary" id="btn-select-files" onclick="document.getElementById('file-input').click(); event.stopPropagation();">Selecionar Arquivos</button>
+                    </div>
+                    <input type="file" id="file-input" multiple hidden accept=".pdf,.doc,.docx,.txt,.csv,.xlsx,.xls,.jpg,.jpeg,.png">
+                </div>
+
+                <div id="upload-progress" class="hidden">
+                    <h3>Processando Arquivos...</h3>
+                    <div class="progress-list" id="progress-list">
+                        <!-- Progress items will be injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page: Results (Individual) -->
+            <div id="page-results" class="page-view">
+                <div class="results-header">
+                    <button class="btn-back" id="btn-back-to-analysis">← Voltar</button>
+                    <div class="header-main">
+                        <h1 id="result-file-name">Análise: Contrato_Exemplo.pdf</h1>
+                        <span class="badge-status" id="result-risk-badge">Médio Risco</span>
+                    </div>
+                </div>
+
+                <div class="results-grid">
+                    <!-- Left Column: Executive Summary & Details -->
+                    <div class="results-main">
+                        <div class="card glass">
+                            <h2>Resumo Executivo</h2>
+                            <p id="result-summary" class="summary-text">Carregando análise detalhada...</p>
+                        </div>
+
+                        <div class="card glass">
+                            <h2>Dados Extraídos</h2>
+                            <div class="data-grid" id="result-data-grid">
+                                <!-- Data items injected here -->
+                            </div>
+                        </div>
+
+                        <div class="card glass">
+                            <h2>Recomendações Práticas</h2>
+                            <ul class="recommendations-list" id="result-recommendations">
+                                <!-- Recommendations injected here -->
+                            </ul>
+                        </div>
+
+                        <div class="card glass tabbed-card">
+                            <div class="card-header-flex">
+                                <h2>Checklist de Auditoria</h2>
+                                <div class="tab-buttons" id="checklist-tabs">
+                                    <button class="tab-btn active" data-dept="advogado">🧑‍⚖️ Jurídico</button>
+                                    <button class="tab-btn" data-dept="contador">📊 Contábil</button>
+                                    <button class="tab-btn" data-dept="financeiro">💰 Financeiro</button>
+                                    <button class="tab-btn" data-dept="comercial">🤝 Comercial</button>
+                                </div>
+                            </div>
+                            <div class="checklist-content" id="checklist-items">
+                                <!-- Checklist items injected here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Scores & Red Flags -->
+                    <div class="results-sidebar">
+                        <div class="card glass score-card">
+                            <h2>Pontuação de Saúde</h2>
+                            <div class="score-circle">
+                                <svg width="150" height="150" viewBox="0 0 150 150">
+                                    <circle class="track" cx="75" cy="75" r="65"/>
+                                    <circle class="fill" id="score-arc" cx="75" cy="75" r="65"/>
+                                </svg>
+                                <span class="score-value" id="result-score">0</span>
+                                <small class="score-label">/100</small>
+                            </div>
+                        </div>
+
+                        <div class="card glass red-flags-card">
+                            <h2>Red Flags (Alertas)</h2>
+                            <div class="flags-list" id="result-red-flags">
+                                <!-- Flags injected here -->
+                            </div>
+                        </div>
+
+                        <div class="card glass actions-card">
+                            <h2>Ações Disponíveis</h2>
+                            <div class="action-buttons">
+                                <button id="btn-generate-addendum" class="btn btn-secondary w-full">Gerar Aditivo</button>
+                                <button id="btn-generate-renegotiation" class="btn btn-secondary w-full">Carta de Renegociação</button>
+                                <button id="btn-export-report" class="btn btn-primary w-full">Exportar Relatório</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page: History -->
+            <div id="page-history" class="page-view">
+                <div class="page-header" style="display:flex; justify-content:space-between; align-items:flex-end;">
+                    <div>
+                        <h1>Histórico de Análises</h1>
+                        <p>Acesse todas as análises realizadas anteriormente.</p>
+                    </div>
+                    <div style="display:flex; gap: 0.75rem;">
+                        <button class="btn btn-primary" id="btn-export-csv">📊 Exportar Planilha (CSV)</button>
+                        <button class="btn btn-secondary" id="btn-clear-history">🗑️ Limpar Histórico</button>
+                    </div>
+                </div>
+
+                <!-- Barra de Filtros e Ordenação -->
+                <div class="history-controls glass" style="display: flex; flex-wrap: wrap; gap: 1rem; padding: 1rem; margin-bottom: 1.5rem; align-items: center; border-radius: 12px;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <input type="text" id="history-search" class="form-control" placeholder="🔍 Buscar por nome do contrato..." style="width: 100%; margin-bottom: 0;">
+                    </div>
+                    <div style="min-width: 160px;">
+                        <select id="history-filter-risk" class="form-control" style="width: 100%; margin-bottom: 0;">
+                            <option value="all">Todos os Riscos</option>
+                            <option value="alto">Risco Alto</option>
+                            <option value="médio">Risco Médio</option>
+                            <option value="baixo">Risco Baixo</option>
+                        </select>
+                    </div>
+                    <div style="min-width: 180px;">
+                        <select id="history-sort" class="form-control" style="width: 100%; margin-bottom: 0;">
+                            <option value="newest">Mais Recentes</option>
+                            <option value="oldest">Mais Antigos</option>
+                            <option value="score_desc">Maior Score (Seguros)</option>
+                            <option value="score_asc">Menor Score (Perigosos)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="history-table-container glass">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Arquivo</th>
+                                <th>Data</th>
+                                <th>Risco</th>
+                                <th>Score</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-list-body">
+                            <!-- History items injected here -->
+                            <tr>
+                                <td colspan="5" class="text-center">Nenhuma análise recente.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Page: Settings -->
+            <div id="page-settings" class="page-view">
+                <div class="page-header">
+                    <h1>Configurações</h1>
+                    <p>Gerencie suas chaves de API e preferências de análise.</p>
+                </div>
+
+                <div class="settings-container glass">
+                    <div class="settings-section">
+                        <h2>Integração com IA</h2>
+                        <div class="form-group">
+                            <label for="openai-api-key">OpenAI API Key</label>
+                            <input type="password" id="openai-api-key" placeholder="sk-proj-...">
+                            <p class="help-text">Sua chave é salva localmente no navegador e nunca é enviada para nossos servidores. Obtenha em <a href="https://platform.openai.com/api-keys" target="_blank" style="color:var(--primary)">platform.openai.com</a>.</p>
+                        </div>
+                        <button class="btn btn-primary" id="btn-save-settings">Salvar Configurações</button>
+                    </div>
+
+                    <div class="settings-section">
+                        <h2>Preferências de Análise</h2>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="pref-tax-reform" checked>
+                            <label for="pref-tax-reform">Focar em Reforma Tributária (CBS/IBS)</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="pref-auto-ocr" checked>
+                            <label for="pref-auto-ocr">OCR Automático em imagens</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Gerador de Documentos -->
+    <div id="doc-modal" class="modal-overlay hidden">
+        <div class="modal-content glass animate-scale-up">
+            <div class="modal-header">
+                <h2 id="modal-title">Gerador de Minuta / Aditivo</h2>
+                <button class="btn-close" id="btn-close-modal">&times;</button>
+            </div>
+            <div class="modal-body-grid">
+                <!-- Painel Lateral: Inserção de Cláusulas -->
+                <div class="modal-sidebar">
+                    <h3>Cláusulas Rápidas</h3>
+                    <p class="sidebar-help">Clique para anexar ao final do documento:</p>
+                    <div class="clause-buttons">
+                        <button class="btn btn-secondary btn-sm" data-clause="reforma_tributaria">Reforma Tributária</button>
+                        <button class="btn btn-secondary btn-sm" data-clause="reequilibrio">Reequilíbrio Econômico</button>
+                        <button class="btn btn-secondary btn-sm" data-clause="repasse_fornecedores">Repasse de Custos</button>
+                        <button class="btn btn-secondary btn-sm" data-clause="segregacao_servicos">Segregação de Serviços</button>
+                        <button class="btn btn-secondary btn-sm" data-clause="creditos_tributarios">Créditos Tributários</button>
+                    </div>
+                </div>
+                <!-- Área do Editor -->
+                <div class="modal-editor-area">
+                    <div class="editor-toolbar">
+                        <button class="btn btn-primary btn-sm" id="btn-ai-improve">✨ Aprimorar com IA</button>
+                        <span id="ai-loading-indicator" class="ai-loader hidden">Processando com IA...</span>
+                    </div>
+                    <textarea id="doc-editor-text" placeholder="Edite sua minuta ou aditivo aqui..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="btn-cancel-modal">Cancelar</button>
+                <button class="btn btn-primary" id="btn-download-docx">💾 Baixar em .docx</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div id="toast" class="toast">
+        <span class="toast-icon" id="toast-icon">✅</span>
+        <span class="toast-message" id="toast-message">Mensagem</span>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
