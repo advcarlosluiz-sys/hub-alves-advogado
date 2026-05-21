@@ -76,5 +76,49 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fallback for older browsers
         fadeItems.forEach(item => item.classList.add('appear'));
     }
+    // ──────────────────────────────────────────────
+    // 4. Contact Form Handler (AJAX)
+    // ──────────────────────────────────────────────
+    const contactForm = document.getElementById('contact-form');
+    const formResponse = document.getElementById('form-response');
+
+    if (contactForm && formResponse) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('btn-submit-contact');
+            const name = document.getElementById('form-name').value.trim();
+            const formData = new FormData(contactForm);
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            formResponse.textContent = '';
+            
+            fetch("https://formsubmit.co/ajax/contato@advcarlosluiz.com.br", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Enviar Solicitação ➔';
+                
+                if (data.success || data.success === "true") {
+                    formResponse.textContent = `Obrigado, ${name}! Recebemos seu contato. Em breve nossa equipe retornará no WhatsApp/E-mail informado.`;
+                    formResponse.style.color = 'var(--primary)';
+                    contactForm.reset();
+                } else {
+                    formResponse.textContent = "Ocorreu um erro ao enviar o formulário. Tente novamente mais tarde.";
+                    formResponse.style.color = 'red';
+                }
+            })
+            .catch(error => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Enviar Solicitação ➔';
+                formResponse.textContent = "Erro na conexão. Verifique sua internet e tente novamente.";
+                formResponse.style.color = 'red';
+            });
+        });
+    }
 
 });
