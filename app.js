@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ──────────────────────────────────────────────
-    // 4. Contact Form Handler (Simulated)
+    // 4. Contact Form Handler (FormSubmit.co integration)
     // ──────────────────────────────────────────────
     const contactForm = document.getElementById('contact-form');
     const formResponse = document.getElementById('form-response');
@@ -89,23 +89,49 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const submitBtn = document.getElementById('btn-submit-contact');
             const name = document.getElementById('form-name').value.trim();
+            const email = document.getElementById('form-email').value.trim();
+            const phone = document.getElementById('form-phone').value.trim();
+            const message = document.getElementById('form-message').value.trim();
             
             submitBtn.disabled = true;
             submitBtn.textContent = 'Enviando...';
             formResponse.textContent = '';
             
-            // Simulating API call
-            setTimeout(() => {
+            fetch("https://formsubmit.co/ajax/contato@advcarlosluiz.com.br", {
+                method: "POST",
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    "Nome": name,
+                    "E-mail": email,
+                    "Telefone": phone,
+                    "Mensagem": message,
+                    "_subject": `Novo lead do Hub: ${name}`
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Enviar Solicitação ➔';
                 
-                // Show success message
-                formResponse.textContent = `Obrigado, ${name}! Recebemos seu contato. Em breve nossa equipe retornará no WhatsApp/E-mail informado.`;
-                formResponse.style.color = 'var(--success)';
-                
-                // Reset form
-                contactForm.reset();
-            }, 1500);
+                if (data.success === "true" || data.success === true) {
+                    formResponse.textContent = `Obrigado, ${name}! Recebemos seu contato. Em breve retornaremos no WhatsApp/E-mail informado.`;
+                    formResponse.style.color = 'var(--success)';
+                    contactForm.reset();
+                } else {
+                    formResponse.textContent = "Houve um erro ao enviar sua mensagem. Por favor, tente novamente ou fale pelo WhatsApp.";
+                    formResponse.style.color = 'red';
+                }
+            })
+            .catch(error => {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Enviar Solicitação ➔';
+                formResponse.textContent = "Houve um erro de rede. Por favor, tente novamente ou fale pelo WhatsApp.";
+                formResponse.style.color = 'red';
+                console.error('Error submitting form:', error);
+            });
         });
     }
 
