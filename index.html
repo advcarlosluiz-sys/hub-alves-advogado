@@ -3,33 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alves Advogado | Inteligência Jurídica & LawTech</title>
-    <meta name="description" content="Escritório de advocacia especialista em Reforma Tributária, Planejamento Tributário, Revisão de Contratos e soluções tecnológicas para empresas.">
+    <title>Carlos Luiz Alves Advocacia | Advocacia Empresarial, Tributária e Contratual</title>
+    <meta name="description" content="Carlos Luiz Alves Advocacia atua em advocacia empresarial, revisão de contratos, Reforma Tributária, planejamento tributário, direito civil, trabalhista, família e sucessões, direito imobiliário e soluções jurídicas com tecnologia.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Stylesheet -->
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon (Fallback to logomarca) -->
+    <link rel="icon" href="logomarca_carlos_luiz_alves_advocacia.png" type="image/png">
 </head>
 <body>
 
     <!-- Header / Navbar -->
     <header class="header">
         <div class="container nav-container">
-            <a href="#" class="logo" id="nav-logo" style="display: flex; align-items: center; gap: 10px;">
-                <img src="logo.png" alt="Logo Alves" style="height: 40px; width: 40px; border-radius: 50%; object-fit: cover;">
-                <span class="logo-accent">Alves</span> Advogado
+            <a href="#" class="logo" id="nav-logo">
+                <img src="logomarca_carlos_luiz_alves_advocacia.png" alt="Logomarca Carlos Luiz Alves Advocacia" class="header-logo-img">
             </a>
             <nav class="nav-menu" id="nav-menu">
                 <ul class="nav-links">
                     <li><a href="#home">Início</a></li>
-                    <li><a href="#sobre">O Escritório</a></li>
                     <li><a href="#atuacao">Áreas de Atuação</a></li>
-                    <li><a href="#tecnologia">Nossos SaaS</a></li>
-                    <li><a href="#contato" class="btn-cta-nav">Falar com Especialista</a></li>
+                    <li><a href="#reforma-tributaria">Reforma Tributária</a></li>
+                    <li><a href="#tecnologia">Inteligência Jurídica</a></li>
+                    <li><a href="#diferenciais">Nossa Visão</a></li>
+                    <li><a href="#contato" class="btn-cta-nav">Contato</a></li>
                 </ul>
             </nav>
             <button class="menu-toggle" id="menu-toggle" aria-label="Abrir Menu">
@@ -45,56 +48,25 @@
         <div class="hero-bg-overlay"></div>
         <div class="container hero-container">
             <div class="hero-content fade-in">
-                <span class="badge">Inovação e Excelência Jurídica B2B</span>
-                <h1>A Advocacia do Futuro, <br><span class="highlight-cyan">Entregue Hoje.</span></h1>
-                <p>Especialistas em Reforma Tributária, Planejamento Tributário e Auditoria Inteligente de Contratos. Combinamos rigor técnico jurídico com inteligência artificial para proteger e expandir seu negócio.</p>
+                <span class="badge">Carlos Luiz Alves Advocacia</span>
+                <h1>Advocacia Empresarial com Inteligência Jurídica e Tecnologia</h1>
+                <p class="hero-subtitle">
+                    Atuação estratégica na prevenção de riscos, revisão de contratos, planejamento tributário, contencioso cível e adequação de empresas à Reforma Tributária, combinando técnica jurídica, análise de dados e ferramentas digitais de apoio à decisão.
+                </p>
+                <p class="hero-text">
+                    Atendimento consultivo e contencioso em Guarulhos/SP, voltado a empresas, profissionais e pessoas físicas que buscam análise jurídica técnica, segura e personalizada.
+                </p>
                 <div class="hero-actions">
-                    <a href="#tecnologia" class="btn btn-primary" id="hero-btn-saas">Experimentar Nossos SaaS</a>
-                    <a href="#atuacao" class="btn btn-outline" id="hero-btn-atuacao">Nossas Especialidades</a>
+                    <a href="#contato" class="btn btn-primary">Entrar em contato</a>
+                    <a href="#atuacao" class="btn btn-outline">Conhecer áreas de atuação</a>
                 </div>
+                <p class="legal-note">
+                    * A análise jurídica depende da avaliação individualizada dos documentos e circunstâncias do caso concreto.
+                </p>
             </div>
             <div class="hero-visual fade-in delay-2">
-                <!-- Ilustração CSS de Painel Legal Tech / Escudo Jurídico com Linhas de Código -->
-                <div class="tech-shield">
-                    <div class="shield-glow"></div>
-                    <div class="shield-border">
-                        <div class="shield-icon">⚖️</div>
-                        <div class="code-lines">
-                            <span class="c-1">const lei = "Reforma Tributária";</span>
-                            <span class="c-2">if (empresa.riscoContrato === true) {</span>
-                            <span class="c-3">    ia.analisarContrato(documento);</span>
-                            <span class="c-4">}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sobre / Diferenciais -->
-    <section class="about" id="sobre">
-        <div class="container">
-            <div class="section-header text-center fade-in">
-                <span class="section-badge">Quem Somos</span>
-                <h2>Inovação Legal Focada em Resultados</h2>
-                <p class="section-subtitle">Acreditamos que a advocacia moderna deve ser ágil, analítica e baseada em dados. Por isso, desenvolvemos tecnologia própria para acelerar auditorias e encontrar oportunidades fiscais.</p>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🔍</div>
-                    <h3>Auditoria Exata</h3>
-                    <p>Mapeamento de gargalos fiscais e identificação de cláusulas abusivas com precisão cirúrgica em minutos.</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🛡️</div>
-                    <h3>Segurança Jurídica</h3>
-                    <p>Prevenção de passivos cíveis e trabalhistas com análises preditivas baseadas na legislação atualizada.</p>
-                </div>
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">⚡</div>
-                    <h3>Agilidade & LawTech</h3>
-                    <p>Utilização de IA de ponta para automatizar a leitura preliminar de documentos complexos.</p>
+                <div class="photo-wrapper">
+                    <img src="foto_carlos.jpg" alt="Dr. Carlos Luiz Alves" class="lawyer-photo">
                 </div>
             </div>
         </div>
@@ -104,53 +76,87 @@
     <section class="services" id="atuacao">
         <div class="container">
             <div class="section-header text-center fade-in">
-                <span class="section-badge">Especialidades</span>
-                <h2>Áreas de Atuação Estratégica</h2>
-                <p class="section-subtitle">Oferecemos consultoria jurídica altamente qualificada para guiar sua empresa através das mudanças mais complexas do mercado nacional.</p>
+                <h2>Áreas de Atuação</h2>
+                <p class="section-subtitle">
+                    Atuação jurídica consultiva e contenciosa voltada à prevenção de riscos, solução de conflitos e estruturação segura de relações jurídicas e empresariais.
+                </p>
             </div>
 
             <div class="services-grid">
+                <!-- Advocacia Empresarial -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">🏢</div>
+                    <h3>Advocacia Empresarial</h3>
+                    <p>Assessoria jurídica para empresas em contratos, riscos operacionais, cobranças, conflitos societários, responsabilidade civil e prevenção de litígios.</p>
+                </div>
                 <!-- Reforma Tributária -->
-                <div class="service-card highlight-border fade-in">
+                <div class="service-card fade-in">
                     <div class="service-icon">📊</div>
                     <h3>Reforma Tributária</h3>
-                    <p>Adequação estratégica e planejamento de transição para o novo modelo de impostos (IBS, CBS e IS), garantindo que sua empresa aproveite créditos acumulados e mitigue riscos fiscais.</p>
+                    <p>Análise dos impactos da CBS e do IBS sobre contratos, preços, créditos, fornecedores, clientes e modelos de negócio.</p>
                 </div>
-
-                <!-- Planejamento Tributário -->
-                <div class="service-card fade-in">
-                    <div class="service-icon">💸</div>
-                    <h3>Planejamento Tributário</h3>
-                    <p>Elaboração de estudos detalhados de elisão fiscal legal para reduzir a carga de impostos federais, estaduais e municipais das suas operações.</p>
-                </div>
-
                 <!-- Revisão de Contratos -->
                 <div class="service-card fade-in">
                     <div class="service-icon">📝</div>
                     <h3>Revisão de Contratos</h3>
-                    <p>Análise e mitigação de riscos contratuais corporativos, garantindo cláusulas favoráveis e limitadoras de responsabilidade civil.</p>
+                    <p>Revisão técnica de contratos empresariais, locações, prestação de serviços, fornecimento, contratos públicos e instrumentos comerciais.</p>
                 </div>
-
-                <!-- Direito Empresarial -->
+                <!-- Planejamento Tributário -->
                 <div class="service-card fade-in">
-                    <div class="service-icon">🏢</div>
-                    <h3>Direito Empresarial</h3>
-                    <p>Suporte completo a constituição de holdings, acordos de acionistas, proteção patrimonial e governança corporativa.</p>
+                    <div class="service-icon">💸</div>
+                    <h3>Planejamento Tributário</h3>
+                    <p>Estudo jurídico-tributário para estruturação de operações, redução de riscos fiscais e adequação às mudanças legislativas.</p>
                 </div>
-
+                <!-- Direito Civil e Consumidor -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">⚖️</div>
+                    <h3>Direito Civil e Consumidor</h3>
+                    <p>Atuação em ações indenizatórias, cobranças, contratos, responsabilidade civil, relações de consumo e defesa de direitos patrimoniais.</p>
+                </div>
                 <!-- Direito Trabalhista -->
                 <div class="service-card fade-in">
                     <div class="service-icon">💼</div>
                     <h3>Direito Trabalhista</h3>
-                    <p>Defesa patronal estratégica, compliance nas relações de trabalho e auditorias para redução de passivo trabalhista oculto.</p>
+                    <p>Atuação consultiva e contenciosa em relações de trabalho, defesas trabalhistas, acordos, prevenção de passivos e análise documental.</p>
                 </div>
-
-                <!-- Direito Cível -->
+                <!-- Direito de Família e Sucessões -->
                 <div class="service-card fade-in">
-                    <div class="service-icon">⚖️</div>
-                    <h3>Direito Cível</h3>
-                    <p>Atuação em litígios complexos, recuperação de ativos, disputas societárias e proteção de direitos civis comerciais.</p>
+                    <div class="service-icon">👨‍👩‍👧‍👦</div>
+                    <h3>Direito de Família e Sucessões</h3>
+                    <p>Atuação em inventários, partilhas, divórcios, alimentos, guarda, regulamentação de convivência, curatela, interdição e planejamento sucessório.</p>
                 </div>
+                <!-- Direito Imobiliário -->
+                <div class="service-card fade-in">
+                    <div class="service-icon">🏠</div>
+                    <h3>Direito Imobiliário</h3>
+                    <p>Assessoria jurídica em contratos de compra e venda, locação, regularização imobiliária, distratos, posse, propriedade e cobranças condominiais.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destaque: Reforma Tributária -->
+    <section class="highlight-section" id="reforma-tributaria">
+        <div class="container highlight-container">
+            <div class="highlight-content fade-in">
+                <h2>Reforma Tributária: riscos e oportunidades para empresas</h2>
+                <p>
+                    A implementação da CBS e do IBS exigirá revisão de contratos, formação de preços, análise de créditos, reorganização documental e atualização das relações com fornecedores e clientes.
+                </p>
+                <p>
+                    O escritório auxilia empresas na identificação de riscos jurídicos e tributários, especialmente em setores como locação de equipamentos, prestação de serviços, comércio, contratos públicos e atividades empresariais impactadas pela nova sistemática tributária.
+                </p>
+                
+                <ul class="highlight-list">
+                    <li>Diagnóstico de impacto da CBS e IBS;</li>
+                    <li>Revisão de contratos com fornecedores e clientes;</li>
+                    <li>Simulação de riscos tributários e de preços;</li>
+                    <li>Análise de créditos fiscais;</li>
+                    <li>Adequação para empresas do Simples Nacional;</li>
+                    <li>Apoio para locadoras e prestadores de serviços;</li>
+                    <li>Revisão de contratos públicos e privados;</li>
+                    <li>Estratégias jurídicas para adaptação contratual.</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -159,115 +165,94 @@
     <section class="technology" id="tecnologia">
         <div class="container">
             <div class="section-header text-center fade-in">
-                <span class="section-badge">Nossos Softwares (SaaS)</span>
-                <h2>Ferramentas Inteligentes para o seu Negócio</h2>
-                <p class="section-subtitle">Disponibilizamos gratuitamente ferramentas exclusivas desenvolvidas por nossa equipe de LawTech para você testar imediatamente a saúde do seu negócio.</p>
+                <h2>Inteligência Jurídica e Tecnologia</h2>
+                <p class="section-subtitle">
+                    Além da atuação jurídica tradicional, o escritório desenvolve e utiliza ferramentas digitais para triagem documental, análise contratual, organização de riscos e apoio à tomada de decisão empresarial.
+                </p>
             </div>
 
             <div class="saas-showcase">
                 <!-- ScanContracts Card -->
-                <div class="saas-card fade-in" id="saas-scancontracts">
+                <div class="saas-card fade-in">
                     <div class="saas-header">
-                        <span class="saas-tag">Disponível</span>
                         <div class="saas-title">
                             <span class="saas-icon">📄</span>
                             <h3>ScanContracts</h3>
                         </div>
                     </div>
-                    <p class="saas-desc">Auditoria e análise de riscos de contratos comerciais com IA. Detecta cláusulas problemáticas, prazos e impactos da nova Reforma Tributária.</p>
-                    <div class="saas-visual">
-                        <div class="mockup-window">
-                            <div class="mockup-header">
-                                <span class="dot red"></span>
-                                <span class="dot yellow"></span>
-                                <span class="dot green"></span>
-                            </div>
-                            <div class="mockup-body">
-                                <div class="mockup-dashboard">
-                                    <div class="mockup-sidebar"></div>
-                                    <div class="mockup-main">
-                                        <div class="mockup-chart-row">
-                                            <div class="mockup-box animate-pulse">Pontuação: 85/100</div>
-                                            <div class="mockup-box alert-orange">Risco Médio</div>
-                                        </div>
-                                        <div class="mockup-lines"></div>
-                                        <div class="mockup-lines short"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Redireciona para o app local/nuvem -->
-                    <a href="scancontracts/index.html" class="btn btn-saas" target="_blank" id="btn-launch-scancontracts">Acessar ScanContracts ➔</a>
+                    <p class="saas-desc">Ferramenta de apoio à análise e organização de contratos, documentos e riscos jurídicos.</p>
+                    <a href="../SCANCONTRACTS/index.html" class="btn btn-saas" target="_blank">Acessar ScanContracts ➔</a>
                 </div>
 
                 <!-- RevisaGov Card -->
-                <div class="saas-card fade-in" id="saas-revisagov">
+                <div class="saas-card fade-in">
                     <div class="saas-header">
-                        <span class="saas-tag tag-blue">Em Breve</span>
                         <div class="saas-title">
                             <span class="saas-icon">🏛️</span>
                             <h3>RevisaGov</h3>
                         </div>
                     </div>
-                    <p class="saas-desc">Revisão e auditoria fiscal inteligente focada em repasses governamentais, conformidade tributária e saneamento de cadastros.</p>
-                    <div class="saas-visual">
-                        <div class="mockup-window">
-                            <div class="mockup-header">
-                                <span class="dot red"></span>
-                                <span class="dot yellow"></span>
-                                <span class="dot green"></span>
-                            </div>
-                            <div class="mockup-body">
-                                <div class="mockup-dashboard">
-                                    <div class="mockup-sidebar"></div>
-                                    <div class="mockup-main">
-                                        <div class="mockup-table">
-                                            <div class="table-row header-row"></div>
-                                            <div class="table-row"></div>
-                                            <div class="table-row"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#" class="btn btn-saas btn-disabled" id="btn-launch-revisagov">Em Breve na Nuvem ➔</a>
+                    <p class="saas-desc">Sistema voltado à revisão de contratos administrativos, licitações e impactos jurídicos em relações com o Poder Público.</p>
+                    <a href="#" class="btn btn-saas btn-disabled">Em Breve na Nuvem ➔</a>
                 </div>
 
                 <!-- RentalSmart Card -->
-                <div class="saas-card fade-in" id="saas-rentalsmart">
+                <div class="saas-card fade-in">
                     <div class="saas-header">
-                        <span class="saas-tag">Disponível</span>
                         <div class="saas-title">
                             <span class="saas-icon">🏠</span>
                             <h3>RentalSmart</h3>
                         </div>
                     </div>
-                    <p class="saas-desc">Plataforma inteligente para gestão analítica de aluguéis e contratos imobiliários comerciais. Cálculos de reajustes automáticos (IGP-M, IPCA).</p>
-                    <div class="saas-visual">
-                        <div class="mockup-window">
-                            <div class="mockup-header">
-                                <span class="dot red"></span>
-                                <span class="dot yellow"></span>
-                                <span class="dot green"></span>
-                            </div>
-                            <div class="mockup-body">
-                                <div class="mockup-dashboard">
-                                    <div class="mockup-sidebar"></div>
-                                    <div class="mockup-main">
-                                        <div class="mockup-grid-cards">
-                                            <div class="grid-box"></div>
-                                            <div class="grid-box"></div>
-                                            <div class="grid-box"></div>
-                                            <div class="grid-box"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <p class="saas-desc">Solução voltada a locadoras e empresas de equipamentos, com foco em contratos, riscos, formação de preços e impactos da Reforma Tributária.</p>
+                    <a href="https://simulador.advcarlosluiz.com.br/" class="btn btn-saas" target="_blank">Acessar RentalSmart ➔</a>
+                </div>
+                
+                <!-- ScanBerry / Agrobotic Card -->
+                <div class="saas-card fade-in">
+                    <div class="saas-header">
+                        <div class="saas-title">
+                            <span class="saas-icon">🌱</span>
+                            <h3>ScanBerry / Agrobotic</h3>
                         </div>
                     </div>
-                    <a href="https://simulador.advcarlosluiz.com.br/" class="btn btn-saas" target="_blank" id="btn-launch-rentalsmart">Acessar RentalSmart ➔</a>
+                    <p class="saas-desc">Projeto de tecnologia aplicada ao agronegócio, com uso de inteligência artificial para apoio à análise de lavouras, imagens e dados produtivos.</p>
+                    <a href="#" class="btn btn-saas btn-disabled">Em Breve na Nuvem ➔</a>
+                </div>
+            </div>
+            
+            <p class="legal-disclaimer fade-in">
+                As ferramentas digitais apresentadas possuem finalidade de apoio, triagem e organização preliminar. A análise jurídica conclusiva depende da avaliação profissional do caso concreto.
+            </p>
+        </div>
+    </section>
+
+    <!-- Por que escolher -->
+    <section class="about" id="diferenciais">
+        <div class="container">
+            <div class="section-header text-center fade-in">
+                <h2>Advocacia orientada por técnica, estratégia e dados</h2>
+                <p class="section-subtitle">
+                    A atuação jurídica moderna exige mais do que reação a conflitos. Exige prevenção, organização documental, leitura estratégica dos riscos e capacidade de interpretar impactos legais sobre decisões empresariais.
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <h3>Prevenção de riscos</h3>
+                    <p>Análise antecipada de contratos, documentos e operações para reduzir litígios e passivos.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <h3>Visão empresarial</h3>
+                    <p>Compreensão dos impactos jurídicos sobre custos, receitas, fornecedores, clientes e modelos de negócio.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <h3>Tecnologia aplicada</h3>
+                    <p>Uso de ferramentas digitais para organizar informações, apoiar diagnósticos preliminares e aumentar a eficiência da análise jurídica.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <h3>Atuação personalizada</h3>
+                    <p>Cada caso é analisado conforme seus documentos, contexto, riscos e objetivos específicos.</p>
                 </div>
             </div>
         </div>
@@ -277,14 +262,15 @@
     <section class="contact" id="contato">
         <div class="container contact-container">
             <div class="contact-info fade-in">
-                <span class="section-badge">Atendimento</span>
-                <h2>Pronto para proteger o seu patrimônio?</h2>
-                <p>Fale diretamente com os advogados sócios do escritório. Respondemos prontamente sua mensagem para traçar uma estratégia imediata.</p>
+                <h2>Precisa revisar contratos, avaliar riscos ou entender os impactos jurídicos da Reforma Tributária no seu negócio?</h2>
+                <p class="contact-subtitle">
+                    Envie uma mensagem para agendar uma análise preliminar, observadas as normas éticas da advocacia.
+                </p>
                 
                 <div class="contact-details">
                     <div class="detail-item">
                         <span class="detail-icon">📍</span>
-                        <p>Rua Cachoeira, 34 - Picanço - Guarulhos - SP - CEP 07080-000</p>
+                        <p>Guarulhos - SP</p>
                     </div>
                     <div class="detail-item">
                         <span class="detail-icon">📞</span>
@@ -296,34 +282,40 @@
                     </div>
                 </div>
 
-                <a href="https://wa.me/5511998274209" target="_blank" class="btn btn-whatsapp" id="btn-whatsapp">
-                    <span class="wa-icon">💬</span> Falar pelo WhatsApp
-                </a>
+                <div class="contact-action" style="justify-content: flex-start; margin-top: 2rem;">
+                    <a href="https://wa.me/5511998274209" target="_blank" class="btn btn-whatsapp" id="btn-whatsapp">
+                        <span class="wa-icon">💬</span> Entrar em contato
+                    </a>
+                </div>
             </div>
 
             <div class="contact-form-container fade-in">
-                <h3>Agende uma Análise Preliminar</h3>
-                <p>Nossa equipe entrará em contato para um diagnóstico rápido e gratuito.</p>
+                <h3 style="font-family: 'Playfair Display', serif; color: var(--primary); font-size: 1.5rem; margin-bottom: 0.5rem;">Agende uma Análise Preliminar</h3>
+                <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.9rem;">Nossa equipe entrará em contato para entender a sua necessidade.</p>
                 
-                <form id="contact-form" class="contact-form">
+                <form id="contact-form" class="contact-form" action="https://formsubmit.co/contato@advcarlosluiz.com.br" method="POST">
+                    <!-- Configurações do FormSubmit -->
+                    <input type="hidden" name="_subject" value="Novo contato via Landing Page - Análise Preliminar">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    
                     <div class="form-group">
                         <label for="form-name">Nome Completo</label>
-                        <input type="text" id="form-name" placeholder="Seu nome completo" required>
+                        <input type="text" name="Nome" id="form-name" placeholder="Seu nome completo" required>
                     </div>
                     <div class="form-group">
                         <label for="form-email">E-mail Corporativo</label>
-                        <input type="email" id="form-email" placeholder="nome@suaempresa.com" required>
+                        <input type="email" name="Email" id="form-email" placeholder="nome@suaempresa.com" required>
                     </div>
                     <div class="form-group">
                         <label for="form-phone">Telefone / WhatsApp</label>
-                        <input type="tel" id="form-phone" placeholder="(11) 99999-9999" required>
+                        <input type="tel" name="Telefone" id="form-phone" placeholder="(11) 99999-9999" required>
                     </div>
                     <div class="form-group">
                         <label for="form-message">Como podemos ajudar?</label>
-                        <textarea id="form-message" rows="4" placeholder="Descreva brevemente sua necessidade (ex: Análise de Contratos, Reforma Tributária)" required></textarea>
+                        <textarea name="Mensagem" id="form-message" rows="4" placeholder="Descreva brevemente sua necessidade (ex: Análise de Contratos, Reforma Tributária)" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block" id="btn-submit-contact">Enviar Solicitação ➔</button>
-                    <p id="form-response" class="form-response-msg"></p>
                 </form>
             </div>
         </div>
@@ -332,15 +324,28 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container footer-container">
-            <div class="footer-brand">
-                <a href="#" class="logo" style="display: flex; align-items: center; gap: 10px;">
-                    <img src="logo.png" alt="Logo Alves" style="height: 30px; width: 30px; border-radius: 50%; object-fit: cover;">
-                    <span class="logo-accent">Alves</span> Advogado
-                </a>
-                <p>© 2026 Alves Advogado. Todos os direitos reservados.</p>
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="logomarca_carlos_luiz_alves_advocacia.png" alt="Logomarca CLA" class="footer-logo">
+                    <div class="footer-contact-info">
+                        <p><strong>Carlos Luiz Alves Advocacia</strong></p>
+                        <p>Atuação jurídica consultiva e contenciosa.</p>
+                        <p>Guarulhos/SP — Atendimento presencial e remoto.</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <p>📞 (11) 99827-4209</p>
+                    <p>✉️ contato@advcarlosluiz.com.br</p>
+                </div>
             </div>
+            
             <div class="footer-disclaimer">
-                <p>Aviso Legal: Os softwares disponibilizados neste site tratam-se de soluções pré-analíticas. A consulta a um advogado devidamente inscrito na OAB é indispensável para a tomada de decisões jurídicas formais.</p>
+                <p>Este site possui caráter exclusivamente informativo e institucional, nos termos das normas éticas da advocacia. As informações aqui apresentadas não substituem consulta jurídica individualizada.</p>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Carlos Luiz Alves Sociedade Individual de Advocacia — CNPJ: 61.683.373/0001-07</p>
+                <p style="margin-top: 0.5rem;">© 2026 Carlos Luiz Alves Advocacia. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
