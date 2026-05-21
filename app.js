@@ -121,8 +121,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     formResponse.style.color = 'var(--success)';
                     contactForm.reset();
                 } else {
-                    formResponse.textContent = "Houve um erro ao enviar sua mensagem. Por favor, tente novamente ou fale pelo WhatsApp.";
-                    formResponse.style.color = 'red';
+                    // Tratar a mensagem de ativação inicial do FormSubmit
+                    if (data.message && (data.message.includes("Activation") || data.message.includes("activation"))) {
+                        formResponse.textContent = "Formulário enviado! Acesse seu e-mail contato@advcarlosluiz.com.br e clique no link de ativação enviado pela FormSubmit para concluir.";
+                        formResponse.style.color = '#ff9f0a'; // Laranja/Aviso
+                    } else {
+                        formResponse.textContent = data.message || "Houve um erro ao enviar sua mensagem. Por favor, tente novamente ou fale pelo WhatsApp.";
+                        formResponse.style.color = 'red';
+                    }
                 }
             })
             .catch(error => {
