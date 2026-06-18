@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+const init = () => {
 
     // ──────────────────────────────────────────────
     // 1. Scroll Navigation Effects
@@ -151,4 +151,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-});
+    // ──────────────────────────────────────────────
+    // 6. FAQ Accordion Toggle
+    // ──────────────────────────────────────────────
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    if (faqQuestions.length > 0) {
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                item.classList.toggle('active');
+                const icon = question.querySelector('.faq-icon');
+                if (icon) {
+                    if (item.classList.contains('active')) {
+                        icon.textContent = '−';
+                    } else {
+                        icon.textContent = '+';
+                    }
+                }
+            });
+        });
+    }
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
