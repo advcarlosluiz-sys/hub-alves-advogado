@@ -950,6 +950,10 @@ h1, h2, h3, h4 {
     gap: 2rem;
 }
 
+.footer-links-grid-two-cols {
+    grid-template-columns: repeat(2, 1fr);
+}
+
 .footer-links-col h4 {
     color: var(--secondary);
     font-family: 'Inter', sans-serif;
@@ -1084,7 +1088,13 @@ h1, h2, h3, h4 {
     }
     
     .footer-top {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+    
+    .footer-links-grid, .footer-links-grid-two-cols {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem;
     }
 }
 
