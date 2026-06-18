@@ -121,4 +121,34 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ──────────────────────────────────────────────
+    // 5. Anti-Copying & Anti-Scraping Protections
+    // ──────────────────────────────────────────────
+    // Block context menu (right click)
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+    // Block keyboard shortcuts (Ctrl+C, Ctrl+U, Ctrl+S, F12)
+    document.addEventListener('keydown', event => {
+        // Prevent F12 (DevTools)
+        if (event.key === 'F12') {
+            event.preventDefault();
+        }
+        // Prevent Ctrl+Shift+I / Ctrl+Shift+J / Ctrl+Shift+C (DevTools)
+        if (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'i' || event.key === 'J' || event.key === 'j' || event.key === 'C' || event.key === 'c')) {
+            event.preventDefault();
+        }
+        // Prevent Ctrl+U (View Source)
+        if (event.ctrlKey && (event.key === 'U' || event.key === 'u')) {
+            event.preventDefault();
+        }
+        // Prevent Ctrl+S (Save Page)
+        if (event.ctrlKey && (event.key === 'S' || event.key === 's')) {
+            event.preventDefault();
+        }
+        // Prevent Ctrl+C (Copy)
+        if (event.ctrlKey && (event.key === 'C' || event.key === 'c')) {
+            event.preventDefault();
+        }
+    });
+
 });

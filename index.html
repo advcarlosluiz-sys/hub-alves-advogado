@@ -15,7 +15,10 @@
     <link rel="stylesheet" href="styles.css">
     
     <!-- Favicon (Fallback to logomarca) -->
-    <link rel="icon" href="logomarca_carlos_luiz_alves_advocacia.png" type="image/png">
+    <link rel="icon" href="logo_header.png" type="image/png">
+    
+    <!-- Analytics -->
+    <script src="https://carlosanalytics.vercel.app/analytics.js" data-app-name="Hub Principal"></script>
 </head>
 <body>
 
@@ -23,7 +26,7 @@
     <header class="header">
         <div class="container nav-container">
             <a href="#" class="logo" id="nav-logo">
-                <img src="logomarca_carlos_luiz_alves_advocacia.png" alt="Logomarca Carlos Luiz Alves Advocacia" class="header-logo-img">
+                <img src="logo_header.png" alt="Logomarca Carlos Luiz Alves Advocacia" class="header-logo-img">
             </a>
             <nav class="nav-menu" id="nav-menu">
                 <ul class="nav-links">
@@ -56,6 +59,9 @@
                 <p class="hero-text">
                     Atendimento consultivo e contencioso em Guarulhos/SP, voltado a empresas, profissionais e pessoas físicas que buscam análise jurídica técnica, segura e personalizada.
                 </p>
+                <div class="security-alert">
+                    <strong>⚠️ Canal Oficial & Alerta contra Golpes:</strong> Fique atento a tentativas de fraude. Nosso único contato de WhatsApp oficial é o <strong>(11) 99827-4209</strong>. Não solicitamos transferências de valores ou custas de processos por outros números.
+                </div>
                 <div class="hero-actions">
                     <a href="#contato" class="btn btn-primary">Entrar em contato</a>
                     <a href="#atuacao" class="btn btn-outline">Conhecer áreas de atuação</a>
@@ -64,11 +70,7 @@
                     * A análise jurídica depende da avaliação individualizada dos documentos e circunstâncias do caso concreto.
                 </p>
             </div>
-            <div class="hero-visual fade-in delay-2">
-                <div class="photo-wrapper">
-                    <img src="foto_carlos.jpg" alt="Dr. Carlos Luiz Alves" class="lawyer-photo">
-                </div>
-            </div>
+
         </div>
     </section>
 
@@ -171,7 +173,25 @@
                 </p>
             </div>
 
-            <div class="saas-showcase">
+            <div class="legal-disclaimer fade-in" id="saas-disclaimer" style="margin-bottom: 2rem;">
+                <strong>Aviso Legal e LGPD (Versão Beta)</strong><br><br>
+                As plataformas e soluções em Inteligência Artificial (SaaS) apresentadas neste ambiente estão em <strong>versão Beta (experimental)</strong>, configurando-se como protótipos em constante aperfeiçoamento a partir da colaboração dos usuários. A finalidade exclusiva destas ferramentas é servir de apoio, triagem e organização preliminar.<br><br>
+                Em conformidade com a <strong>LGPD</strong>, esclarecemos que os dados colhidos durante a utilização dos protótipos são utilizados única e estritamente para o treinamento e aperfeiçoamento dos próprios softwares.<br><br>
+                <strong>Atenção:</strong> As informações fornecidas podem conter imprecisões e os sistemas estão sujeitos a erros ou interrupções. Dúvidas, tomadas de decisões financeiras ou jurídicas devem ser realizadas <strong>somente após a consulta com um advogado ou técnico habilitado</strong>. A análise conclusiva de qualquer demanda depende da avaliação profissional humana do caso concreto.<br><br>
+                Em caso de dúvidas, instabilidades ou problemas com o software, por favor, envie um e-mail para nossa equipe de desenvolvimento: <a href="mailto:contato@advcarlosluiz.com.br" style="color: var(--primary); text-decoration: underline; font-style: normal; font-weight: bold;">contato@advcarlosluiz.com.br</a>.
+                
+                <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #ccc; text-align: center;">
+                    <label style="display: inline-flex; align-items: center; gap: 10px; cursor: pointer; font-size: 1rem; color: var(--text-color); font-style: normal;">
+                        <input type="checkbox" id="agree-terms" style="width: 20px; height: 20px; cursor: pointer;">
+                        <strong>Estou ciente e concordo com o Aviso Legal e LGPD</strong>
+                    </label>
+                    <br>
+                    <button id="btn-show-saas" class="btn btn-primary" style="margin-top: 1rem;">Acessar Ferramentas ➔</button>
+                    <p id="msg-warning-lgpd" style="color: #e74c3c; font-weight: bold; margin-top: 10px; display: none;">⚠️ Assinale a ciência do Aviso Legal acima para liberar o acesso.</p>
+                </div>
+            </div>
+
+            <div class="saas-showcase" id="saas-container" style="display: none;">
                 <!-- ScanContracts Card -->
                 <div class="saas-card fade-in">
                     <div class="saas-header">
@@ -193,7 +213,7 @@
                         </div>
                     </div>
                     <p class="saas-desc">Sistema voltado à revisão de contratos administrativos, licitações e impactos jurídicos em relações com o Poder Público.</p>
-                    <a href="#" class="btn btn-saas btn-disabled">Em Breve na Nuvem ➔</a>
+                    <a href="https://revisagov.vercel.app" class="btn btn-saas" target="_blank">Acessar RevisaGov ➔</a>
                 </div>
 
                 <!-- RentalSmart Card -->
@@ -201,29 +221,25 @@
                     <div class="saas-header">
                         <div class="saas-title">
                             <span class="saas-icon">🏠</span>
-                            <h3>RentalSmart</h3>
+                            <h3>Locadora Smart Decision</h3>
                         </div>
                     </div>
                     <p class="saas-desc">Solução voltada a locadoras e empresas de equipamentos, com foco em contratos, riscos, formação de preços e impactos da Reforma Tributária.</p>
-                    <a href="https://simulador.advcarlosluiz.com.br/" class="btn btn-saas" target="_blank">Acessar RentalSmart ➔</a>
+                    <a href="https://rental-smart-decision.vercel.app/auth/login?agreed=true" class="btn btn-saas" target="_blank">Acessar Smart Decision ➔</a>
                 </div>
                 
-                <!-- ScanBerry / Agrobotic Card -->
+                <!-- RentalSmart Estrategia IA Card -->
                 <div class="saas-card fade-in">
                     <div class="saas-header">
                         <div class="saas-title">
-                            <span class="saas-icon">🌱</span>
-                            <h3>ScanBerry / Agrobotic</h3>
+                            <span class="saas-icon">📈</span>
+                            <h3>RentalSmart Estratégia IA</h3>
                         </div>
                     </div>
-                    <p class="saas-desc">Projeto de tecnologia aplicada ao agronegócio, com uso de inteligência artificial para apoio à análise de lavouras, imagens e dados produtivos.</p>
-                    <a href="#" class="btn btn-saas btn-disabled">Em Breve na Nuvem ➔</a>
+                    <p class="saas-desc">Diagnóstico estratégico com Inteligência Artificial. Descubra em segundos como a Reforma Tributária impactará sua locadora em 2026 e 2027.</p>
+                    <a href="https://simulador.advcarlosluiz.com.br/" class="btn btn-saas" target="_blank">Acessar Simulador ➔</a>
                 </div>
             </div>
-            
-            <p class="legal-disclaimer fade-in">
-                As ferramentas digitais apresentadas possuem finalidade de apoio, triagem e organização preliminar. A análise jurídica conclusiva depende da avaliação profissional do caso concreto.
-            </p>
         </div>
     </section>
 
@@ -282,6 +298,10 @@
                     </div>
                 </div>
 
+                <div class="security-alert">
+                    <strong>⚠️ ATENÇÃO CONTRA GOLPES:</strong> Nosso único telefone e WhatsApp de contato oficial é o <strong>(11) 99827-4209</strong>. Não solicitamos depósitos, transferências Pix ou pagamentos de custas judiciais por outros números ou canais.
+                </div>
+
                 <div class="contact-action" style="justify-content: flex-start; margin-top: 2rem;">
                     <a href="https://wa.me/5511998274209" target="_blank" class="btn btn-whatsapp" id="btn-whatsapp">
                         <span class="wa-icon">💬</span> Entrar em contato
@@ -327,7 +347,7 @@
         <div class="container footer-container">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <img src="logomarca_carlos_luiz_alves_advocacia.png" alt="Logomarca CLA" class="footer-logo">
+                    <img src="logo_footer.png" alt="Logomarca CLA" class="footer-logo">
                     <div class="footer-contact-info">
                         <p><strong>Carlos Luiz Alves Advocacia</strong></p>
                         <p>Atuação jurídica consultiva e contenciosa.</p>
@@ -353,5 +373,39 @@
 
     <!-- Scripts -->
     <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const checkbox = document.getElementById('agree-terms');
+            const btn = document.getElementById('btn-show-saas');
+            const container = document.getElementById('saas-container');
+            const disclaimer = document.getElementById('saas-disclaimer');
+            const msgWarning = document.getElementById('msg-warning-lgpd');
+
+            if (checkbox && btn && container && disclaimer) {
+                // Remove warning when user checks the box
+                checkbox.addEventListener('change', function() {
+                    if (this.checked && msgWarning) {
+                        msgWarning.style.display = 'none';
+                    }
+                });
+
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (!checkbox.checked) {
+                        if(msgWarning) {
+                            msgWarning.style.display = 'block';
+                            checkbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        } else {
+                            alert("Por favor, assinale a ciência do Aviso Legal e LGPD.");
+                        }
+                    } else {
+                        container.style.display = '';
+                        disclaimer.style.display = 'none';
+                        container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
