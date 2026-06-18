@@ -1124,47 +1124,48 @@ input, textarea {
 }
 
 .security-alert {
-    background: rgba(231, 76, 60, 0.08); /* Light red tint */
-    border-left: 4px solid #e74c3c;
-    color: #c0392b;
-    padding: 1rem 1.5rem;
-    border-radius: 6px;
-    margin: 1.5rem 0;
-    font-size: 0.9rem;
-    text-align: left;
-    line-height: 1.5;
+  background: #fff1f1;
+  border-left: 4px solid #d93025;
+  color: #8a1f17;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  line-height: 1.6;
 }
 
+.security-alert h3,
 .security-alert strong {
-    color: #c0392b;
-    font-weight: 700;
+  color: #b3261e;
 }
 
-.hero-content .security-alert {
-    max-width: 700px;
-    margin: 1.5rem 0;
+.security-alert h3 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
-/* Versão para fundo escuro na seção de contato */
-.contact-info .security-alert {
-    background: rgba(231, 76, 60, 0.12);
-    border-left: 4px solid #ff6b6b;
-    color: #ffbaba;
-}
-
-.contact-info .security-alert strong {
-    color: #ff6b6b;
+.security-alert p {
+  margin: 0.4rem 0;
 }
 
 .security-alert-card {
-    background: rgba(231, 76, 60, 0.08) !important;
-    border: 1px solid rgba(231, 76, 60, 0.2) !important;
-    border-left: 4px solid #ff6b6b !important;
-    padding: 1.5rem !important;
-    margin: 1.5rem 0 !important;
-    border-radius: 8px !important;
+  border: 1px solid rgba(217, 48, 37, 0.2) !important;
+  border-left: 4px solid #d93025 !important;
 }
 
 .btn-preliminar {
-    border-color: rgba(10, 25, 47, 0.25) !important;
+  border-color: rgba(10, 25, 47, 0.25) !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 110px;
+}
+
+main {
+  padding-top: 80px;
 }
