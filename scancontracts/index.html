@@ -84,7 +84,7 @@
                 <li class="active" data-page="dashboard"><i class="icon-dashboard"></i> Dashboard</li>
                 <li data-page="analysis"><i class="icon-scan"></i> Nova Análise</li>
                 <li data-page="history"><i class="icon-history"></i> Histórico</li>
-                <li data-page="settings"><i class="icon-settings"></i> Configurações</li>
+
             </ul>
             <div class="sidebar-footer">
                 <div class="user-profile">
@@ -325,37 +325,7 @@
                 </div>
             </div>
 
-            <!-- Page: Settings -->
-            <div id="page-settings" class="page-view">
-                <div class="page-header">
-                    <h1>Configurações</h1>
-                    <p>Gerencie suas chaves de API e preferências de análise.</p>
-                </div>
 
-                <div class="settings-container glass">
-                    <div class="settings-section">
-                        <h2>Integração com IA</h2>
-                        <div class="form-group">
-                            <label for="openai-api-key">OpenAI API Key</label>
-                            <input type="password" id="openai-api-key" placeholder="sk-proj-...">
-                            <p class="help-text">Sua chave é salva localmente no navegador e nunca é enviada para nossos servidores. Obtenha em <a href="https://platform.openai.com/api-keys" target="_blank" style="color:var(--primary)">platform.openai.com</a>.</p>
-                        </div>
-                        <button class="btn btn-primary" id="btn-save-settings">Salvar Configurações</button>
-                    </div>
-
-                    <div class="settings-section">
-                        <h2>Preferências de Análise</h2>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="pref-tax-reform" checked>
-                            <label for="pref-tax-reform">Focar em Reforma Tributária (CBS/IBS)</label>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="pref-auto-ocr" checked>
-                            <label for="pref-auto-ocr">OCR Automático em imagens</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
     </main>
 
