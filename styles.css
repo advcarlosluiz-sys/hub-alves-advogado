@@ -138,7 +138,7 @@ h1, h2, h3, h4 {
 ────────────────────────────────────────────── */
 .header {
     position: fixed;
-    top: 0;
+    top: 40px; /* Deslocado para baixo para dar espaço ao ticker de segurança */
     left: 0;
     width: 100%;
     z-index: 1000;
@@ -1235,9 +1235,128 @@ html {
 }
 
 section[id] {
-  scroll-margin-top: 110px;
+  scroll-margin-top: 150px; /* Ajustado para ticker (40px) + header (80px) */
 }
 
 main {
-  padding-top: 80px;
+  padding-top: 120px; /* Ajustado para ticker (40px) + header (80px) */
+}
+
+/* ──────────────────────────────────────────────
+   Faixa de Alerta em Movimento (Ticker)
+   ────────────────────────────────────────────── */
+.ticker-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    z-index: 1005; /* Acima do header (1000) */
+    background: linear-gradient(90deg, #ffe6e6 0%, #fff0f0 100%);
+    border-bottom: 1px solid #ffa6a6;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    user-select: none;
+}
+
+/* Gradientes sutis nas laterais para suavizar o texto */
+.ticker-container::before,
+.ticker-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 80px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+.ticker-container::before {
+    left: 0;
+    background: linear-gradient(to right, #ffe6e6, transparent);
+}
+.ticker-container::after {
+    right: 0;
+    background: linear-gradient(to left, #fff0f0, transparent);
+}
+
+.ticker-wrap {
+    display: inline-block;
+    padding-left: 100%;
+    animation: ticker-animation 35s linear infinite;
+}
+
+.ticker-container:hover .ticker-wrap {
+    animation-play-state: paused;
+    cursor: pointer;
+}
+
+.ticker-text {
+    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #cc0000;
+    font-family: 'Inter', sans-serif;
+}
+
+.ticker-badge {
+    background-color: #d93838;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.75rem;
+    margin-right: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.ticker-phone {
+    background-color: #25d366; /* Verde oficial do WhatsApp */
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    margin-left: 6px;
+    display: inline-block;
+}
+
+.ticker-divider {
+    margin: 0 40px;
+    color: #ffa6a6;
+    font-weight: 300;
+}
+
+@keyframes ticker-animation {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+@media (max-width: 768px) {
+    .ticker-text {
+        font-size: 0.8rem;
+    }
+    .ticker-container {
+        height: 35px;
+    }
+    .ticker-wrap {
+        animation-duration: 25s;
+    }
+    .header {
+        top: 35px !important;
+    }
+    main {
+        padding-top: 105px !important; /* Ticker 35px + Header 70px */
+    }
+    section[id] {
+        scroll-margin-top: 125px !important;
+    }
 }

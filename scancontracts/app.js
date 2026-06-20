@@ -127,19 +127,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (progress >= 100) {
             progress = 100;
             clearInterval(interval);
-            // Ao terminar o splash, verifica se jÃ¡ existe sessÃ£o ativa
+            // Ao terminar o splash, entra diretamente na aplicação ignorando a autenticação
             setTimeout(async () => {
-                const { data: { session } } = await sbClient.auth.getSession();
-                if (session?.user) {
-                    currentUser = session.user;
-                    await loadCloudHistory();
-                    document.getElementById('auth-screen').classList.remove('active');
-                    revealApp(session.user);
-                } else {
-                    // Sem sessÃ£o: esconde o splash e mostra o login
-                    splashScreen.classList.add('hidden');
-                    document.getElementById('auth-screen').classList.add('active');
-                }
+                const mockUser = {
+                    id: 'mock-user-id',
+                    email: 'carlos@alvesadvocacia.com.br',
+                    user_metadata: { nome: 'Carlos Alves' }
+                };
+                currentUser = mockUser;
+                await loadCloudHistory();
+                
+                // Tratamento seguro para evitar quebras se o elemento não existir
+                const authScreen = document.getElementById('auth-screen');
+                if (authScreen) authScreen.classList.remove('active');
+                
+                splashScreen.classList.add('hidden');
+                revealApp(mockUser);
             }, 300);
         }
         loaderProgress.style.width = `${progress}%`;
@@ -1336,7 +1339,7 @@ ${contractText.slice(0, 30000)}`;
         });
     });
 
-    // BotÃ£o de Logout
+    // Botão de Logout
     const btnLogout = document.getElementById('btn-logout');
     if (btnLogout) {
         btnLogout.addEventListener('click', async () => {
@@ -1344,7 +1347,8 @@ ${contractText.slice(0, 30000)}`;
             currentUser = null;
             document.getElementById('app-container').classList.remove('active');
             document.getElementById('app-container').classList.add('hidden');
-            document.getElementById('auth-screen').classList.add('active');
+            // Recarrega a página ao invés de tentar exibir a tela de login que foi removida
+            window.location.reload();
         });
     }
 
