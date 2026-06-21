@@ -26,21 +26,13 @@
     <div class="ticker-container" title="Passe o mouse para pausar">
         <div class="ticker-wrap">
             <span class="ticker-text">
-                <span class="ticker-badge">Importante</span>
-                <strong>ALERTA DE SEGURANÇA:</strong> Criminosos podem utilizar indevidamente foto, nome e dados do advogado para tentar enganar clientes e solicitar pagamentos via Pix, depósitos, custas ou transferências.
+                <span class="ticker-badge">Alerta de Segurança</span>
+                <strong>Atenção:</strong> Criminosos estão utilizando indevidamente fotos, nome e dados do advogado para enganar clientes. Não forneça informações, não realize pagamentos, não faça PIX, sem consultar o escritório e/ou o advogado. Nosso WhatsApp oficial é: <span class="ticker-phone">(11) 99827-4209</span>. Nossos e-mails oficiais são: <strong>contato@advcarlosluiz.com.br</strong> e <strong>advcarlosluiz@gmail.com</strong>.
             </span>
             <span class="ticker-divider">✦</span>
             <span class="ticker-text">
-                O escritório não solicita depósitos, documentos, custas judiciais ou transferências por telefone.
-            </span>
-            <span class="ticker-divider">✦</span>
-            <span class="ticker-text">
-                Confirme qualquer solicitação exclusivamente pelo WhatsApp oficial: <span class="ticker-phone">(11) 99827-4209</span>
-            </span>
-            <span class="ticker-divider">✦</span>
-            <span class="ticker-text">
-                <span class="ticker-badge">Importante</span>
-                <strong>ALERTA DE SEGURANÇA:</strong> Não faça pagamentos sem confirmar antes pelo WhatsApp oficial: <span class="ticker-phone">(11) 99827-4209</span>
+                <span class="ticker-badge">Alerta de Segurança</span>
+                <strong>Atenção:</strong> Criminosos estão utilizando indevidamente fotos, nome e dados do advogado para enganar clientes. Não forneça informações, não realize pagamentos, não faça PIX, sem consultar o escritório e/ou o advogado. Nosso WhatsApp oficial é: <span class="ticker-phone">(11) 99827-4209</span>. Nossos e-mails oficiais são: <strong>contato@advcarlosluiz.com.br</strong> e <strong>advcarlosluiz@gmail.com</strong>.
             </span>
         </div>
     </div>
@@ -96,7 +88,7 @@
                 </p>
             </div>
             <div class="photo-wrapper fade-in delay-2">
-                <img src="foto_escritorio.jpg" alt="Sala de atendimento do escritório Carlos Luiz Alves Advocacia" class="lawyer-photo">
+                <img src="foto_escritorio.png" alt="Sala de atendimento do escritório Carlos Luiz Alves Advocacia" class="lawyer-photo">
             </div>
         </div>
     </section>
@@ -229,7 +221,7 @@
         <div class="container how-it-works-container">
             <div class="how-it-works-image-wrapper">
                 <div class="how-it-works-image-container">
-                    <img src="foto_entrada.jpg" alt="Entrada do escritório Carlos Luiz Alves Advocacia em Guarulhos" class="how-it-works-img">
+                    <img src="foto_entrada.png" alt="Entrada do escritório Carlos Luiz Alves Advocacia em Guarulhos" class="how-it-works-img">
                 </div>
             </div>
             <div class="how-it-works-content">
@@ -474,6 +466,9 @@
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
                     
+                    <!-- Honeypot anti-spam invisível -->
+                    <input type="text" name="website_confirm" style="display:none !important;" tabindex="-1" autocomplete="off">
+                    
                     <div class="form-group">
                         <label for="form-name">Nome Completo</label>
                         <input type="text" name="Nome" id="form-name" placeholder="Seu nome completo" required>
@@ -493,6 +488,15 @@
                     <div style="margin-top: 1rem; margin-bottom: 1rem; font-size: 0.8rem; color: var(--text-muted);">
                         * Os dados eventualmente fornecidos nas ferramentas são utilizados exclusivamente para a finalidade de triagem, organização preliminar e melhoria interna controlada da experiência do usuário, observados os deveres de confidencialidade, segurança da informação e proteção de dados.
                     </div>
+                    
+                    <!-- Checkbox de Consentimento LGPD -->
+                    <div class="form-group" style="display: flex; align-items: flex-start; gap: 10px; margin-top: 1rem; margin-bottom: 1.5rem;">
+                        <input type="checkbox" name="_consent" id="form-consent" value="true" required style="width: 20px; height: 20px; margin-top: 3px; cursor: pointer;">
+                        <label for="form-consent" style="font-size: 0.82rem; color: var(--text-muted); cursor: pointer; line-height: 1.4; text-align: left; font-family: 'Inter', sans-serif; font-weight: normal; text-transform: none;">
+                            Li e concordo com a <a href="/politica-de-privacidade" target="_blank" style="color: var(--secondary); text-decoration: underline; font-weight: bold;">Política de Privacidade</a> e os <a href="/termos-de-uso" target="_blank" style="color: var(--secondary); text-decoration: underline; font-weight: bold;">Termos de Uso</a>. Autorizo o uso dos dados informados exclusivamente para triagem inicial, contato e organização preliminar do atendimento jurídico, ciente de que o envio deste formulário não constitui contratação automática nem garante resultado jurídico.
+                        </label>
+                    </div>
+                    
                     <button type="submit" class="btn btn-primary btn-block" id="btn-submit-contact">Enviar Solicitação ➔</button>
                     <p id="form-response" class="form-response-msg"></p>
                 </form>
@@ -530,8 +534,8 @@
                     <div class="footer-links-col">
                         <h4>Termos</h4>
                         <ul>
-                            <li><a href="#">Política de Privacidade</a></li>
-                            <li><a href="#">Termos de Uso</a></li>
+                            <li><a href="/politica-de-privacidade">Política de Privacidade</a></li>
+                            <li><a href="/termos-de-uso">Termos de Uso</a></li>
                         </ul>
                     </div>
                 </div>

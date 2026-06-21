@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo Local | Carlos Luiz Alves Advocacia</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Verificação imediata de token local
+        const token = localStorage.getItem('admin_token');
+        if (!token) {
+            window.location.href = '/admin/login.html';
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Aviso Fixo Permanente -->
+    <div class="top-warning-bar">
+        ⚠️ AMBIENTE ADMINISTRATIVO LOCAL — NÃO PUBLICAR EM PRODUÇÃO SEM APROVAÇÃO EXPRESSA DE CARLOS LUIZ ALVES.
+    </div>
+
+    <div class="admin-wrapper">
+        <!-- Sidebar Navigation -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-brand">
+                <h2>CLA Advocacia</h2>
+                <span>Portal Interno</span>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="#visao-geral" class="menu-item active" data-tab="visao-geral">📊 Visão Geral</a>
+                <a href="#leads" class="menu-item" data-tab="leads">👥 Leads / Interessados</a>
+                <a href="#temas" class="menu-item" data-tab="temas">🏷️ Temas & Interesses</a>
+                <a href="#logs" class="menu-item" data-tab="logs">📜 Logs & Auditoria</a>
+                <a href="#backups" class="menu-item" data-tab="backups">💾 Backups Locais</a>
+                <a href="#configuracoes" class="menu-item" data-tab="configuracoes">⚙️ Configurações</a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <strong id="user-display-name">Dr. Carlos Luiz</strong>
+                    <span id="user-display-email">advcarlosluiz@gmail.com</span>
+                </div>
+                <button id="btn-logout" class="btn-logout">🚪 Sair (Log Out)</button>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="admin-main">
+            <!-- Header -->
+            <header class="main-header">
+                <h1 id="tab-title">Painel de Controle</h1>
+                <div id="connection-status" class="status-indicator online">Conexão Local Ativa</div>
+            </header>
+
+            <!-- Content Tabs -->
+            <div class="tab-container">
+                
+                <!-- Tab: Visão Geral -->
+                <section id="tab-visao-geral" class="tab-content active">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <h3>Solicitações Recebidas</h3>
+                            <p class="metric-value" id="metric-total-leads">0</p>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Novos Contatos</h3>
+                            <p class="metric-value" id="metric-new-leads">0</p>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Logs de Segurança (Hoje)</h3>
+                            <p class="metric-value" id="metric-security-logs">0</p>
+                        </div>
+                        <div class="metric-card">
+                            <h3>Último Backup</h3>
+                            <p class="metric-value" id="metric-last-backup" style="font-size: 1.1rem; padding-top: 10px;">Não realizado</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-double-column">
+                        <div class="dashboard-card">
+                            <h3>Solicitações por Tema Jurídico</h3>
+                            <div class="chart-list" id="chart-temas">
+                                <!-- Preenchido dinamicamente -->
+                            </div>
+                        </div>
+
+                        <div class="dashboard-card">
+                            <h3>Últimos Acessos e Logs Administrativos</h3>
+                            <div class="log-mini-list" id="list-mini-logs">
+                                <!-- Preenchido dinamicamente -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: Leads / Interessados -->
+                <section id="tab-leads" class="tab-content">
+                    <div class="filter-bar">
+                        <input type="text" id="search-leads" placeholder="Buscar por nome, e-mail, telefone ou tema...">
+                        <select id="filter-tema">
+                            <option value="">Todos os Temas</option>
+                            <option value="Família e Sucessões">Família e Sucessões</option>
+                            <option value="Direito Imobiliário">Direito Imobiliário</option>
+                            <option value="Direito Civil">Direito Civil</option>
+                            <option value="Consumidor">Consumidor</option>
+                            <option value="Bancário">Bancário</option>
+                            <option value="Empresarial">Empresarial</option>
+                            <option value="Contratos">Contratos</option>
+                            <option value="Execução e Cobrança">Execução, Cobrança e Recup. Crédito</option>
+                            <option value="Reforma Tributária">Reforma Tributária</option>
+                        </select>
+                        <select id="filter-status">
+                            <option value="">Todos os Status</option>
+                            <option value="novo">Novo</option>
+                            <option value="em_analise">Em Análise</option>
+                            <option value="contatado">Contatado</option>
+                            <option value="convertido">Convertido</option>
+                            <option value="arquivado">Arquivado</option>
+                        </select>
+                        <button id="btn-export-leads" class="btn btn-secondary-outline">📥 Exportar Leads</button>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Contato</th>
+                                    <th>Tema</th>
+                                    <th>Interesse Presumido</th>
+                                    <th>Status</th>
+                                    <th>Consentimento</th>
+                                    <th>Data</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-leads-body">
+                                <!-- Preenchido via API -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Tab: Temas & Interesses -->
+                <section id="tab-temas" class="tab-content">
+                    <div class="dashboard-card">
+                        <h3>Análise dos Supostos Temas e Interesses Procurados</h3>
+                        <p class="description-text">As categorias a seguir organizam as triagens com base nas áreas jurídicas do escritório e termos informados pelos leads.</p>
+                        
+                        <div class="table-container" style="margin-top: 1.5rem;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tema Jurídico</th>
+                                        <th>Total de Solicitações</th>
+                                        <th>Principais Subtemas Procurados</th>
+                                        <th>Confiança Média da IA</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-temas-body">
+                                    <!-- Preenchido via API -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: Logs & Auditoria -->
+                <section id="tab-logs" class="tab-content">
+                    <div class="filter-bar">
+                        <select id="filter-log-type">
+                            <option value="all">Todos os Logs</option>
+                            <option value="auth">Logs de Autenticação</option>
+                            <option value="audit">Auditoria Administrativa</option>
+                            <option value="error">Erros</option>
+                        </select>
+                        <button id="btn-export-logs" class="btn btn-secondary-outline">📥 Exportar Logs</button>
+                    </div>
+
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Data/Hora</th>
+                                    <th>Tipo de Evento</th>
+                                    <th>Descrição / Detalhes</th>
+                                    <th>Integridade</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-logs-body">
+                                <!-- Preenchido via API -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Tab: Backups Locais -->
+                <section id="tab-backups" class="tab-content">
+                    <div class="dashboard-card" style="margin-bottom: 2rem;">
+                        <h3>Controle de Backups Criptografados</h3>
+                        <p class="description-text">Crie, valide e gerencie suas cópias de segurança locais diretamente do painel administrativo. Todos os backups são criptografados com criptografia simétrica forte AES-256-CBC e protegidos com hash SHA-256.</p>
+                        
+                        <div class="button-group" style="margin-top: 1.5rem; display: flex; gap: 10px;">
+                            <button id="btn-create-backup" class="btn btn-primary">💾 Criar Backup Agora</button>
+                            <button id="btn-verify-backups" class="btn btn-secondary-outline">🔍 Verificar Integridade de Todos</button>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Backups Locais Armazenados</h3>
+                        <div class="table-container" style="margin-top: 1.5rem;">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Nome do Arquivo</th>
+                                        <th>Data de Criação</th>
+                                        <th>Tamanho</th>
+                                        <th>Checksum SHA-256</th>
+                                        <th>Status de Integridade</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-backups-body">
+                                    <!-- Preenchido via API -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tab: Configurações -->
+                <section id="tab-configuracoes" class="tab-content">
+                    <div class="dashboard-card" style="margin-bottom: 2rem;">
+                        <h3>Opções Gerais</h3>
+                        <div class="settings-form" style="margin-top: 1.5rem;">
+                            <div class="form-group-flex">
+                                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                    <input type="checkbox" id="config-enable-admin" checked disabled>
+                                    <strong>Habilitar Acesso ao Portal Administrativo (Local)</strong>
+                                </label>
+                                <span class="input-note">Desativação global está atrelada à variável de ambiente de produção para segurança.</span>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 1.5rem;">
+                                <label for="config-log-retention">Prazo de Retenção de Logs (dias)</label>
+                                <input type="number" id="config-log-retention" min="30" max="365" value="90" style="max-width: 150px; background: rgba(0,0,0,0.05); color: var(--text-dark); border: 1px solid var(--border-light); padding: 5px 10px; border-radius: 4px;">
+                                <span class="input-note">Recomendado mínimo de 90 dias nos termos da LGPD e Marco Civil da Internet.</span>
+                            </div>
+                            
+                            <button id="btn-save-settings" class="btn btn-primary" style="margin-top: 1rem;">Salvar Configurações</button>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Direitos do Titular (LGPD)</h3>
+                        <p class="description-text">Pesquise por e-mail ou telefone para excluir permanentemente todos os dados vinculados a um titular que solicitou eliminação de dados.</p>
+                        
+                        <div class="settings-form" style="margin-top: 1.5rem; display: flex; gap: 10px; align-items: flex-end;">
+                            <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                                <label for="delete-holder-email">E-mail do Titular para Eliminação</label>
+                                <input type="email" id="delete-holder-email" placeholder="nome@empresa.com" style="width: 100%; background: rgba(0,0,0,0.05); color: var(--text-dark); border: 1px solid var(--border-light); padding: 8px 12px; border-radius: 4px;">
+                            </div>
+                            <button id="btn-delete-holder" class="btn btn-danger" style="background: #ff6b6b; border-color: #ff6b6b;">❌ Excluir Definitivamente</button>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Lead Detail Modal -->
+    <div id="lead-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" id="close-lead-modal">&times;</span>
+            <h2 id="modal-lead-name" style="margin-bottom: 1.5rem;">Nome do Lead</h2>
+            
+            <div class="modal-grid">
+                <div class="modal-field">
+                    <strong>E-mail:</strong>
+                    <span id="modal-lead-email"></span>
+                </div>
+                <div class="modal-field">
+                    <strong>Telefone/WhatsApp:</strong>
+                    <span id="modal-lead-phone"></span>
+                </div>
+                <div class="modal-field">
+                    <strong>Tema Selecionado:</strong>
+                    <span id="modal-lead-tema"></span>
+                </div>
+                <div class="modal-field">
+                    <strong>Interesse Presumido:</strong>
+                    <span id="modal-lead-interesse" class="badge-tag"></span>
+                </div>
+                <div class="modal-field">
+                    <strong>Origem:</strong>
+                    <span id="modal-lead-origem"></span>
+                </div>
+                <div class="modal-field">
+                    <strong>Página de Origem:</strong>
+                    <span id="modal-lead-pagina-origem"></span>
+                </div>
+                <div class="modal-field">
+                    <strong>Consentimento LGPD:</strong>
+                    <span id="modal-lead-consentimento"></span>
+                </div>
+                <div class="modal-field">
+                    <strong>Data/Hora de Criação:</strong>
+                    <span id="modal-lead-data"></span>
+                </div>
+            </div>
+
+            <div class="modal-field-message" style="margin-top: 1.5rem;">
+                <strong>Mensagem / Motivo do Contato:</strong>
+                <p id="modal-lead-mensagem" style="background: #f1f5f9; padding: 1rem; border-radius: 4px; margin-top: 0.5rem; white-space: pre-wrap; font-size: 0.95rem;"></p>
+            </div>
+
+            <div class="form-group" style="margin-top: 1.5rem;">
+                <label for="modal-lead-status">Alterar Status Interno</label>
+                <select id="modal-lead-status" style="width: 100%; max-width: 200px; padding: 5px; border-radius: 4px;">
+                    <option value="novo">Novo</option>
+                    <option value="em_analise">Em Análise</option>
+                    <option value="contatado">Contatado</option>
+                    <option value="convertido">Convertido</option>
+                    <option value="arquivado">Arquivado</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-top: 1rem;">
+                <label for="modal-lead-observacoes">Observações Internas do Advogado (Confidencial)</label>
+                <textarea id="modal-lead-observacoes" rows="4" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid var(--border-light); font-family: sans-serif;" placeholder="Registros particulares sobre o caso, agendamento de reuniões, etc."></textarea>
+            </div>
+
+            <div class="button-group" style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 10px;">
+                <button id="btn-save-lead-details" class="btn btn-primary">Salvar Alterações</button>
+                <button id="btn-delete-lead" class="btn btn-danger" style="background: #ff6b6b; border-color: #ff6b6b;">Excluir Lead</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="admin.js"></script>
+</body>
+</html>

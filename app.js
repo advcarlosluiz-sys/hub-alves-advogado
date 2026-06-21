@@ -88,16 +88,33 @@ const init = () => {
             
             const submitBtn = document.getElementById('btn-submit-contact');
             const name = document.getElementById('form-name').value.trim();
-            const formData = new FormData(contactForm);
             
             submitBtn.disabled = true;
             submitBtn.textContent = 'Enviando...';
             formResponse.textContent = '';
             
-            fetch("https://formsubmit.co/ajax/contato@advcarlosluiz.com.br", {
-                method: "POST",
-                body: formData
-            })
+            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            
+            const payload = {
+                Nome: document.getElementById('form-name').value.trim(),
+                Email: document.getElementById('form-email').value.trim(),
+                Telefone: document.getElementById('form-phone').value.trim(),
+                Mensagem: document.getElementById('form-message').value.trim(),
+                _consent: document.getElementById('form-consent').checked,
+                website_confirm: contactForm.querySelector('[name="website_confirm"]').value
+            };
+
+            const targetUrl = isLocal ? '/api/leads' : 'https://formsubmit.co/ajax/contato@advcarlosluiz.com.br';
+            const requestOptions = isLocal ? {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            } : {
+                method: 'POST',
+                body: new FormData(contactForm)
+            };
+            
+            fetch(targetUrl, requestOptions)
             .then(response => response.json())
             .then(data => {
                 submitBtn.disabled = false;
@@ -108,7 +125,7 @@ const init = () => {
                     formResponse.style.color = 'var(--primary)';
                     contactForm.reset();
                 } else {
-                    formResponse.textContent = "Ocorreu um erro ao enviar o formulário. Tente novamente mais tarde.";
+                    formResponse.textContent = data.message || "Ocorreu um erro ao enviar o formulário. Tente novamente mais tarde.";
                     formResponse.style.color = 'red';
                 }
             })
