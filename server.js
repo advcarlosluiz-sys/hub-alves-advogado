@@ -28,6 +28,9 @@ if (process.env.DATABASE_URL) {
             rejectUnauthorized: false
         }
     });
+    pool.on('error', (err) => {
+        console.error('[ERRO] Erro inesperado no pool do PostgreSQL:', err.message);
+    });
 } else {
     console.log('[INFO] Nenhuma DATABASE_URL configurada. Usando fallback de arquivos JSON locais.');
 }
@@ -232,26 +235,29 @@ async function getLogsFromDB(type, limit) {
 }
 
 async function saveLogToDB(log) {
-    if (pool) {
-        await pool.query(
-            `INSERT INTO logs (id, type, timestamp, event, action, "actorEmail", "entityType", "entityId", reason, message, "previousHash", "integrityHash", metadata)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
-            [
-                log.id,
-                log.type,
-                log.timestamp || new Date().toISOString(),
-                log.event || null,
-                log.action || null,
-                log.actorEmail || null,
-                log.entityType || null,
-                log.entityId || null,
-                log.reason || null,
-                log.message || null,
-                log.previousHash || null,
-                log.integrityHash || null,
-                log.metadata ? JSON.stringify(log.metadata) : null
-            ]
-        );
+        try {
+            await pool.query(
+                `INSERT INTO logs (id, type, timestamp, event, action, "actorEmail", "entityType", "entityId", reason, message, "previousHash", "integrityHash", metadata)
+                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)`,
+                [
+                    log.id,
+                    log.type,
+                    log.timestamp || new Date().toISOString(),
+                    log.event || null,
+                    log.action || null,
+                    log.actorEmail || null,
+                    log.entityType || null,
+                    log.entityId || null,
+                    log.reason || null,
+                    log.message || null,
+                    log.previousHash || null,
+                    log.integrityHash || null,
+                    log.metadata ? JSON.stringify(log.metadata) : null
+                ]
+            );
+        } catch (err) {
+            console.error('[ERRO] Falha ao gravar log no banco:', err.message);
+        }
     } else {
         const logs = readJSON(LOGS_FILE);
         logs.push(log);
