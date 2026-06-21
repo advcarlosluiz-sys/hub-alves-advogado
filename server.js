@@ -17,28 +17,46 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ──────────────────────────────────────────────
-// 1. Database & Core Folders Initialization
-// ──────────────────────────────────────────────
+// Database Connection Configuration (PostgreSQL for Supabase in Cloud/Production)
+let pool = null;
+if (process.env.DATABASE_URL) {
+    console.log('[INFO] DATABASE_URL detectada. Usando banco de dados PostgreSQL (Supabase).');
+    pool = new Pool({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        }
+    });
+} else {
+    console.log('[INFO] Nenhuma DATABASE_URL configurada. Usando fallback de arquivos JSON locais.');
+}
+
 const DB_DIR = path.join(__dirname, 'db');
 const BACKUP_DIR = path.join(__dirname, 'backups', 'local');
 const LEADS_FILE = path.join(DB_DIR, 'leads.json');
 const LOGS_FILE = path.join(DB_DIR, 'logs.json');
 const SETTINGS_FILE = path.join(DB_DIR, 'settings.json');
 
-// Ensure database folders exist
-if (!fs.existsSync(DB_DIR)) fs.mkdirSync(DB_DIR, { recursive: true });
-if (!fs.existsSync(BACKUP_DIR)) fs.mkdirSync(BACKUP_DIR, { recursive: true });
+// Ensure database folders exist (only if not using database)
+if (!pool) {
+    try {
+        if (!fs.existsSync(DB_DIR)) fs.mkdirSync(DB_DIR, { recursive: true });
+        if (!fs.existsSync(BACKUP_DIR)) fs.mkdirSync(BACKUP_DIR, { recursive: true });
 
-// Initialize files if they don't exist
-const initJSONFile = (filePath, defaultVal = []) => {
-    if (!fs.existsSync(filePath)) {
-        fs.writeFileSync(filePath, JSON.stringify(defaultVal, null, 2), 'utf-8');
+        // Initialize files if they don't exist
+        const initJSONFile = (filePath, defaultVal = []) => {
+            if (!fs.existsSync(filePath)) {
+                fs.writeFileSync(filePath, JSON.stringify(defaultVal, null, 2), 'utf-8');
+            }
+        };
+
+        initJSONFile(LEADS_FILE, []);
+        initJSONFile(LOGS_FILE, []);
+        initJSONFile(SETTINGS_FILE, { logRetentionDays: 90 });
+    } catch (err) {
+        console.warn('[AVISO] Falha ao inicializar sistema de arquivos local:', err.message);
     }
-};
-
-initJSONFile(LEADS_FILE, []);
-initJSONFile(LOGS_FILE, []);
-initJSONFile(SETTINGS_FILE, { logRetentionDays: 90 });
+}
 
 // Helper Database Functions for Local JSON fallback
 function readJSON(file) {
@@ -57,20 +75,6 @@ function writeJSON(file, data) {
     } catch (err) {
         console.error(`Erro ao escrever no arquivo ${file}:`, err);
     }
-}
-
-// Database Connection Configuration (PostgreSQL for Supabase in Cloud/Production)
-let pool = null;
-if (process.env.DATABASE_URL) {
-    console.log('[INFO] DATABASE_URL detectada. Usando banco de dados PostgreSQL (Supabase).');
-    pool = new Pool({
-        connectionString: process.env.DATABASE_URL,
-        ssl: {
-            rejectUnauthorized: false
-        }
-    });
-} else {
-    console.log('[INFO] Nenhuma DATABASE_URL configurada. Usando fallback de arquivos JSON locais.');
 }
 
 // Auto-create tables in Supabase PostgreSQL
