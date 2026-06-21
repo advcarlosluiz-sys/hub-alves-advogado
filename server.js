@@ -235,6 +235,7 @@ async function getLogsFromDB(type, limit) {
 }
 
 async function saveLogToDB(log) {
+    if (pool) {
         try {
             await pool.query(
                 `INSERT INTO logs (id, type, timestamp, event, action, "actorEmail", "entityType", "entityId", reason, message, "previousHash", "integrityHash", metadata)
