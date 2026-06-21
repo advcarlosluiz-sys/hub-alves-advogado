@@ -574,6 +574,11 @@ app.post('/api/auth/login', authLimiter, async (req, res) => {
             return res.status(400).json({ message: 'E-mail e senha são obrigatórios.' });
         }
 
+        if (!process.env.ADMIN_ALLOWED_EMAIL || !process.env.ADMIN_PASSWORD_HASH) {
+            console.error('[ERRO] ADMIN_ALLOWED_EMAIL ou ADMIN_PASSWORD_HASH não configurada no ambiente.');
+            return res.status(500).json({ message: 'Erro de configuração no servidor. Variáveis de ambiente ausentes.' });
+        }
+
         // Allowed email check (Allowlist)
         if (email !== process.env.ADMIN_ALLOWED_EMAIL) {
             await addLog('auth', {
