@@ -146,53 +146,69 @@ if (pool) {
 
 async function getLeadsFromDB() {
     if (pool) {
-        const res = await pool.query('SELECT id, nome, email, "telefoneWhatsapp", "temaJuridico", "motivoContato", "interessePresumido", origem, "paginaOrigem", "consentimentoLgpd", "consentimentoTextoVersao", "dataCriacao", status, "observacoesInternas" FROM leads');
-        return res.rows.map(row => ({
-            id: row.id,
-            nome: row.nome,
-            email: row.email,
-            telefoneWhatsapp: row.telefoneWhatsapp,
-            temaJuridico: row.temaJuridico,
-            motivoContato: row.motivoContato,
-            interessePresumido: row.interessePresumido,
-            origem: row.origem,
-            paginaOrigem: row.paginaOrigem,
-            consentimentoLgpd: row.consentimentoLgpd,
-            consentimentoTextoVersao: row.consentimentoTextoVersao,
-            dataCriacao: row.dataCriacao ? row.dataCriacao.toISOString() : null,
-            status: row.status,
-            observacoesInternas: row.observacoesInternas
-        }));
+        try {
+            const res = await pool.query('SELECT id, nome, email, "telefoneWhatsapp", "temaJuridico", "motivoContato", "interessePresumido", origem, "paginaOrigem", "consentimentoLgpd", "consentimentoTextoVersao", "dataCriacao", status, "observacoesInternas" FROM leads ORDER BY "dataCriacao" DESC');
+            return res.rows.map(row => ({
+                id: row.id,
+                nome: row.nome,
+                email: row.email,
+                telefoneWhatsapp: row.telefoneWhatsapp,
+                temaJuridico: row.temaJuridico,
+                motivoContato: row.motivoContato,
+                interessePresumido: row.interessePresumido,
+                origem: row.origem,
+                paginaOrigem: row.paginaOrigem,
+                consentimentoLgpd: row.consentimentoLgpd,
+                consentimentoTextoVersao: row.consentimentoTextoVersao,
+                dataCriacao: row.dataCriacao ? row.dataCriacao.toISOString() : null,
+                status: row.status,
+                observacoesInternas: row.observacoesInternas
+            }));
+        } catch (dbErr) {
+            console.error('[ERRO] getLeadsFromDB falhou:', dbErr.message);
+            throw dbErr; // Re-lança para que a rota possa retornar 500 com mensagem clara
+        }
     }
-    return readJSON(LEADS_FILE);
+    // Fallback JSON local
+    try { return readJSON(LEADS_FILE); } catch(e) { return []; }
 }
 
 async function saveLeadToDB(lead) {
     if (pool) {
-        await pool.query(
-            `INSERT INTO leads (id, nome, email, "telefoneWhatsapp", "temaJuridico", "motivoContato", "interessePresumido", origem, "paginaOrigem", "consentimentoLgpd", "consentimentoTextoVersao", "dataCriacao", status, "observacoesInternas")
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)`,
-            [
-                lead.id,
-                lead.nome,
-                lead.email,
-                lead.telefoneWhatsapp,
-                lead.temaJuridico,
-                lead.motivoContato,
-                lead.interessePresumido,
-                lead.origem,
-                lead.paginaOrigem,
-                lead.consentimentoLgpd,
-                lead.consentimentoTextoVersao,
-                lead.dataCriacao || new Date().toISOString(),
-                lead.status || 'novo',
-                lead.observacoesInternas || ''
-            ]
-        );
+        try {
+            await pool.query(
+                `INSERT INTO leads (id, nome, email, "telefoneWhatsapp", "temaJuridico", "motivoContato", "interessePresumido", origem, "paginaOrigem", "consentimentoLgpd", "consentimentoTextoVersao", "dataCriacao", status, "observacoesInternas")
+                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14)`,
+                [
+                    lead.id,
+                    lead.nome,
+                    lead.email,
+                    lead.telefoneWhatsapp,
+                    lead.temaJuridico,
+                    lead.motivoContato,
+                    lead.interessePresumido,
+                    lead.origem,
+                    lead.paginaOrigem,
+                    lead.consentimentoLgpd,
+                    lead.consentimentoTextoVersao,
+                    lead.dataCriacao || new Date().toISOString(),
+                    lead.status || 'novo',
+                    lead.observacoesInternas || ''
+                ]
+            );
+        } catch(dbErr) {
+            console.error('[ERRO] saveLeadToDB falhou:', dbErr.message);
+            throw dbErr; // Re-lança para a rota retornar 500
+        }
     } else {
-        const leads = readJSON(LEADS_FILE);
-        leads.push(lead);
-        writeJSON(LEADS_FILE, leads);
+        try {
+            const leads = readJSON(LEADS_FILE);
+            leads.push(lead);
+            writeJSON(LEADS_FILE, leads);
+        } catch(fsErr) {
+            console.error('[ERRO] saveLeadToDB (JSON fallback) falhou:', fsErr.message);
+            throw new Error('Não foi possível salvar o lead: ' + fsErr.message);
+        }
     }
 }
 
@@ -305,55 +321,64 @@ function sanitizeText(str) {
 
 // Write to logs (supports hybrid storage and integrity chain)
 async function addLog(type, eventData) {
-    const newLog = {
-        id: crypto.randomUUID(),
-        type,
-        timestamp: new Date().toISOString(),
-        ...eventData
-    };
-
-    if (newLog.reason) newLog.reason = sanitizeText(newLog.reason);
-    if (newLog.message) newLog.message = sanitizeText(newLog.message);
-
-    if (type === 'audit') {
-        let prevHash = 'GENESIS_AUDIT_LOG_CLA';
-        if (pool) {
-            const res = await pool.query('SELECT "integrityHash" FROM logs WHERE type = \'audit\' ORDER BY timestamp DESC LIMIT 1');
-            if (res.rows.length > 0) {
-                prevHash = res.rows[0].integrityHash;
-            }
-        } else {
-            const logs = readJSON(LOGS_FILE);
-            const auditLogs = logs.filter(l => l.type === 'audit');
-            const lastAuditLog = auditLogs[auditLogs.length - 1];
-            if (lastAuditLog) {
-                prevHash = lastAuditLog.integrityHash;
-            }
-        }
-        
-        newLog.previousHash = prevHash;
-        newLog.integrityHash = crypto.createHash('sha256')
-            .update(newLog.id + (newLog.actorEmail || '') + (newLog.action || '') + prevHash + newLog.timestamp)
-            .digest('hex');
-    }
-
-    await saveLogToDB(newLog);
-
     try {
-        const settings = await getSettingsFromDB();
-        const retentionDays = settings.logRetentionDays || 90;
-        const cutoffDate = new Date();
-        cutoffDate.setDate(cutoffDate.getDate() - retentionDays);
+        const newLog = {
+            id: crypto.randomUUID(),
+            type,
+            timestamp: new Date().toISOString(),
+            ...eventData
+        };
 
-        if (pool) {
-            await pool.query('DELETE FROM logs WHERE timestamp < $1', [cutoffDate]);
-        } else {
-            const logs = readJSON(LOGS_FILE);
-            const filteredLogs = logs.filter(log => new Date(log.timestamp) > cutoffDate);
-            writeJSON(LOGS_FILE, filteredLogs);
+        if (newLog.reason) newLog.reason = sanitizeText(newLog.reason);
+        if (newLog.message) newLog.message = sanitizeText(newLog.message);
+
+        if (type === 'audit') {
+            let prevHash = 'GENESIS_AUDIT_LOG_CLA';
+            try {
+                if (pool) {
+                    const res = await pool.query('SELECT "integrityHash" FROM logs WHERE type = \'audit\' ORDER BY timestamp DESC LIMIT 1');
+                    if (res.rows.length > 0) {
+                        prevHash = res.rows[0].integrityHash;
+                    }
+                } else {
+                    const logs = readJSON(LOGS_FILE);
+                    const auditLogs = logs.filter(l => l.type === 'audit');
+                    const lastAuditLog = auditLogs[auditLogs.length - 1];
+                    if (lastAuditLog) {
+                        prevHash = lastAuditLog.integrityHash;
+                    }
+                }
+            } catch(hashErr) {
+                console.error('[AVISO] Erro ao buscar hash anterior do log de auditoria:', hashErr.message);
+            }
+            
+            newLog.previousHash = prevHash;
+            newLog.integrityHash = crypto.createHash('sha256')
+                .update(newLog.id + (newLog.actorEmail || '') + (newLog.action || '') + prevHash + newLog.timestamp)
+                .digest('hex');
         }
-    } catch(e) {
-        console.error('Erro na retenção de logs:', e);
+
+        await saveLogToDB(newLog);
+
+        try {
+            const settings = await getSettingsFromDB();
+            const retentionDays = settings.logRetentionDays || 90;
+            const cutoffDate = new Date();
+            cutoffDate.setDate(cutoffDate.getDate() - retentionDays);
+
+            if (pool) {
+                await pool.query('DELETE FROM logs WHERE timestamp < $1', [cutoffDate]);
+            } else {
+                const logs = readJSON(LOGS_FILE);
+                const filteredLogs = logs.filter(log => new Date(log.timestamp) > cutoffDate);
+                writeJSON(LOGS_FILE, filteredLogs);
+            }
+        } catch(e) {
+            console.error('Erro na retenção de logs:', e);
+        }
+    } catch(outerErr) {
+        // Nunca propagar erros de logging para as rotas da API
+        console.error('[AVISO] addLog falhou silenciosamente:', outerErr.message);
     }
 }
 
@@ -451,9 +476,38 @@ const authenticateJWT = async (req, res, next) => {
     }
 };
 
+
 // ──────────────────────────────────────────────
 // 4. API Endpoints
 // ──────────────────────────────────────────────
+
+// Health Check / Diagnóstico de Produção (sem autenticação)
+app.get('/api/health', async (req, res) => {
+    const status = {
+        timestamp: new Date().toISOString(),
+        nodeEnv: process.env.NODE_ENV || 'not set',
+        hasDatabaseUrl: !!process.env.DATABASE_URL,
+        databaseUrlPrefix: process.env.DATABASE_URL ? process.env.DATABASE_URL.substring(0, 30) + '...' : 'N/A',
+        hasJwtSecret: !!process.env.JWT_SECRET,
+        hasAdminEmail: !!process.env.ADMIN_ALLOWED_EMAIL,
+        hasPasswordHash: !!process.env.ADMIN_PASSWORD_HASH,
+        poolActive: !!pool,
+        dbConnected: false,
+        dbError: null
+    };
+
+    if (pool) {
+        try {
+            await pool.query('SELECT 1');
+            status.dbConnected = true;
+        } catch (err) {
+            status.dbError = err.message;
+        }
+    }
+
+    res.status(200).json(status);
+});
+
 
 // Public API: Contact Form Submission (Fase 2)
 app.post('/api/leads', formSubmissionLimiter, async (req, res) => {
