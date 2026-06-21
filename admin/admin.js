@@ -1,7 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // ──────────────────────────────────────────────
-    // 1. Core State
-    // ──────────────────────────────────────────────
+// Core Administrative Panel Logic
+// ──────────────────────────────────────────────
+
     let state = {
         leads: [],
         logs: [],
@@ -381,6 +380,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 state.backups = await res.json();
                 renderBackupsTable();
             }
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     // Fetch retention settings
@@ -787,6 +789,26 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('filter-status').addEventListener('change', renderLeadsTable);
     document.getElementById('filter-log-type').addEventListener('change', fetchLogs);
 
+    // Environment checking (Local vs Cloud)
+    const connStatus = document.getElementById('connection-status');
+    const warningBar = document.querySelector('.top-warning-bar');
+    const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+    if (connStatus) {
+        if (isLocal) {
+            connStatus.textContent = 'Conexão Local Ativa';
+        } else {
+            connStatus.textContent = 'Conexão Nuvem Ativa';
+        }
+    }
+    if (warningBar) {
+        if (isLocal) {
+            warningBar.style.display = 'block';
+        } else {
+            warningBar.style.display = 'none';
+        }
+    }
+
     // Initial Loading
     const initialTab = window.location.hash ? window.location.hash.substring(1) : 'visao-geral';
     const initialMenuItem = document.querySelector(`.menu-item[data-tab="${initialTab}"]`);
@@ -795,4 +817,4 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         loadTabData('visao-geral');
     }
-});
+
