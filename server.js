@@ -35,8 +35,9 @@ if (process.env.DATABASE_URL) {
     console.log('[INFO] Nenhuma DATABASE_URL configurada. Usando fallback de arquivos JSON locais.');
 }
 
-const DB_DIR = path.join(__dirname, 'db');
-const BACKUP_DIR = path.join(__dirname, 'backups', 'local');
+const isCloud = process.env.VERCEL === '1' || !!process.env.DATABASE_URL || process.env.NODE_ENV === 'production';
+const DB_DIR = isCloud ? '/tmp/db' : path.join(__dirname, 'db');
+const BACKUP_DIR = isCloud ? '/tmp/backups/local' : path.join(__dirname, 'backups', 'local');
 const LEADS_FILE = path.join(DB_DIR, 'leads.json');
 const LOGS_FILE = path.join(DB_DIR, 'logs.json');
 const SETTINGS_FILE = path.join(DB_DIR, 'settings.json');
@@ -1040,6 +1041,9 @@ app.get('/api/admin/backups', authenticateJWT, (req, res) => {
 app.post('/api/admin/backups', authenticateJWT, async (req, res) => {
     try {
         if (pool) {
+            if (!fs.existsSync(DB_DIR)) {
+                fs.mkdirSync(DB_DIR, { recursive: true });
+            }
             // Backup postgres data into JSON files first
             const leads = await getLeadsFromDB();
             const logs = await getLogsFromDB();

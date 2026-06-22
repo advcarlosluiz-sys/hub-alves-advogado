@@ -7,8 +7,9 @@ if (require.main === module) {
     require('dotenv').config({ path: path.join(__dirname, '..', '.env.local') });
 }
 
-const DB_DIR = path.join(__dirname, '..', 'db');
-const BACKUP_DIR = path.join(__dirname, '..', 'backups', 'local');
+const isCloud = process.env.VERCEL === '1' || !!process.env.DATABASE_URL || process.env.NODE_ENV === 'production';
+const DB_DIR = isCloud ? '/tmp/db' : path.join(__dirname, '..', 'db');
+const BACKUP_DIR = isCloud ? '/tmp/backups/local' : path.join(__dirname, '..', 'backups', 'local');
 const ENCRYPTION_KEY = process.env.BACKUP_ENCRYPTION_KEY || '0123456789abcdef0123456789abcdef'; // 32 bytes key
 
 function runBackupSync() {
