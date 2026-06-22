@@ -311,6 +311,15 @@ function getIPHash(req) {
     return crypto.createHash('sha256').update(ip).digest('hex');
 }
 
+function getClientIP(req) {
+    const forwarded = req.headers['x-forwarded-for'];
+    if (forwarded) {
+        return forwarded.split(',')[0].trim();
+    }
+    return req.headers['x-real-ip'] || req.socket.remoteAddress || '127.0.0.1';
+}
+
+
 function sanitizeText(str) {
     if (typeof str !== 'string') return '';
     let sanitized = str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -389,6 +398,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.set('trust proxy', 1); // Confia no primeiro proxy reverso (Vercel)
 
 // Helmet Headers configuration
 app.use(helmet({
@@ -422,11 +432,9 @@ const authLimiter = rateLimit({
     handler: async (req, res, next, options) => {
         await addLog('auth', {
             event: 'login_failed',
-            email: req.body.email || 'N/A',
-            ipHash: getIPHash(req),
-            userAgent: req.headers['user-agent'],
-            success: false,
-            reason: 'Rate limit de login excedido'
+            actorEmail: req.body.email || 'N/A',
+            reason: 'Rate limit de login excedido',
+            metadata: { ip: getClientIP(req), ipHash: getIPHash(req), userAgent: req.headers['user-agent'] }
         });
         res.status(options.statusCode).send(options.message);
     }
@@ -447,10 +455,8 @@ const authenticateJWT = async (req, res, next) => {
     if (!token) {
         await addLog('auth', {
             event: 'unauthorized_access_attempt',
-            ipHash: getIPHash(req),
-            userAgent: req.headers['user-agent'],
-            success: false,
-            reason: `Tentativa de acesso sem token na rota: ${req.originalUrl}`
+            reason: `Tentativa de acesso sem token na rota: ${req.originalUrl}`,
+            metadata: { ip: getClientIP(req), ipHash: getIPHash(req), userAgent: req.headers['user-agent'] }
         });
         return res.status(401).json({ message: 'Acesso negado. Faça login para continuar.' });
     }
@@ -468,9 +474,8 @@ const authenticateJWT = async (req, res, next) => {
     } catch (err) {
         await addLog('auth', {
             event: 'session_expired',
-            ipHash: getIPHash(req),
-            success: false,
-            reason: 'Token de sessão inválido ou expirado'
+            reason: 'Token de sessão inválido ou expirado',
+            metadata: { ip: getClientIP(req), ipHash: getIPHash(req) }
         });
         return res.status(403).json({ message: 'Sessão inválida ou expirada. Faça login novamente.' });
     }
@@ -520,7 +525,7 @@ app.post('/api/leads', formSubmissionLimiter, async (req, res) => {
                 actorEmail: 'SYSTEM_HONEYPOT',
                 action: 'spam_blocked',
                 entityType: 'submission',
-                metadata: { ipHash: getIPHash(req) }
+                metadata: { ip: getClientIP(req), ipHash: getIPHash(req) }
             });
             return res.status(200).json({ success: true, message: 'Solicitação recebida com sucesso!' });
         }
@@ -645,11 +650,9 @@ app.post('/api/auth/login', authLimiter, async (req, res) => {
         if (email !== process.env.ADMIN_ALLOWED_EMAIL) {
             await addLog('auth', {
                 event: 'login_failed',
-                email,
-                ipHash: getIPHash(req),
-                userAgent: req.headers['user-agent'],
-                success: false,
-                reason: 'E-mail administrativo não cadastrado'
+                actorEmail: email,
+                reason: 'E-mail administrativo não cadastrado',
+                metadata: { ip: getClientIP(req), ipHash: getIPHash(req), userAgent: req.headers['user-agent'] }
             });
             return res.status(401).json({ message: 'Credenciais inválidas.' });
         }
@@ -659,11 +662,9 @@ app.post('/api/auth/login', authLimiter, async (req, res) => {
         if (!isMatch) {
             await addLog('auth', {
                 event: 'login_failed',
-                email,
-                ipHash: getIPHash(req),
-                userAgent: req.headers['user-agent'],
-                success: false,
-                reason: 'Senha incorreta'
+                actorEmail: email,
+                reason: 'Senha incorreta',
+                metadata: { ip: getClientIP(req), ipHash: getIPHash(req), userAgent: req.headers['user-agent'] }
             });
             return res.status(401).json({ message: 'Credenciais inválidas.' });
         }
@@ -685,10 +686,8 @@ app.post('/api/auth/login', authLimiter, async (req, res) => {
 
         await addLog('auth', {
             event: 'login_success',
-            email,
-            ipHash: getIPHash(req),
-            userAgent: req.headers['user-agent'],
-            success: true
+            actorEmail: email,
+            metadata: { ip: getClientIP(req), ipHash: getIPHash(req), userAgent: req.headers['user-agent'] }
         });
 
         return res.status(200).json({
@@ -718,10 +717,9 @@ app.post('/api/auth/logout', async (req, res) => {
 
     res.clearCookie('admin_session');
     await addLog('auth', {
-        event: 'logout',
-        email,
-        ipHash: getIPHash(req),
-        success: true
+        event: 'logout_success',
+        actorEmail: email,
+        metadata: { ip: getClientIP(req), ipHash: getIPHash(req) }
     });
     return res.status(200).json({ success: true, message: 'Sessão encerrada.' });
 });

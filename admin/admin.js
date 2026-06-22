@@ -128,13 +128,25 @@
                     }
 
                     const timeStr = new Date(log.timestamp).toLocaleString('pt-BR');
+                    let descText = log.reason || log.metadata?.action || log.description || log.message || 'Sem detalhes';
+                    let actorText = '';
+                    if (log.actorEmail) {
+                        actorText = log.actorEmail;
+                    }
+                    if (log.metadata && log.metadata.ip) {
+                        actorText += (actorText ? ` [IP: ${log.metadata.ip}]` : `IP: ${log.metadata.ip}`);
+                    }
+                    if (actorText) {
+                        descText = `<strong>${actorText}:</strong> ${descText}`;
+                    }
+
                     item.innerHTML = `
                         <div class="mini-log-header">
                             <span>${icon} ${log.event || log.action || 'Erro'}</span>
                             <span>${timeStr}</span>
                         </div>
                         <div class="mini-log-body">
-                            ${log.reason || log.metadata?.action || log.description || log.message || 'Sem detalhes'}
+                            ${descText}
                         </div>
                     `;
                     listContainer.appendChild(item);
@@ -337,7 +349,15 @@
             let eventText = log.event || log.action || 'ERRO';
             
             if (log.type === 'auth') {
-                logTypeClass = log.success ? 'badge-status-contatado' : 'badge-status-excluido';
+                const successEvents = ['login_success', 'logout_success'];
+                const failEvents = ['login_failed', 'session_expired', 'unauthorized_access_attempt'];
+                if (successEvents.includes(log.event)) {
+                    logTypeClass = 'badge-status-contatado';
+                } else if (failEvents.includes(log.event)) {
+                    logTypeClass = 'badge-status-excluido';
+                } else {
+                    logTypeClass = 'badge-status-arquivado';
+                }
             } else if (log.type === 'audit') {
                 logTypeClass = 'badge-status-novo';
             } else if (log.type === 'error') {
@@ -346,14 +366,23 @@
 
             // Description details
             let descText = log.reason || log.description || log.message || '';
-            if (log.metadata) {
-                descText += ` | Detalhes: ${JSON.stringify(log.metadata)}`;
+            let ipText = '';
+            
+            if (log.metadata && typeof log.metadata === 'object') {
+                if (log.metadata.ip) {
+                    ipText = ` [IP: ${log.metadata.ip}]`;
+                }
+                const metaDisplay = Object.entries(log.metadata)
+                    .filter(([k]) => !['ipHash', 'userAgent', 'ip'].includes(k))
+                    .map(([k, v]) => `${k}: ${JSON.stringify(v)}`)
+                    .join(', ');
+                if (metaDisplay) descText += (descText ? ' | ' : '') + `Detalhes: {${metaDisplay}}`;
             }
-            if (log.email) {
-                descText = `Usuário: ${log.email} | ${descText}`;
-            }
+            
             if (log.actorEmail) {
-                descText = `Por: ${log.actorEmail} | ${descText}`;
+                descText = `Por: ${log.actorEmail}${ipText} | ${descText}`;
+            } else if (ipText) {
+                descText = `Origem:${ipText} | ${descText}`;
             }
 
             // Hash integrity check
