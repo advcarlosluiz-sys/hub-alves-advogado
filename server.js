@@ -37,7 +37,7 @@ if (process.env.DATABASE_URL) {
 
 const isCloud = process.env.VERCEL === '1' || !!process.env.DATABASE_URL || process.env.NODE_ENV === 'production';
 const DB_DIR = isCloud ? '/tmp/db' : path.join(__dirname, 'db');
-const BACKUP_DIR = isCloud ? '/tmp/backups/local' : path.join(__dirname, 'backups', 'local');
+const BACKUP_DIR = isCloud ? '/tmp/BackUp' : path.join(__dirname, 'BackUp');
 const LEADS_FILE = path.join(DB_DIR, 'leads.json');
 const LOGS_FILE = path.join(DB_DIR, 'logs.json');
 const SETTINGS_FILE = path.join(DB_DIR, 'settings.json');

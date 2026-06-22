@@ -3,7 +3,7 @@ const path = require('path');
 const crypto = require('crypto');
 
 const isCloud = process.env.VERCEL === '1' || !!process.env.DATABASE_URL || process.env.NODE_ENV === 'production';
-const BACKUP_DIR = isCloud ? '/tmp/backups/local' : path.join(__dirname, '..', 'backups', 'local');
+const BACKUP_DIR = isCloud ? '/tmp/BackUp' : path.join(__dirname, '..', 'BackUp');
 
 function verifyAllSync() {
     if (!fs.existsSync(BACKUP_DIR)) {

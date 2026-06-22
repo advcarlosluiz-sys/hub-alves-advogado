@@ -4,6 +4,7 @@ node_modules/
 # Local databases and backups
 db/
 backups/
+BackUp/
 
 # Environment variables
 .env
