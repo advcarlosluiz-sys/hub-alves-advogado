@@ -514,6 +514,33 @@ app.get('/api/health', async (req, res) => {
 });
 
 
+// Public API: Register Public Pageview or Click event (Fase 10)
+app.post('/api/public/log', formSubmissionLimiter, async (req, res) => {
+    try {
+        const { event, action, reason, message, metadata } = req.body;
+        
+        await addLog('audit', {
+            event: event || 'public_event',
+            action: action || 'visit',
+            actorEmail: 'Público',
+            reason: reason || null,
+            message: message || null,
+            metadata: {
+                ...metadata,
+                ip: getClientIP(req),
+                ipHash: getIPHash(req),
+                userAgent: req.headers['user-agent']
+            }
+        });
+        
+        return res.status(200).json({ success: true });
+    } catch (err) {
+        console.error('[ERRO] Falha ao gravar log público:', err.message);
+        return res.status(500).json({ message: 'Erro interno ao processar log.' });
+    }
+});
+
+
 // Public API: Contact Form Submission (Fase 2)
 app.post('/api/leads', formSubmissionLimiter, async (req, res) => {
     try {

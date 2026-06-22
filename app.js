@@ -188,6 +188,69 @@ const init = () => {
             });
         });
     }
+
+    // ──────────────────────────────────────────────
+    // 7. Public Event Tracking (Fase 10)
+    // ──────────────────────────────────────────────
+    const trackPublicEvent = (event, action, reason, metadata = {}) => {
+        fetch('/api/public/log', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                event,
+                action,
+                reason,
+                metadata: {
+                    path: window.location.pathname + window.location.hash,
+                    screen: `${window.innerWidth}x${window.innerHeight}`,
+                    ...metadata
+                }
+            })
+        }).catch(err => console.warn('[Rastreamento] Erro ao enviar log:', err));
+    };
+
+    // Track initial page view
+    setTimeout(() => {
+        trackPublicEvent('page_view', 'visit', 'Acesso à página principal');
+    }, 1000); // Small delay to avoid blocking render
+
+    // Track clicks on links and buttons
+    document.addEventListener('click', (e) => {
+        const link = e.target.closest('a, button');
+        if (!link) return;
+
+        const href = link.getAttribute('href') || '';
+        const id = link.getAttribute('id') || '';
+        const text = (link.innerText || link.value || '').trim().substring(0, 50);
+        
+        // Don't track administrative actions
+        if (window.location.pathname.startsWith('/admin')) return;
+        // Don't track submit clicks (handled by submit form)
+        if (link.type === 'submit') return;
+
+        let action = 'click';
+        let reason = `Clique no elemento: ${text || id || 'Sem texto'}`;
+
+        if (href.startsWith('https://wa.me/') || href.includes('api.whatsapp.com')) {
+            action = 'whatsapp_click';
+            reason = 'Usuário clicou no link de atendimento do WhatsApp';
+        } else if (href.startsWith('mailto:')) {
+            action = 'email_click';
+            reason = `Usuário clicou no link de e-mail: ${href.replace('mailto:', '')}`;
+        } else if (href.startsWith('#')) {
+            action = 'navigation_click';
+            reason = `Usuário navegou internamente para a seção: ${href}`;
+        } else if (link.classList.contains('faq-question')) {
+            action = 'faq_click';
+            reason = `Usuário clicou na pergunta do FAQ: ${text}`;
+        }
+
+        trackPublicEvent('link_click', action, reason, {
+            href,
+            elementId: id,
+            text
+        });
+    });
 };
 
 if (document.readyState === 'loading') {
