@@ -130,6 +130,15 @@ async function initDB() {
             )
         `);
 
+        await pool.query(`
+            CREATE TABLE IF NOT EXISTS backups_store (
+                filename VARCHAR(255) PRIMARY KEY,
+                timestamp TIMESTAMP WITH TIME ZONE,
+                manifest JSONB,
+                file_content TEXT
+            )
+        `);
+
         console.log('[OK] Tabelas do banco de dados (Supabase) verificadas/criadas com sucesso.');
     } catch (err) {
         console.error('[ERRO] Falha ao inicializar tabelas do banco de dados:', err);
@@ -1013,8 +1022,14 @@ app.post('/api/admin/logs/export', authenticateJWT, async (req, res) => {
 });
 
 // Admin: List backups (Fase 4)
-app.get('/api/admin/backups', authenticateJWT, (req, res) => {
+app.get('/api/admin/backups', authenticateJWT, async (req, res) => {
     try {
+        if (pool) {
+            const result = await pool.query('SELECT manifest FROM backups_store ORDER BY timestamp DESC');
+            const list = result.rows.map(r => r.manifest);
+            return res.status(200).json(list);
+        }
+
         if (!fs.existsSync(BACKUP_DIR)) {
             return res.status(200).json([]);
         }
@@ -1056,6 +1071,37 @@ app.post('/api/admin/backups', authenticateJWT, async (req, res) => {
         const backupScript = require('./scripts/backup-local.js');
         const backupInfo = backupScript.runBackupSync();
         
+        if (pool) {
+            // Read from temporary directory and save to database backups_store
+            const encFilePath = path.join(BACKUP_DIR, backupInfo.filename);
+            if (fs.existsSync(encFilePath)) {
+                const fileContent = fs.readFileSync(encFilePath, 'utf-8');
+                
+                await pool.query(
+                    `INSERT INTO backups_store (filename, timestamp, manifest, file_content)
+                     VALUES ($1, $2, $3, $4)
+                     ON CONFLICT (filename) DO UPDATE SET file_content = EXCLUDED.file_content, manifest = EXCLUDED.manifest`,
+                    [backupInfo.filename, backupInfo.timestamp, JSON.stringify(backupInfo), fileContent]
+                );
+                
+                // Retain only last 10 backups in DB
+                const countRes = await pool.query('SELECT filename FROM backups_store ORDER BY timestamp DESC');
+                if (countRes.rows.length > 10) {
+                    const toDelete = countRes.rows.slice(10);
+                    for (const row of toDelete) {
+                        await pool.query('DELETE FROM backups_store WHERE filename = $1', [row.filename]);
+                    }
+                }
+                
+                // Clean up /tmp files
+                try {
+                    const manifestPath = encFilePath.replace('.enc', '.manifest.json');
+                    if (fs.existsSync(encFilePath)) fs.unlinkSync(encFilePath);
+                    if (fs.existsSync(manifestPath)) fs.unlinkSync(manifestPath);
+                } catch (cErr) {}
+            }
+        }
+
         await addLog('audit', {
             actorEmail: req.user.email,
             action: 'backup_created',
@@ -1076,8 +1122,24 @@ app.post('/api/admin/backups', authenticateJWT, async (req, res) => {
 // Admin: Verify backups (Fase 4)
 app.post('/api/admin/backups/verify', authenticateJWT, async (req, res) => {
     try {
-        const verifyScript = require('./scripts/backup-verify.js');
-        const results = verifyScript.verifyAllSync();
+        let results = [];
+        if (pool) {
+            const dbRes = await pool.query('SELECT filename, manifest, file_content FROM backups_store');
+            for (const row of dbRes.rows) {
+                const currentSha256 = crypto.createHash('sha256')
+                    .update(row.file_content)
+                    .digest('hex');
+                const isMatch = (currentSha256 === row.manifest.sha256);
+                results.push({
+                    filename: row.filename,
+                    status: isMatch ? 'INTEGRO' : 'ERRO_CHECKSUM',
+                    verified: isMatch
+                });
+            }
+        } else {
+            const verifyScript = require('./scripts/backup-verify.js');
+            results = verifyScript.verifyAllSync();
+        }
         
         await addLog('audit', {
             actorEmail: req.user.email,
@@ -1086,6 +1148,10 @@ app.post('/api/admin/backups/verify', authenticateJWT, async (req, res) => {
             metadata: { results }
         });
 
+        const hasFailure = results.some(r => !r.verified);
+        if (hasFailure) {
+            return res.status(500).json({ message: 'A verificação encontrou problemas em alguns backups.' });
+        }
         return res.status(200).json({ success: true, message: 'Todos os backups estão íntegros.' });
     } catch (err) {
         await addLog('error', {
@@ -1102,26 +1168,48 @@ app.post('/api/admin/backups/restore', authenticateJWT, async (req, res) => {
         const { filename } = req.body;
         if (!filename) return res.status(400).json({ message: 'Arquivo não informado.' });
 
-        const restoreScript = require('./scripts/restore-local.js');
-        restoreScript.restoreFileSync(filename);
-
         if (pool) {
-            // Write restored JSON data to postgres Supabase
-            const leads = readJSON(LEADS_FILE);
-            const logs = readJSON(LOGS_FILE);
-            const settings = readJSON(SETTINGS_FILE);
-
-            await pool.query('DELETE FROM leads');
-            for (const lead of leads) {
-                await saveLeadToDB(lead);
+            const dbRes = await pool.query('SELECT file_content FROM backups_store WHERE filename = $1', [filename]);
+            if (dbRes.rows.length === 0) {
+                return res.status(404).json({ message: 'Arquivo de backup não encontrado.' });
             }
 
-            await pool.query('DELETE FROM logs');
-            for (const log of logs) {
-                await saveLogToDB(log);
+            const fileContent = dbRes.rows[0].file_content;
+            const parts = fileContent.split(':');
+            if (parts.length !== 2) {
+                throw new Error('Formato de arquivo criptografado inválido.');
             }
 
-            await saveSettingsToDB(settings);
+            const ENCRYPTION_KEY = process.env.BACKUP_ENCRYPTION_KEY || '0123456789abcdef0123456789abcdef';
+            const iv = Buffer.from(parts[0], 'hex');
+            const encryptedText = parts[1];
+
+            const decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(ENCRYPTION_KEY), iv);
+            let decrypted = decipher.update(encryptedText, 'hex', 'utf-8');
+            decrypted += decipher.final('utf-8');
+
+            const dataPackage = JSON.parse(decrypted);
+
+            if (dataPackage['leads.json']) {
+                await pool.query('DELETE FROM leads');
+                for (const lead of dataPackage['leads.json']) {
+                    await saveLeadToDB(lead);
+                }
+            }
+
+            if (dataPackage['logs.json']) {
+                await pool.query('DELETE FROM logs');
+                for (const log of dataPackage['logs.json']) {
+                    await saveLogToDB(log);
+                }
+            }
+
+            if (dataPackage['settings.json']) {
+                await saveSettingsToDB(dataPackage['settings.json']);
+            }
+        } else {
+            const restoreScript = require('./scripts/restore-local.js');
+            restoreScript.restoreFileSync(filename);
         }
 
         await addLog('audit', {
@@ -1153,6 +1241,27 @@ app.get('/api/admin/backups/download', async (req, res) => {
         }
 
         const { filename } = req.query;
+
+        if (pool) {
+            const dbRes = await pool.query('SELECT file_content FROM backups_store WHERE filename = $1', [filename]);
+            if (dbRes.rows.length === 0) {
+                return res.status(404).send('Arquivo de backup não encontrado.');
+            }
+
+            const fileContent = dbRes.rows[0].file_content;
+            res.setHeader('Content-disposition', `attachment; filename=${filename}`);
+            res.setHeader('Content-type', 'text/plain');
+
+            await addLog('audit', {
+                actorEmail: decoded.email,
+                action: 'backup_exported',
+                entityType: 'backup',
+                metadata: { filename }
+            });
+
+            return res.send(fileContent);
+        }
+
         const filePath = path.join(BACKUP_DIR, filename);
 
         if (!fs.existsSync(filePath)) {
