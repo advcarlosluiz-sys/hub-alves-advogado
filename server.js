@@ -777,7 +777,12 @@ app.get('/api/admin/metrics', authenticateJWT, async (req, res) => {
 
         // Last backup info
         let lastBackup = 'Não realizado';
-        if (fs.existsSync(BACKUP_DIR)) {
+        if (pool) {
+            const lastBackupRes = await pool.query('SELECT timestamp FROM backups_store ORDER BY timestamp DESC LIMIT 1');
+            if (lastBackupRes.rows.length > 0) {
+                lastBackup = new Date(lastBackupRes.rows[0].timestamp).toLocaleString('pt-BR');
+            }
+        } else if (fs.existsSync(BACKUP_DIR)) {
             const manifests = fs.readdirSync(BACKUP_DIR).filter(f => f.endsWith('.manifest.json'));
             if (manifests.length > 0) {
                 manifests.sort();
