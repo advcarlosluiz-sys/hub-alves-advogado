@@ -552,3 +552,154 @@ body {
     font-size: 0.8rem;
     color: var(--text-muted);
 }
+
+/* ──────────────────────────────────────────────
+   10. Mobile Responsiveness and Menu Toggle Styles
+   ────────────────────────────────────────────── */
+
+/* Hide mobile toggle by default on desktop viewports */
+.sidebar-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    /* Set wrapper relative positioning for overflow safety */
+    .admin-wrapper {
+        position: relative;
+        overflow-x: hidden;
+        min-height: 100vh;
+    }
+
+    /* Transform Sidebar into an off-canvas slide-out panel */
+    .admin-sidebar {
+        position: fixed;
+        top: 0;
+        left: -280px;
+        height: 100vh;
+        z-index: 1100;
+        width: 280px;
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .admin-sidebar.active {
+        left: 0;
+    }
+
+    /* Full width content area */
+    .admin-main {
+        padding: 1.5rem 1rem;
+        width: 100%;
+    }
+
+    /* Mobile Menu Toggle Button styling */
+    .sidebar-toggle {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        background: var(--bg-alt);
+        border: 1px solid var(--border-light);
+        border-radius: 4px;
+        color: var(--primary);
+        font-size: 1.5rem;
+        cursor: pointer;
+        padding: 0.4rem 0.8rem;
+        margin-right: 0.8rem;
+        box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+        outline: none;
+    }
+
+    .sidebar-toggle:hover {
+        background: var(--bg-main);
+    }
+
+    /* Re-align header on mobile */
+    .main-header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .main-header h1 {
+        font-size: 1.5rem;
+        flex: 1;
+        margin-bottom: 0;
+        border-bottom: none;
+    }
+
+    .status-indicator {
+        font-size: 0.75rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    /* Dimmed backdrop overlay when menu is open */
+    .sidebar-overlay {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(10, 25, 47, 0.6);
+        backdrop-filter: blur(2px);
+        z-index: 1050;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .sidebar-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Table scrolling for smaller screens */
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 6px;
+    }
+
+    /* Form and filter columns stack vertically */
+    .filter-bar {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .filter-bar input, .filter-bar select, .filter-bar button {
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    /* Metrics grid stacks in 2 columns on mobile */
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .metric-card {
+        padding: 1rem;
+    }
+
+    .metric-value {
+        font-size: 1.6rem;
+    }
+    
+    /* modal grid stacks vertically */
+    .modal-content {
+        padding: 1.5rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Metrics grid stacks in 1 column on extra small screens */
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

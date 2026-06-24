@@ -847,3 +847,34 @@
         loadTabData('visao-geral');
     }
 
+    // ──────────────────────────────────────────────
+    // 9. Mobile Menu Toggle Logic
+    // ──────────────────────────────────────────────
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const adminSidebar = document.querySelector('.admin-sidebar');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+
+    if (sidebarToggle && adminSidebar && sidebarOverlay) {
+        // Open/Close menu when clicking the hamburger toggle button
+        sidebarToggle.addEventListener('click', () => {
+            adminSidebar.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+        });
+
+        // Close menu when clicking the background overlay
+        sidebarOverlay.addEventListener('click', () => {
+            adminSidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+        });
+
+        // Close menu automatically when clicking any sidebar link
+        const sidebarLinks = adminSidebar.querySelectorAll('.menu-item');
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                adminSidebar.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            });
+        });
+    }
+
+

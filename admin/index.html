@@ -26,6 +26,9 @@
     </div>
 
     <div class="admin-wrapper">
+        <!-- Sidebar Overlay for Mobile backdrop -->
+        <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
         <!-- Sidebar Navigation -->
         <aside class="admin-sidebar">
             <div class="sidebar-brand">
@@ -55,6 +58,7 @@
         <main class="admin-main">
             <!-- Header -->
             <header class="main-header">
+                <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Abrir Menu">☰</button>
                 <h1 id="tab-title">Painel de Controle</h1>
                 <div id="connection-status" class="status-indicator online">Conexão Local Ativa</div>
             </header>
