@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "voice": "pt-BR-ThalitaMultilingualNeural",
+  "rate": "-12%",
+  "pitch": "-4Hz",
+  "duration": 48,
+  "clips": [
+    {
+      "scene": "casa",
+      "file": "assets/narracao/casa-74a960ce6459.mp3",
+      "offset": 2,
+      "duration": 7.2240000000000055,
+      "hash": "74a960ce64596f6fd4eda647e6cfbce7fb2f5852effcd5076739feb036a35f6a"
+    },
+    {
+      "scene": "crescimento",
+      "file": "assets/narracao/crescimento-2e26feee34f8.mp3",
+      "offset": 14,
+      "duration": 7.992000000000006,
+      "hash": "2e26feee34f8b52fd26fd36135452f7e4dde8d655bc4d3442d3b4e2cd7544343"
+    },
+    {
+      "scene": "castelo",
+      "file": "assets/narracao/castelo-eee7c71c027c.mp3",
+      "offset": 26,
+      "duration": 7.584000000000006,
+      "hash": "eee7c71c027c9d6f966296fade43404295f6e655c3a44b740a572d9df8adf6b1"
+    },
+    {
+      "scene": "volta",
+      "file": "assets/narracao/volta-4b14f23e2826.mp3",
+      "offset": 38,
+      "duration": 7.992000000000006,
+      "hash": "4b14f23e2826ca8ee6a018832f4d482d6802bbff184839880f85ec3abe8b4964"
+    }
+  ]
+}

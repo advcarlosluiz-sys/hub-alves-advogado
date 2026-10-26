@@ -21,3 +21,10 @@
 - Geração real bloqueada: a consulta ao serviço speech.platform.bing.com retornou HTTP 403 do proxy. Não foram gerados MP3s da Thalita nem um vídeo narrado; o vídeo de demonstração continua sendo o anterior, silencioso.
 - Integração técnica de áudio testada com sinal sintético explicitamente identificado. Verifica silêncio antes do instante programado, sinal no instante da fala e MP4 contendo vídeo H.264 e áudio. O Chromium desta máquina não oferece encoder AAC: o caminho do navegador usa Opus no MP4, suportado pelo muxer do Mira. O caminho FFmpeg verifica AAC.
 - Manifesto vincula cada arquivo ao hash do texto, voz, ritmo e tom; exportação exige os arquivos e rejeita narração desatualizada. O pacote inclui o gerador local e os atalhos Windows/macOS. Não foram executados em Windows/macOS neste ambiente Linux.
+
+## Atualização 0.1.3 — Thalita gerada e vídeo pronto
+
+- Consulta real ao catálogo confirmou pt-BR-ThalitaMultilingualNeural / pt-BR. A confiança TLS foi complementada com o bundle de CAs do sistema; a verificação de certificados permaneceu ativada. A síntese WebSocket foi configurada para usar o mesmo HTTPS_PROXY autorizado, sem conexões diretas.
+- Quatro MP3s reais gerados: casa 7,224 s, crescimento 7,992 s, castelo 7,584 s e volta 7,992 s. Cadência -12%, tom -4 Hz. Nova execução reutilizou os quatro arquivos pelo cache.
+- MP4 final mantém os 1152 quadros H.264 já validados e acrescenta a narração AAC nos segundos 2, 14, 26 e 38. Resultado: 48 s, 1280×720, 24 fps. FFmpeg decodificou integralmente sem erros e a medição confirmou áudio não silencioso.
+- Acrescentado pacote somente de mídia, com vídeo ASSISTA-AQUI.mp4, MP3s e instruções. Esse pacote não contém atalhos, scripts ou instaladores e dispensa a execução de arquivos .cmd no Windows.

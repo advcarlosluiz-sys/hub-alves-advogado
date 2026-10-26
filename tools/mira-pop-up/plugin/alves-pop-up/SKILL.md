@@ -21,3 +21,7 @@ Direção visual: páginas e peças em 3D real; recortes ilustrados com bordas d
 ## Voz Thalita
 
 A voz padrão solicitada pelo autor é **Thalita em português do Brasil**. Ao entregar o conto, gere e confira os MP3s e exporte o áudio no MP4. O botão Ouvir narração controla a reprodução local; Exportar MP4 inclui a trilha (AAC preferencial, Opus quando necessário). O renderizador FFmpeg usa AAC. Se o serviço estiver bloqueado, informe o bloqueio e entregue o atalho de geração, sem apresentar o vídeo silencioso anterior como narrado. Ao alterar o texto, gere novamente: o manifesto verifica hash de texto, voz e cadência. O ZIP deve incluir os MP3s e o manifesto válidos; não inclua `.tts-venv` ou arquivos `.partial`.
+
+## Entrega para Windows com Controle Inteligente de Aplicativos
+
+Quando o usuário só precisar assistir, gere também `node <deck>/scripts/package.mjs --media`. Esse ZIP entrega `ASSISTA-AQUI.mp4`, falas e instruções, sem scripts ou instaladores. Não peça para desativar proteções nem force a execução de atalhos bloqueados. Para o exemplo João, a voz Thalita e o MP4 narrado já estão incluídos na versão 0.1.3; não peça para gerar novamente sem alteração do roteiro.

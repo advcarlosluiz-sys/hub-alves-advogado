@@ -1,7 +1,4 @@
-Voz configurada: pt-BR-ThalitaMultilingualNeural, ritmo -12%, tom -4Hz.
-Os áudios ainda não foram gerados neste ambiente: speech.platform.bing.com
-retornou acesso negado pelo proxy (HTTP 403).
-Use GERAR-VOZ-THALITA.cmd no seu computador com internet, ou libere o domínio
-nas configurações do ambiente para concluir a geração aqui.
-Não há gravação de outra voz identificada como Thalita nem áudio fictício.
-O manifesto só será escrito depois de todos os áudios válidos serem gerados.
+Narração real gerada com pt-BR-ThalitaMultilingualNeural, ritmo -12%, tom -4Hz.
+Os quatro MP3s e o manifesto já estão incluídos. O vídeo em docs/joao-pop-up.mp4
+já contém essa narração. Não é necessário executar o gerador para assistir.
+Para reutilizar a narração, mantenha texto, voz e cadência do manifesto.

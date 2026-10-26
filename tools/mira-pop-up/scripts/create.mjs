@@ -29,6 +29,7 @@ export function createDeck(
     "package-lock.json",
     "plugin",
     "COMECE-AQUI.txt",
+    "COMECE-AQUI-VIDEO.txt",
     "GERAR-VOZ-THALITA.cmd",
     "GERAR-VOZ-THALITA.command",
     "README.md",

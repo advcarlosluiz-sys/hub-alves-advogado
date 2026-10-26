@@ -77,8 +77,7 @@ try {
       const temp = dest + ".partial";
       rmSync(temp, { force: true });
       run(exe, [
-        "-m",
-        "edge_tts",
+        join(root, "scripts/edge-voice.py"),
         "--voice",
         voice,
         "--rate=" + rate,

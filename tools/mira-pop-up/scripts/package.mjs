@@ -50,7 +50,7 @@ export function collectFiles(root) {
   walk(root);
   return files;
 }
-export function packageZip(root = ROOT, destination) {
+export function packageZip(root = ROOT, destination, mediaOnly = false) {
   root = resolve(root);
   const stamp = new Date().toISOString().replace(/[:.]/g, "-");
   destination = resolve(
@@ -62,12 +62,35 @@ export function packageZip(root = ROOT, destination) {
   const locals = [],
     central = [];
   let offset = 0;
-  const files = collectFiles(root).filter((p) => resolve(p) !== destination);
+  const allFiles = collectFiles(root);
+  const canonical = join(root, "docs/joao-pop-up.mp4");
+  const mediaVideo = existsSync(canonical)
+    ? canonical
+    : allFiles
+        .filter((p) =>
+          /^output\/.*\.mp4$/i.test(relative(root, p).split("\\").join("/")),
+        )
+        .sort((a, b) => lstatSync(b).mtimeMs - lstatSync(a).mtimeMs)[0];
+  if (mediaOnly && !mediaVideo)
+    throw Error("Exporte um MP4 para output antes de criar o ZIP de mídia");
+  const files = allFiles.filter((p) => {
+    if (resolve(p) === destination) return false;
+    if (!mediaOnly) return true;
+    const name = relative(root, p).split("\\").join("/");
+    return (
+      p === mediaVideo ||
+      name === "COMECE-AQUI-VIDEO.txt" ||
+      /^assets\/narracao\/[a-zA-Z0-9_-]+\.(mp3|json|txt)$/.test(name)
+    );
+  });
   if (files.length > 65535)
     throw Error("Número de arquivos excede ZIP clássico");
   for (const path of files) {
     const name = Buffer.from(
-      "alves-pop-up/" + relative(root, path).split("\\").join("/"),
+      "alves-pop-up/" +
+        (mediaOnly && path === mediaVideo
+          ? "ASSISTA-AQUI.mp4"
+          : relative(root, path).split("\\").join("/")),
     );
     const data = readFileSync(path),
       compressed = deflateRawSync(data),
@@ -129,6 +152,7 @@ if (
     const result = packageZip(
       d < 0 ? ROOT : args[d + 1],
       i < 0 ? undefined : args[i + 1],
+      args.includes("--media"),
     );
     console.log(
       "Projeto completo salvo em:\n" +

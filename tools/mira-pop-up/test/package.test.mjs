@@ -51,3 +51,22 @@ test("ZIP inclui roteiro, Unicode e vídeo, exclui dependências, segredos comun
     rmSync(root, { recursive: true, force: true });
   }
 });
+
+test("pacote de mídia entrega MP4 na raiz e exclui todos os executáveis", () => {
+  const root = mkdtempSync(join(tmpdir(), "popup-media-"));
+  try {
+    mkdirSync(join(root, "docs"));
+    writeFileSync(join(root, "docs/joao-pop-up.mp4"), "video");
+    writeFileSync(join(root, "COMECE-AQUI-VIDEO.txt"), "Abra o MP4");
+    writeFileSync(join(root, "atalho.cmd"), "nao incluir");
+    writeFileSync(join(root, "script.py"), "nao incluir");
+    const result = packageZip(root, join(root, "dist/media.zip"), true);
+    assert.equal(result.files, 2);
+    const archive = readFileSync(result.path);
+    assert.ok(archive.includes(Buffer.from("alves-pop-up/ASSISTA-AQUI.mp4")));
+    assert.equal(archive.includes(Buffer.from("atalho.cmd")), false);
+    assert.equal(archive.includes(Buffer.from("script.py")), false);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
