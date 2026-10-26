@@ -1,0 +1,235 @@
+{
+  "title": "João e o Pé de Feijão",
+  "author": "Adaptação original do conto tradicional",
+  "duration": 48,
+  "scenes": [
+    {
+      "id": "casa",
+      "duration": 12,
+      "caption": "João e sua mãe viviam numa pequena casa. Um dia, ele trocou a vaca por feijões mágicos.",
+      "camera": {
+        "from": [9, 8.5, 12],
+        "to": [6.3, 6.4, 10.2],
+        "target": [0, 1.1, 0]
+      },
+      "actors": [
+        {
+          "asset": "colinas",
+          "x": 0,
+          "z": -2.8,
+          "width": 11,
+          "height": 3.2
+        },
+        {
+          "asset": "vila",
+          "x": 2.7,
+          "z": -2,
+          "width": 3.9,
+          "height": 2.3
+        },
+        {
+          "asset": "casa",
+          "x": -2.6,
+          "z": -0.7,
+          "width": 3.1,
+          "height": 3
+        },
+        {
+          "asset": "mae",
+          "x": -1.6,
+          "z": 1,
+          "width": 1,
+          "height": 1.6
+        },
+        {
+          "asset": "joao",
+          "x": 0.3,
+          "z": 1.4,
+          "width": 1,
+          "height": 1.7,
+          "walk": 1.1
+        },
+        {
+          "asset": "vaca",
+          "x": 2.5,
+          "z": 1,
+          "width": 1.8,
+          "height": 1.5
+        },
+        {
+          "asset": "feijao",
+          "x": 0.9,
+          "z": 2,
+          "width": 0.32,
+          "height": 0.3,
+          "enter": 6
+        }
+      ]
+    },
+    {
+      "id": "crescimento",
+      "duration": 12,
+      "caption": "Naquela noite, os feijões criaram raízes. Pela manhã, um imenso caule alcançava as nuvens!",
+      "camera": {
+        "from": [8, 7.7, 12],
+        "to": [7, 8.7, 14],
+        "target": [0, 2, 0]
+      },
+      "stalk": true,
+      "actors": [
+        {
+          "asset": "colinas",
+          "x": 0,
+          "z": -2.8,
+          "width": 11,
+          "height": 3.2
+        },
+        {
+          "asset": "casa",
+          "x": -3,
+          "z": -1,
+          "width": 2.8,
+          "height": 2.7
+        },
+        {
+          "asset": "mae",
+          "x": -2.6,
+          "z": 1,
+          "width": 0.9,
+          "height": 1.5
+        },
+        {
+          "asset": "joao",
+          "x": 0.2,
+          "z": 1.5,
+          "width": 1,
+          "height": 1.7
+        },
+        {
+          "asset": "nuvem",
+          "x": 1.6,
+          "y": 6.4,
+          "z": -0.5,
+          "width": 4.5,
+          "height": 1.6,
+          "enter": 6
+        },
+        {
+          "asset": "nuvem",
+          "x": -1.9,
+          "y": 5.6,
+          "z": -1.7,
+          "width": 3.3,
+          "height": 1.1,
+          "enter": 6.5
+        }
+      ]
+    },
+    {
+      "id": "castelo",
+      "duration": 12,
+      "caption": "João subiu até um castelo nas nuvens. Ali encontrou uma galinha de ovos de ouro… e um gigante!",
+      "camera": {
+        "from": [7.8, 7.1, 11.5],
+        "to": [5.4, 5.5, 9.5],
+        "target": [0, 1.5, 0]
+      },
+      "actors": [
+        {
+          "asset": "nuvem",
+          "x": -3.4,
+          "z": -2.2,
+          "width": 4.2,
+          "height": 1.7
+        },
+        {
+          "asset": "nuvem",
+          "x": 3.4,
+          "z": -2.4,
+          "width": 4.4,
+          "height": 1.8
+        },
+        {
+          "asset": "castelo",
+          "x": -0.5,
+          "z": -1.2,
+          "width": 4,
+          "height": 3.8
+        },
+        {
+          "asset": "joao",
+          "x": -2.5,
+          "z": 1.7,
+          "width": 0.9,
+          "height": 1.5,
+          "walk": 0.9
+        },
+        {
+          "asset": "galinha",
+          "x": 0.8,
+          "z": 1.5,
+          "width": 1.2,
+          "height": 1.1,
+          "enter": 3
+        },
+        {
+          "asset": "gigante",
+          "x": 2.7,
+          "z": 0.2,
+          "width": 2,
+          "height": 3.4,
+          "enter": 5.5
+        }
+      ]
+    },
+    {
+      "id": "volta",
+      "duration": 12,
+      "caption": "João escapou e cortou o pé de feijão. A aventura terminou, mas aquela história continuou crescendo.",
+      "camera": {
+        "from": [6.4, 6.1, 10.5],
+        "to": [9.5, 9.2, 14.5],
+        "target": [0, 1, 0]
+      },
+      "stalk": true,
+      "fall": true,
+      "actors": [
+        {
+          "asset": "colinas",
+          "x": 0,
+          "z": -2.8,
+          "width": 11,
+          "height": 3.2
+        },
+        {
+          "asset": "casa",
+          "x": -2.8,
+          "z": -1,
+          "width": 3,
+          "height": 2.9
+        },
+        {
+          "asset": "mae",
+          "x": -1.8,
+          "z": 1,
+          "width": 1,
+          "height": 1.6
+        },
+        {
+          "asset": "joao",
+          "x": 0.1,
+          "z": 1.7,
+          "width": 1,
+          "height": 1.7
+        },
+        {
+          "asset": "galinha",
+          "x": -1,
+          "z": 2.1,
+          "width": 0.8,
+          "height": 0.75
+        }
+      ]
+    }
+  ]
+}
