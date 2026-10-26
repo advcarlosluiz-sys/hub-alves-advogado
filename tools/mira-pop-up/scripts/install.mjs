@@ -45,6 +45,7 @@ export function install(project) {
     "package.json",
     "package-lock.json",
     "LICENSE-MIRA",
+    "plugin",
   ])
     cpSync(join(ROOT, item), join(runtime, item), { recursive: true });
   mkdirSync(dirname(plugin), { recursive: true });

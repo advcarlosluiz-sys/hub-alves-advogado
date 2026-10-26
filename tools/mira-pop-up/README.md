@@ -4,6 +4,8 @@ Contos em um livro pop-up 3D: recortes ilustrados, peças com dobradiças, chão
 
 ![Cena renderizada pelo motor WebGL](docs/preview.png)
 
+[Vídeo de exemplo — João e o Pé de Feijão, 48 s](docs/joao-pop-up.mp4)
+
 ## O que acrescenta ao Mira
 
 - Motor Three.js de palco tridimensional: livro, camadas, sombras e câmera em perspectiva.
@@ -39,7 +41,7 @@ Abra uma nova sessão do seu assistente e use **`/alves-pop-up`** (no Codex, men
 
 O instalador acrescenta o motor em `.mira/extensions/alves-pop-up/`, o plugin em `mira-plugins/alves-pop-up/` e a skill nos diretórios configurados pelo Mira. Preserva a configuração do Mira e recusa sobrescrever uma instalação existente. O comando `plugin sync` registra a extensão no estado oficial do Mira. Para atualizar, preserve seus arquivos e remova somente a instalação anterior desta extensão antes de reinstalar.
 
-**Formato da extensão:** `dist/alves-pop-up-0.1.0.mplug` contém apenas o agente. Isso respeita a restrição oficial de plugins `prompt-only`; um `.mplug` não pode incluir JavaScript. Portanto instale o motor pelo procedimento acima. O pacote completo é `dist/alves-pop-up-0.1.0.zip`, com o motor, agente, arte e scripts. Instalar apenas o `.mplug` não basta para renderizar.
+**Formato da extensão:** `dist/alves-pop-up-0.1.0.mplug` contém apenas o agente. Isso respeita a restrição oficial de plugins `prompt-only`; um `.mplug` não pode incluir JavaScript. Portanto instale o motor pelo procedimento acima. O pacote completo é `dist/alves-pop-up-0.1.0.zip`, com o motor, agente, arte e scripts. Ao usar o ZIP, descompacte e execute os comandos dentro da pasta `alves-pop-up/` (equivalente a `tools/mira-pop-up/` no repositório). Instalar apenas o `.mplug` não basta para renderizar.
 
 ## Gerar outra apresentação
 
