@@ -18,6 +18,7 @@ window.exportPopupMP4 = async ({
   duration = window.popupDuration,
   fps = 24,
   download = true,
+  allowSilent = false,
 } = {}) => {
   if (exporting) throw Error("Já existe uma exportação em andamento");
   if (!window.popupReady) throw Error("Espere o livro carregar");
@@ -45,6 +46,30 @@ window.exportPopupMP4 = async ({
     throw Error(
       "Este navegador não oferece o codificador H.264. Use Chrome ou Edge atualizado, ou EXPORTAR-MP4.cmd",
     );
+  const audioBuffer = allowSilent
+    ? null
+    : await window.popupNarrator?.getAudio();
+  const audioConfig = {
+    codec: "mp4a.40.2",
+    sampleRate: 48000,
+    numberOfChannels: 2,
+    bitrate: 128000,
+  };
+  let audioCodec = "aac";
+  if (audioBuffer) {
+    if (!window.AudioEncoder || !window.AudioData)
+      throw Error(
+        "Este navegador não codifica áudio; use EXPORTAR-MP4 para preservar a narração",
+      );
+    if (!(await AudioEncoder.isConfigSupported(audioConfig)).supported) {
+      audioConfig.codec = "opus";
+      audioCodec = "opus";
+      if (!(await AudioEncoder.isConfigSupported(audioConfig)).supported)
+        throw Error(
+          "Este navegador não codifica áudio AAC ou Opus; use EXPORTAR-MP4",
+        );
+    }
+  }
   exporting = true;
   button.disabled = true;
   window.pauseForExport();
@@ -53,12 +78,21 @@ window.exportPopupMP4 = async ({
     (el) => [el, el.disabled],
   );
   for (const [el] of controls) el.disabled = true;
-  let encoder;
+  let encoder, audioEncoder;
   try {
     const target = new Mp4Muxer.ArrayBufferTarget();
     const muxer = new Mp4Muxer.Muxer({
       target,
       video: { codec: "avc", width: 1280, height: 720 },
+      ...(audioBuffer
+        ? {
+            audio: {
+              codec: audioCodec,
+              sampleRate: 48000,
+              numberOfChannels: 2,
+            },
+          }
+        : {}),
       fastStart: "in-memory",
       firstTimestampBehavior: "offset",
     });
@@ -70,6 +104,39 @@ window.exportPopupMP4 = async ({
       },
     });
     encoder.configure(config);
+    if (audioBuffer) {
+      audioEncoder = new AudioEncoder({
+        output: (chunk, metadata) => muxer.addAudioChunk(chunk, metadata),
+        error: (e) => {
+          failure = e;
+        },
+      });
+      audioEncoder.configure(audioConfig);
+      const count = Math.ceil(duration * 48000);
+      for (let start = 0; start < count; start += 1024) {
+        const length = Math.min(1024, count - start),
+          data = new Float32Array(length * 2);
+        for (let channel = 0; channel < 2; channel++)
+          data.set(
+            audioBuffer.getChannelData(channel).subarray(start, start + length),
+            channel * length,
+          );
+        const audio = new AudioData({
+          format: "f32-planar",
+          sampleRate: 48000,
+          numberOfChannels: 2,
+          numberOfFrames: length,
+          timestamp: Math.round((start / 48000) * 1e6),
+          data,
+        });
+        audioEncoder.encode(audio);
+        audio.close();
+        if (audioEncoder.encodeQueueSize > 16) await audioEncoder.flush();
+        if (failure) throw failure;
+      }
+      await audioEncoder.flush();
+    }
+
     const canvas = document.createElement("canvas");
     canvas.width = 1280;
     canvas.height = 720;
@@ -124,6 +191,7 @@ window.exportPopupMP4 = async ({
     return blob;
   } finally {
     encoder?.close();
+    audioEncoder?.close();
     window.renderAt(previous);
     exporting = false;
     for (const [el, disabled] of controls) el.disabled = disabled;

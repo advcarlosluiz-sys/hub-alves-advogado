@@ -8,9 +8,21 @@
       "duration": 12,
       "caption": "João e sua mãe viviam numa pequena casa. Um dia, ele trocou a vaca por feijões mágicos.",
       "camera": {
-        "from": [9, 8.5, 12],
-        "to": [6.3, 6.4, 10.2],
-        "target": [0, 1.1, 0]
+        "from": [
+          9,
+          8.5,
+          12
+        ],
+        "to": [
+          6.3,
+          6.4,
+          10.2
+        ],
+        "target": [
+          0,
+          1.1,
+          0
+        ]
       },
       "actors": [
         {
@@ -71,9 +83,21 @@
       "duration": 12,
       "caption": "Naquela noite, os feijões criaram raízes. Pela manhã, um imenso caule alcançava as nuvens!",
       "camera": {
-        "from": [8, 7.7, 12],
-        "to": [7, 8.7, 14],
-        "target": [0, 2, 0]
+        "from": [
+          8,
+          7.7,
+          12
+        ],
+        "to": [
+          7,
+          8.7,
+          14
+        ],
+        "target": [
+          0,
+          2,
+          0
+        ]
       },
       "stalk": true,
       "actors": [
@@ -130,9 +154,21 @@
       "duration": 12,
       "caption": "João subiu até um castelo nas nuvens. Ali encontrou uma galinha de ovos de ouro… e um gigante!",
       "camera": {
-        "from": [7.8, 7.1, 11.5],
-        "to": [5.4, 5.5, 9.5],
-        "target": [0, 1.5, 0]
+        "from": [
+          7.8,
+          7.1,
+          11.5
+        ],
+        "to": [
+          5.4,
+          5.5,
+          9.5
+        ],
+        "target": [
+          0,
+          1.5,
+          0
+        ]
       },
       "actors": [
         {
@@ -187,9 +223,21 @@
       "duration": 12,
       "caption": "João escapou e cortou o pé de feijão. A aventura terminou, mas aquela história continuou crescendo.",
       "camera": {
-        "from": [6.4, 6.1, 10.5],
-        "to": [9.5, 9.2, 14.5],
-        "target": [0, 1, 0]
+        "from": [
+          6.4,
+          6.1,
+          10.5
+        ],
+        "to": [
+          9.5,
+          9.2,
+          14.5
+        ],
+        "target": [
+          0,
+          1,
+          0
+        ]
       },
       "stalk": true,
       "fall": true,
@@ -231,5 +279,12 @@
         }
       ]
     }
-  ]
+  ],
+  "narration": {
+    "voice": "pt-BR-ThalitaMultilingualNeural",
+    "rate": "-12%",
+    "pitch": "-4Hz",
+    "manifest": "assets/narracao/manifest.json",
+    "required": true
+  }
 }

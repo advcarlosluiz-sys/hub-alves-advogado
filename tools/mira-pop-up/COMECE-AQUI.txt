@@ -6,20 +6,27 @@ ALVES POP-UP — JOÃO E O PÉ DE FEIJÃO
 2. Para assistir ao exemplo já pronto, abra docs/joao-pop-up.mp4, se presente.
    Nos novos projetos, seus vídeos ficam em output/ ou em Downloads.
 
-3. Para abrir o livro animado, dê dois cliques em ABRIR-LIVRO.cmd (Windows).
+3. Para acrescentar a voz THALITA em português do Brasil, use primeiro
+   GERAR-VOZ-THALITA.cmd (Windows) ou GERAR-VOZ-THALITA.command (Mac).
+   É necessário Python 3 e internet nesta primeira geração. O atalho prepara
+   as dependências e gera os MP3s. Esta distribuição ainda NÃO inclui os MP3s:
+   o serviço de voz foi bloqueado na nuvem. O exemplo MP4 anterior é sem voz.
+
+4. Para abrir o livro animado, dê dois cliques em ABRIR-LIVRO.cmd (Windows).
    No Mac, use ABRIR-LIVRO.command. A primeira execução pode exigir permissão
    para abrir o arquivo baixado nas configurações de segurança do macOS.
    É necessário Node.js LTS (22 ou mais recente): https://nodejs.org.
    O atalho abre o navegador e deve continuar aberto durante o uso.
 
-4. No livro, clique em EXPORTAR MP4. Use Chrome ou Edge atualizado no computador.
+5. No livro, clique em OUVIR NARRAÇÃO para escutar Thalita.
+   Depois clique em EXPORTAR MP4 para salvar o vídeo com voz. Use Chrome ou Edge atualizado no computador.
    Aguarde o progresso terminar e escolha onde salvar, se o navegador perguntar.
    Caso contrário, o vídeo vai para Downloads. Não feche a aba durante a exportação.
    Esse caminho não exige instalar FFmpeg nem executar npm.
    O computador precisa oferecer codificação H.264 pelo navegador.
    Se não houver suporte, use o procedimento alternativo no README.md.
 
-5. Para salvar o projeto completo novamente, dê dois cliques em
+6. Para salvar o projeto completo novamente, dê dois cliques em
    SALVAR-TUDO-ZIP.cmd (Windows) ou SALVAR-TUDO-ZIP.command (Mac).
    O novo pacote fica na pasta dist, com data e hora no nome.
    Código, arte, roteiros e vídeos locais são incluídos; node_modules,
@@ -29,4 +36,5 @@ ALVES POP-UP — JOÃO E O PÉ DE FEIJÃO
 
 A integração com o Mira é opcional para abrir este exemplo. Para criar outras
 histórias com o agente /alves-pop-up, veja a instalação no README.md.
-Esta versão tem legendas e não tem narração ou música.
+Esta versão tem legendas e suporte à narração Thalita. Gere a voz pelo atalho
+antes de exportar. Não há música. Os MP3s gerados entram no próximo ZIP.

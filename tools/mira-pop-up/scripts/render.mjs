@@ -1,4 +1,5 @@
 import puppeteer from "puppeteer-core";
+import { narrationInputs } from "./narration-inputs.mjs";
 import { spawn, spawnSync } from "node:child_process";
 import { resolve, dirname, join } from "node:path";
 import { mkdirSync, existsSync } from "node:fs";
@@ -81,7 +82,9 @@ try {
         String(fps),
         "-i",
         "-",
-        "-an",
+        ...(narrationInputs(root, duration).length
+          ? narrationInputs(root, duration)
+          : ["-an"]),
         "-c:v",
         "libx264",
         "-preset",

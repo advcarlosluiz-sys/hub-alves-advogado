@@ -1,4 +1,6 @@
 import puppeteer from "puppeteer-core";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { startServer } from "./serve.mjs";
@@ -57,8 +59,22 @@ try {
     hashes[0],
     "Seek não determinístico",
   );
+  const missingVoice = await page.evaluate(async () => {
+    try {
+      await window.exportPopupMP4({ duration: 1, download: false });
+      return "";
+    } catch (e) {
+      return e.message;
+    }
+  });
+  if (!existsSync(join(ROOT, "assets/narracao/manifest.json")))
+    assert.match(missingVoice, /Thalita ainda não gerada/);
   const exported = await page.evaluate(async () => {
-    const blob = await window.exportPopupMP4({ duration: 3, download: false });
+    const blob = await window.exportPopupMP4({
+      duration: 3,
+      download: false,
+      allowSilent: true,
+    });
     const url = URL.createObjectURL(blob),
       video = document.createElement("video");
     video.src = url;

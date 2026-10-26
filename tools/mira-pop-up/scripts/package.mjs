@@ -23,6 +23,7 @@ function crc32(data) {
 }
 const excluded = new Set([
   "node_modules",
+  ".tts-venv",
   ".git",
   "dist",
   ".aws",

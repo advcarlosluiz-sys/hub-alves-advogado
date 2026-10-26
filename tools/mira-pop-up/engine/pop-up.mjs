@@ -1,5 +1,6 @@
 import * as THREE from "../vendor/three.module.js";
 import { validateStory, locateScene } from "./story.mjs";
+import { createNarrator } from "./narration.mjs";
 const $ = (id) => document.getElementById(id);
 const params = new URLSearchParams(location.search);
 const rendering = params.has("render");
@@ -57,6 +58,27 @@ try {
   const response = await fetch(u);
   if (!response.ok) throw Error("Roteiro não encontrado");
   const story = validateStory(await response.json());
+  window.popupNarrator = createNarrator(story);
+  let voiceEnabled = false;
+  $("narrate").onclick = async () => {
+    try {
+      if (voiceEnabled) {
+        window.popupNarrator.disable();
+        voiceEnabled = false;
+        $("narrate").textContent = "Ouvir narração";
+      } else {
+        await window.popupNarrator.enable();
+        voiceEnabled = true;
+        playing = true;
+        if (position >= story.duration) position = 0;
+        $("play").textContent = "Pausar";
+        $("narrate").textContent = "Silenciar";
+        $("status").textContent = "Narração Thalita · português do Brasil";
+      }
+    } catch (e) {
+      $("status").textContent = e.message;
+    }
+  };
   const scene = new THREE.Scene();
   scene.background = new THREE.Color("#443326");
   scene.fog = new THREE.Fog("#443326", 26, 55);
@@ -354,6 +376,7 @@ try {
     $("time").textContent =
       Math.floor(position) + " / " + story.duration + " s";
     renderer.render(scene, camera);
+    window.popupNarrator.sync(position, playing);
     window.popupState = {
       scene: s.id,
       time: position,
@@ -363,15 +386,27 @@ try {
   };
   window.pauseForExport = () => {
     playing = false;
+    window.popupNarrator.pause();
     $("play").textContent = "Reproduzir";
   };
   window.popupReady = true;
   window.popupDuration = story.duration;
   window.renderAt(0);
-  $("status").textContent =
-    "Three.js + GSAP do Mira · cenas 3D locais · sem serviços externos";
+  $("status").textContent = "Three.js + GSAP do Mira · cenas 3D locais";
+  if (story.narration)
+    window.popupNarrator
+      .getAudio()
+      .then((audio) => {
+        if (audio)
+          $("status").textContent =
+            "Thalita pt-BR pronta. Clique em Ouvir narração.";
+      })
+      .catch((e) => {
+        $("status").textContent = e.message;
+      });
   $("play").onclick = () => {
     playing = !playing;
+    if (!playing) window.popupNarrator.pause();
     $("play").textContent = playing ? "Pausar" : "Reproduzir";
     if (playing && position >= story.duration) position = 0;
   };
@@ -383,6 +418,7 @@ try {
   $("seek").oninput = (e) => {
     playing = false;
     $("play").textContent = "Reproduzir";
+    window.popupNarrator.pause();
     window.renderAt(+e.target.value);
   };
   function animate(now) {

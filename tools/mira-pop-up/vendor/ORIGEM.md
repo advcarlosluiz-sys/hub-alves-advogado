@@ -8,3 +8,5 @@
 - O código do Mira está sob PolyForm Noncommercial 1.0.0 com permissão adicional para conteúdo monetizado: `../LICENSE-MIRA`.
 
 `MIRA-VENDOR.md` é a documentação original do conjunto de bibliotecas do Mira. Somente os três arquivos citados acima são distribuídos aqui; a tabela original contém outros componentes que esta extensão não carrega.
+
+O leitor de duração MPEG em `scripts/mp3-duration.mjs` foi adaptado de `agents/mira-history/scripts/narrar.mjs` no mesmo commit do Mira. A configuração Thalita (-12%, -4Hz) segue esse agente. Geração por edge-tts 7.3.1, instalado separadamente em ambiente Python local.

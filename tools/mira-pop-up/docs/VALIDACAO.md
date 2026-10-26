@@ -14,3 +14,10 @@
 - As quatro cenas, a navegação determinística e a ausência de requisições externas continuam verificadas. Os URLs blob locais usados para validar o MP4 não são acessos externos.
 - Atalhos Windows/macOS fornecidos; não foram executados nesses sistemas neste ambiente Linux. Requerem Node.js 22+ instalado. A exportação direta exige Chrome/Edge com H.264 via WebCodecs.
 - O procedimento de ZIP está incluído na skill do agente. O navegador não pode salvar seu MP4 automaticamente dentro da pasta do projeto: copie o vídeo para output/ se quiser incluí-lo no próximo ZIP.
+
+## Atualização 0.1.2 — voz Thalita
+
+- Configurada pt-BR-ThalitaMultilingualNeural, ritmo -12%, tom -4Hz, conforme mira-history.
+- Geração real bloqueada: a consulta ao serviço speech.platform.bing.com retornou HTTP 403 do proxy. Não foram gerados MP3s da Thalita nem um vídeo narrado; o vídeo de demonstração continua sendo o anterior, silencioso.
+- Integração técnica de áudio testada com sinal sintético explicitamente identificado. Verifica silêncio antes do instante programado, sinal no instante da fala e MP4 contendo vídeo H.264 e áudio. O Chromium desta máquina não oferece encoder AAC: o caminho do navegador usa Opus no MP4, suportado pelo muxer do Mira. O caminho FFmpeg verifica AAC.
+- Manifesto vincula cada arquivo ao hash do texto, voz, ritmo e tom; exportação exige os arquivos e rejeita narração desatualizada. O pacote inclui o gerador local e os atalhos Windows/macOS. Não foram executados em Windows/macOS neste ambiente Linux.

@@ -47,6 +47,8 @@ export function install(project) {
     "LICENSE-MIRA",
     "plugin",
     "COMECE-AQUI.txt",
+    "GERAR-VOZ-THALITA.cmd",
+    "GERAR-VOZ-THALITA.command",
     "README.md",
     "ABRIR-LIVRO.cmd",
     "ABRIR-LIVRO.command",
