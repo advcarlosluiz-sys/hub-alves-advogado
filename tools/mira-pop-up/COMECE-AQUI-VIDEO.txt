@@ -10,7 +10,7 @@ Voz: pt-BR-ThalitaMultilingualNeural (Thalita), português do Brasil.
 Não precisa executar comandos, instalar Python ou Node nem desativar a
 proteção do Windows. Este pacote de mídia não contém scripts ou instaladores.
 
-MÚSICA: Gaitolé, Gaitolé acompanha a história, com volume reduzido
+MÚSICA: Gaitolé, Gaitolé Completa (1) acompanha a história, com volume reduzido
 durante as falas da Thalita. A música original está em assets/musica.
 
 ENCERRAMENTO: marca Contos de Gaitolé, YouTube @gaitolé, TikTok @gaitole0

@@ -24,11 +24,11 @@ A voz padrão solicitada pelo autor é **Thalita em português do Brasil**. Ao e
 
 ## Entrega para Windows com Controle Inteligente de Aplicativos
 
-Quando o usuário só precisar assistir, gere também `node <deck>/scripts/package.mjs --media`. Esse ZIP entrega `ASSISTA-AQUI.mp4`, falas e instruções, sem scripts ou instaladores. Não peça para desativar proteções nem force a execução de atalhos bloqueados. Para o exemplo João, a voz Thalita e o MP4 narrado já estão incluídos na versão 0.1.4; não peça para gerar novamente sem alteração do roteiro.
+Quando o usuário só precisar assistir, gere também `node <deck>/scripts/package.mjs --media`. Esse ZIP entrega `ASSISTA-AQUI.mp4`, falas e instruções, sem scripts ou instaladores. Não peça para desativar proteções nem force a execução de atalhos bloqueados. Para o exemplo João, a voz Thalita e o MP4 narrado já estão incluídos na versão 0.1.5; não peça para gerar novamente sem alteração do roteiro.
 
 ## Música de fundo
 
-O autor forneceu Gaitolé, Gaitolé em assets/musica/gaitole.mp3. Preserve o original e inclua-o nos pacotes. No roteiro, music define arquivo, volume, duckVolume, attack, release, fadeIn e fadeOut. Use redução de volume durante as falas, com rampas, sem diminuir a voz. O navegador e o FFmpeg compartilham o envelope de engine/music.mjs. Para outras faixas fornecidas, ajuste o caminho e confira volumes e integridade. Entregue sempre o MP4 já misturado e o ZIP de mídia, sem exigir atalhos executáveis para assistir.
+O autor forneceu Gaitolé, Gaitolé Completa (1) em assets/musica/gaitole.mp3. Preserve o original e inclua-o nos pacotes. No roteiro, music define arquivo, volume, duckVolume, attack, release, fadeIn e fadeOut. Use redução de volume durante as falas, com rampas, sem diminuir a voz. O navegador e o FFmpeg compartilham o envelope de engine/music.mjs. Para outras faixas fornecidas, ajuste o caminho e confira volumes e integridade. Entregue sempre o MP4 já misturado e o ZIP de mídia, sem exigir atalhos executáveis para assistir.
 
 ## Encerramento da marca
 

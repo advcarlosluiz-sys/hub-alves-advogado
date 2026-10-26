@@ -41,3 +41,9 @@
 - Acrescentados seis segundos após a história: marca Contos de Gaitolé, YouTube @gaitolé, TikTok @gaitole0 e “Inscreva-se e ative o sininho!”. Composição de fundo baseada na imagem enviada pelo autor; handles e chamada desenhados pelo código. Tela conferida visualmente.
 - Duração final 54 s / 1296 quadros a 24 fps. A história continua com 48 s e os mesmos quatro MP3s; o relógio de reprodução/exportação inclui a tela final. A música termina com fade-out no novo fim do vídeo.
 - Mixagem final AAC estéreo: voz central e música estéreo. Decodificação integral sem erros. Encerramento também validado no navegador e incluído no compositor de exportação MP4.
+
+## Atualização 0.1.5 — troca da música
+
+- Substituída a faixa pela nova “Gaitolé, Gaitolé Completa (1).mp3”, enviada pelo usuário, duração original 187,224 s. SHA-256 da cópia em assets/musica/gaitole.mp3 igual ao arquivo recebido.
+- Mantidos os 54 segundos do vídeo, a narração Thalita, a marca, os canais e a chamada final. A cópia dos pacotes de vídeo H.264 foi verificada por hash: nenhum quadro precisou ser renderizado novamente.
+- Redução de música nas falas validada com a nova faixa no navegador e no FFmpeg. Nova mistura AAC estéreo e decodificação integral sem erros. O vídeo usa a faixa nova desde o início, com os mesmos fades e níveis anteriores.

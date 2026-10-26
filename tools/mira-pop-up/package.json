@@ -1,6 +1,6 @@
 {
   "name": "alves-mira-pop-up",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": true,
   "type": "module",
   "description": "Extensão pop-up 3D para Mira, com roteiro em dados e exportação de vídeo",
