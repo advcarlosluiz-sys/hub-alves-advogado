@@ -1,0 +1,142 @@
+// MP4 no próprio navegador, com o muxer distribuído pelo Mira.
+const button = document.getElementById("export-mp4");
+function lines(ctx, text, width) {
+  const result = [];
+  let line = "";
+  for (const word of text.split(/\s+/)) {
+    const trial = line ? line + " " + word : word;
+    if (ctx.measureText(trial).width > width && line) {
+      result.push(line);
+      line = word;
+    } else line = trial;
+  }
+  if (line) result.push(line);
+  return result;
+}
+let exporting = false;
+window.exportPopupMP4 = async ({
+  duration = window.popupDuration,
+  fps = 24,
+  download = true,
+} = {}) => {
+  if (exporting) throw Error("Já existe uma exportação em andamento");
+  if (!window.popupReady) throw Error("Espere o livro carregar");
+  if (
+    !Number.isFinite(duration) ||
+    duration <= 0 ||
+    duration > window.popupDuration
+  )
+    throw Error("Duração inválida");
+  if (!Number.isInteger(fps) || fps < 1 || fps > 60)
+    throw Error("FPS inválido");
+  if (!window.VideoEncoder || !window.Mp4Muxer)
+    throw Error(
+      "Use Chrome ou Edge atualizado no computador para exportar MP4",
+    );
+  const config = {
+    codec: "avc1.42001f",
+    width: 1280,
+    height: 720,
+    bitrate: 5000000,
+    framerate: fps,
+    avc: { format: "avc" },
+  };
+  if (!(await VideoEncoder.isConfigSupported(config)).supported)
+    throw Error(
+      "Este navegador não oferece o codificador H.264. Use Chrome ou Edge atualizado, ou EXPORTAR-MP4.cmd",
+    );
+  exporting = true;
+  button.disabled = true;
+  window.pauseForExport();
+  const previous = window.popupState.time;
+  const controls = [...document.querySelectorAll("nav button, nav input")].map(
+    (el) => [el, el.disabled],
+  );
+  for (const [el] of controls) el.disabled = true;
+  let encoder;
+  try {
+    const target = new Mp4Muxer.ArrayBufferTarget();
+    const muxer = new Mp4Muxer.Muxer({
+      target,
+      video: { codec: "avc", width: 1280, height: 720 },
+      fastStart: "in-memory",
+      firstTimestampBehavior: "offset",
+    });
+    let failure;
+    encoder = new VideoEncoder({
+      output: (chunk, metadata) => muxer.addVideoChunk(chunk, metadata),
+      error: (e) => {
+        failure = e;
+      },
+    });
+    encoder.configure(config);
+    const canvas = document.createElement("canvas");
+    canvas.width = 1280;
+    canvas.height = 720;
+    const ctx = canvas.getContext("2d");
+    const source = document.querySelector("#stage canvas");
+    const count = Math.ceil(duration * fps);
+    for (let i = 0; i < count; i++) {
+      if (failure) throw failure;
+      window.renderAt(i / fps);
+      ctx.drawImage(source, 0, 0, 1280, 720);
+      const caption = document.getElementById("caption");
+      if (Number(caption.style.opacity) > 0.01) {
+        ctx.save();
+        ctx.globalAlpha = Number(caption.style.opacity);
+        ctx.font = "23px Georgia";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        const text = lines(ctx, caption.textContent, 940),
+          height = text.length * 32 + 16,
+          y = 684 - height;
+        ctx.fillStyle = "rgba(37,31,25,.86)";
+        ctx.fillRect(140, y, 1000, height);
+        ctx.fillStyle = "#fff1d2";
+        text.forEach((line, n) => ctx.fillText(line, 640, y + 24 + n * 32));
+        ctx.restore();
+      }
+      const frame = new VideoFrame(canvas, {
+        timestamp: Math.round((i * 1000000) / fps),
+        duration: Math.round(1000000 / fps),
+      });
+      encoder.encode(frame, { keyFrame: i % (fps * 2) === 0 });
+      frame.close();
+      if (encoder.encodeQueueSize > 8) await encoder.flush();
+      if (i % 8 === 0) {
+        button.textContent =
+          "Exportando " + Math.floor((i / count) * 100) + "%";
+        await new Promise((r) => setTimeout(r, 0));
+      }
+    }
+    await encoder.flush();
+    if (failure) throw failure;
+    muxer.finalize();
+    const blob = new Blob([target.buffer], { type: "video/mp4" });
+    if (download) {
+      const url = URL.createObjectURL(blob),
+        a = document.createElement("a");
+      a.href = url;
+      a.download = "joao-pop-up.mp4";
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+    }
+    return blob;
+  } finally {
+    encoder?.close();
+    window.renderAt(previous);
+    exporting = false;
+    for (const [el, disabled] of controls) el.disabled = disabled;
+    button.disabled = false;
+    button.textContent = "Exportar MP4";
+  }
+};
+button.onclick = async () => {
+  try {
+    await window.exportPopupMP4();
+    document.getElementById("status").textContent =
+      "MP4 gerado. Procure na pasta Downloads ou no local escolhido pelo navegador.";
+  } catch (e) {
+    document.getElementById("status").textContent = e.message;
+  }
+};

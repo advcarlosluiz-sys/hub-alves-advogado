@@ -24,7 +24,17 @@ export function createDeck(
     "assets",
     "vendor",
     "stories",
-    "scripts/serve.mjs",
+    "scripts",
+    "package.json",
+    "package-lock.json",
+    "plugin",
+    "COMECE-AQUI.txt",
+    "README.md",
+    "ABRIR-LIVRO.cmd",
+    "ABRIR-LIVRO.command",
+    "SALVAR-TUDO-ZIP.cmd",
+    "SALVAR-TUDO-ZIP.command",
+    "EXPORTAR-MP4.cmd",
   ]) {
     mkdirSync(resolve(dest, path, ".."), { recursive: true });
     cpSync(join(ROOT, path), join(dest, path), { recursive: true });

@@ -46,6 +46,13 @@ export function install(project) {
     "package-lock.json",
     "LICENSE-MIRA",
     "plugin",
+    "COMECE-AQUI.txt",
+    "README.md",
+    "ABRIR-LIVRO.cmd",
+    "ABRIR-LIVRO.command",
+    "SALVAR-TUDO-ZIP.cmd",
+    "SALVAR-TUDO-ZIP.command",
+    "EXPORTAR-MP4.cmd",
   ])
     cpSync(join(ROOT, item), join(runtime, item), { recursive: true });
   mkdirSync(dirname(plugin), { recursive: true });

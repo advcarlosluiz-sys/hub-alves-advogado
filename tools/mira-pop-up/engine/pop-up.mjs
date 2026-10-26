@@ -361,6 +361,10 @@ try {
       growth: states[index].state.growth,
     };
   };
+  window.pauseForExport = () => {
+    playing = false;
+    $("play").textContent = "Reproduzir";
+  };
   window.popupReady = true;
   window.popupDuration = story.duration;
   window.renderAt(0);

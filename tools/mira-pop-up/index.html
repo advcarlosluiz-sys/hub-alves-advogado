@@ -111,6 +111,7 @@
     <div id="caption"><span></span></div>
   </div>
   <nav>
+    <button id="export-mp4">Exportar MP4</button>
     <button id="play">Pausar</button><button id="restart">Recomeçar</button
     ><input
       aria-label="Tempo"
@@ -124,5 +125,7 @@
   <p id="status">Carregando o livro e suas ilustrações…</p>
   <div id="error" hidden></div>
   <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/mp4-muxer.js"></script>
   <script type="module" src="engine/pop-up.mjs"></script>
+  <script type="module" src="engine/export-mp4.mjs"></script>
 </html>

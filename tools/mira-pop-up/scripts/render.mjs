@@ -20,6 +20,18 @@ try {
   const chrome =
     process.env.CHROME_PATH ||
     [
+      process.env.PROGRAMFILES
+        ? join(process.env.PROGRAMFILES, "Google/Chrome/Application/chrome.exe")
+        : "",
+      process.env["PROGRAMFILES(X86)"]
+        ? join(
+            process.env["PROGRAMFILES(X86)"],
+            "Microsoft/Edge/Application/msedge.exe",
+          )
+        : "",
+      process.env.LOCALAPPDATA
+        ? join(process.env.LOCALAPPDATA, "Google/Chrome/Application/chrome.exe")
+        : "",
       "/usr/bin/chromium",
       "/usr/bin/google-chrome",
       "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",

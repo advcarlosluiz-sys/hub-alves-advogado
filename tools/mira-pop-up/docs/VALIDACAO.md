@@ -6,3 +6,11 @@
 - Não foram executados serviços de IA ou geração de narração. As ilustrações são próprias e simplificadas. A aprovação visual pelo autor ainda é necessária; não se alega equivalência artística com o vídeo de referência.
 
 - Vídeo final decodificado integralmente pelo FFmpeg sem erros: H.264, 1280×720, 24 fps, 1152 quadros, 48 segundos. Sem trilha de áudio, conforme escopo desta versão.
+
+## Atualização 0.1.1 — pacote local e exportação no navegador
+
+- Cinco testes Node aprovados, incluindo leitura independente das entradas ZIP comprimidas, nomes Unicode, inclusão do vídeo, exclusões e proteção contra sobrescrita do pacote.
+- MP4 H.264 de 1 segundo exportado pelo próprio navegador e inspecionado por FFprobe: 1280×720, 24 quadros. Outro MP4 de 3 segundos foi exportado e carregado como vídeo pelo Chromium, com duração e resolução verificadas.
+- As quatro cenas, a navegação determinística e a ausência de requisições externas continuam verificadas. Os URLs blob locais usados para validar o MP4 não são acessos externos.
+- Atalhos Windows/macOS fornecidos; não foram executados nesses sistemas neste ambiente Linux. Requerem Node.js 22+ instalado. A exportação direta exige Chrome/Edge com H.264 via WebCodecs.
+- O procedimento de ZIP está incluído na skill do agente. O navegador não pode salvar seu MP4 automaticamente dentro da pasta do projeto: copie o vídeo para output/ se quiser incluí-lo no próximo ZIP.

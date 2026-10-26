@@ -23,7 +23,8 @@ try {
   page.on("request", (r) => {
     if (
       !r.url().startsWith("http://127.0.0.1:") &&
-      !r.url().startsWith("data:")
+      !r.url().startsWith("data:") &&
+      !r.url().startsWith("blob:http://127.0.0.1:")
     )
       external.push(r.url());
   });
@@ -56,10 +57,34 @@ try {
     hashes[0],
     "Seek não determinístico",
   );
+  const exported = await page.evaluate(async () => {
+    const blob = await window.exportPopupMP4({ duration: 3, download: false });
+    const url = URL.createObjectURL(blob),
+      video = document.createElement("video");
+    video.src = url;
+    await new Promise((resolve, reject) => {
+      video.onloadedmetadata = resolve;
+      video.onerror = reject;
+    });
+    const result = {
+      size: blob.size,
+      type: blob.type,
+      duration: video.duration,
+      width: video.videoWidth,
+      height: video.videoHeight,
+    };
+    URL.revokeObjectURL(url);
+    return result;
+  });
+  assert.ok(exported.size > 10000);
+  assert.equal(exported.type, "video/mp4");
+  assert.ok(Math.abs(exported.duration - 3) < 0.1);
+  assert.equal(exported.width, 1280);
+  assert.equal(exported.height, 720);
   assert.deepEqual(errors, []);
   assert.deepEqual(external, []);
   console.log(
-    "PASS: quatro cenas WebGL distintas; seek determinístico; sem erros JS ou pedidos externos",
+    "PASS: quatro cenas WebGL distintas; seek determinístico; MP4 de 3 s exportado no navegador; sem erros JS ou pedidos externos",
   );
 } finally {
   if (browser) await browser.close();

@@ -6,6 +6,26 @@ Contos em um livro pop-up 3D: recortes ilustrados, peças com dobradiças, chão
 
 [Vídeo de exemplo — João e o Pé de Feijão, 48 s](docs/joao-pop-up.mp4)
 
+## Começar sem comandos
+
+1. Baixe o pacote completo ZIP e **extraia tudo** para uma pasta local.
+2. Abra **COMECE-AQUI.txt**. O vídeo pronto está em `docs/joao-pop-up.mp4`.
+3. No Windows, dê dois cliques em **ABRIR-LIVRO.cmd**; no macOS, em **ABRIR-LIVRO.command**. Requer Node.js LTS 22+ instalado uma vez.
+4. No navegador Chrome/Edge, clique em **Exportar MP4**. O vídeo é codificado pelo navegador com WebCodecs e pelo muxer distribuído pelo Mira, sem FFmpeg nem npm. É necessário suporte H.264; o computador pode levar alguns minutos. O navegador salva em Downloads ou no local escolhido.
+5. Para guardar o projeto completo, use **SALVAR-TUDO-ZIP.cmd** ou **SALVAR-TUDO-ZIP.command**. O pacote vai para `dist/`, com data e hora. Copie vídeos baixados para `output/` antes, caso queira incluí-los no ZIP.
+
+O pacote usa um servidor local para executar o livro; a integração com o assistente Mira segue abaixo. A exportação pelo navegador não adiciona um botão ao programa de terceiros: o botão fica na apresentação produzida pela extensão.
+
+## Salvar tudo em ZIP automaticamente
+
+```sh
+npm run zip
+# Um deck específico:
+node scripts/package.mjs --deck /caminho/decks/meu-conto
+```
+
+Não exige Python, tar nem npm para o empacotamento: `node scripts/package.mjs` basta. Inclui código, bibliotecas, arte, roteiro, atalhos e vídeos locais. Exclui `node_modules`, `.git`, `dist`, arquivos `.env` e formatos comuns de chave privada. Não apaga pacotes anteriores. O agente `/alves-pop-up` foi orientado a entregar um ZIP completo em cada geração.
+
 ## O que acrescenta ao Mira
 
 - Motor Three.js de palco tridimensional: livro, camadas, sombras e câmera em perspectiva.
@@ -41,7 +61,7 @@ Abra uma nova sessão do seu assistente e use **`/alves-pop-up`** (no Codex, men
 
 O instalador acrescenta o motor em `.mira/extensions/alves-pop-up/`, o plugin em `mira-plugins/alves-pop-up/` e a skill nos diretórios configurados pelo Mira. Preserva a configuração do Mira e recusa sobrescrever uma instalação existente. O comando `plugin sync` registra a extensão no estado oficial do Mira. Para atualizar, preserve seus arquivos e remova somente a instalação anterior desta extensão antes de reinstalar.
 
-**Formato da extensão:** `dist/alves-pop-up-0.1.0.mplug` contém apenas o agente. Isso respeita a restrição oficial de plugins `prompt-only`; um `.mplug` não pode incluir JavaScript. Portanto instale o motor pelo procedimento acima. O pacote completo é `dist/alves-pop-up-0.1.0.zip`, com o motor, agente, arte e scripts. Ao usar o ZIP, descompacte e execute os comandos dentro da pasta `alves-pop-up/` (equivalente a `tools/mira-pop-up/` no repositório). Instalar apenas o `.mplug` não basta para renderizar.
+**Formato da extensão:** `dist/alves-pop-up-0.1.1.mplug` contém apenas o agente. Isso respeita a restrição oficial de plugins `prompt-only`; um `.mplug` não pode incluir JavaScript. Portanto instale o motor pelo procedimento acima. O pacote completo é `dist/alves-pop-up-0.1.1.zip`, com o motor, agente, arte e scripts. Ao usar o ZIP, descompacte e execute os comandos dentro da pasta `alves-pop-up/` (equivalente a `tools/mira-pop-up/` no repositório). Instalar apenas o `.mplug` não basta para renderizar.
 
 ## Gerar outra apresentação
 
@@ -64,9 +84,11 @@ npm run render
 npm run render -- --deck /caminho/decks/joao-pop-up --out /caminho/video.mp4
 ```
 
+O atalho **EXPORTAR-MP4.cmd** automatiza a instalação das dependências npm e este procedimento alternativo, caso FFmpeg e Chrome/Edge já estejam instalados.
+
 Saída padrão: `output/joao-pop-up.mp4`, 1280×720, H.264, 24 fps. O renderizador inicia e encerra seu próprio servidor local. `CHROME_PATH` e `FFMPEG_PATH` permitem indicar executáveis instalados, inclusive no Windows. Caso o ambiente de execução em contêiner exija, `POPUP_NO_SANDBOX=1` é um opt-in explícito para Chromium; não é necessário no uso normal. `--preview` gera uma imagem; `--duration 3` permite um teste curto. Renderizar por software pode levar vários minutos.
 
-**Áudio:** a versão 0.1.0 gera vídeo silencioso com legendas, sem TTS ou trilha. Não precisa de chave de IA para executar o exemplo. Gerar ou dirigir novos roteiros com a skill depende do assistente usado no Mira.
+**Áudio:** a versão 0.1.1 gera vídeo silencioso com legendas, sem TTS ou trilha. Não precisa de chave de IA para executar o exemplo. Gerar ou dirigir novos roteiros com a skill depende do assistente usado no Mira.
 
 ## Validação
 
