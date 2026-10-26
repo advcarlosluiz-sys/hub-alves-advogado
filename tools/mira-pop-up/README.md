@@ -1,18 +1,18 @@
 # Alves Pop-up — extensão para Mira
 
-Contos em um livro pop-up 3D: recortes ilustrados, peças com dobradiças, chão texturizado, sombras reais, crescimento do pé de feijão, câmera e viradas de página. Primeiro conto: **João e o Pé de Feijão**, adaptação original em quatro cenas / 48 segundos.
+Contos em um livro pop-up 3D: recortes ilustrados, peças com dobradiças, chão texturizado, sombras reais, crescimento do pé de feijão, câmera e viradas de página. Primeiro conto: **João e o Pé de Feijão**, adaptação original em quatro cenas (48 segundos), mais encerramento de 6 segundos: vídeo final de 54 segundos.
 
 ![Cena renderizada pelo motor WebGL](docs/preview.png)
 
-[Vídeo de exemplo — João e o Pé de Feijão, 48 s](docs/joao-pop-up.mp4)
+[Vídeo de exemplo — João e o Pé de Feijão, 54 s](docs/joao-pop-up.mp4)
 
 ## Narração Thalita — português do Brasil
 
 Voz configurada: **pt-BR-ThalitaMultilingualNeural**, com ritmo **-12%** e tom **-4 Hz**, seguindo o padrão de contos do `mira-history`.
 
-**Narração já incluída:** os quatro MP3s reais da Thalita foram gerados e o vídeo de 48 segundos em `docs/joao-pop-up.mp4` já contém a voz. Basta abrir o MP4. Não precisa executar o gerador de voz no Windows.
+**Narração já incluída:** os quatro MP3s reais da Thalita foram gerados e o vídeo de 54 segundos em `docs/joao-pop-up.mp4` já contém a voz. Basta abrir o MP4. Não precisa executar o gerador de voz no Windows.
 
-Para apenas assistir, use `dist/joao-thalita-pronto-0.1.3.zip`: contém MP4, MP3s e instruções, sem scripts executáveis. O Windows não precisa executar `.cmd`, Node ou Python para reproduzir esses arquivos de mídia.
+Para apenas assistir, use `dist/joao-thalita-pronto-0.1.4.zip`: contém MP4, MP3s e instruções, sem scripts executáveis. O Windows não precisa executar `.cmd`, Node ou Python para reproduzir esses arquivos de mídia.
 
 Para alterar a história e gerar a narração novamente, siga opcionalmente os passos abaixo. Os atalhos sem assinatura podem ser bloqueados pelo Controle Inteligente de Aplicativos do Windows; mantenha a proteção e use o vídeo já pronto. A edição da ferramenta requer ambiente de desenvolvimento adequado; esta distribuição não é um aplicativo Windows assinado.
 
@@ -26,6 +26,18 @@ No seu computador:
 6. Use **SALVAR-TUDO-ZIP**: os MP3s e o manifesto gerados são incluídos, e o ambiente Python `.tts-venv` é excluído. Depois de gerada, a narração funciona localmente sem acessar o serviço de voz.
 
 Se a voz estiver ausente ou o texto tiver mudado, a exportação avisará e não criará silenciosamente um vídeo sem narração. Não altere o manifesto para identificar outra voz como Thalita.
+
+## Música de fundo com redução durante as falas
+
+A faixa **Gaitolé, Gaitolé**, enviada pelo autor, está em `assets/musica/gaitole.mp3` e já foi incluída no MP4. A música mantém ganho 0,18 nos intervalos e cai para 0,035 durante a narração (redução adicional de aproximadamente 14 dB). A queda começa 350 ms antes da fala; a recuperação leva 700 ms. Há fade-in de 1 segundo e fade-out de 2 segundos.
+
+O mesmo envelope é usado no navegador e no renderizador FFmpeg. O botão **Ouvir narração** reproduz a mistura com música; **Exportar MP4** inclui os dois. A configuração fica em `music` no roteiro. O ZIP de mídia e o pacote completo incluem a faixa original. Não é necessário gerar novamente a voz para mudar os volumes da música.
+
+## Encerramento do canal
+
+O vídeo termina com seis segundos de tela da marca **Contos de Gaitolé**, YouTube **@gaitolé**, TikTok **@gaitole0** e a chamada **Inscreva-se e ative o sininho!**. A música continua e termina suavemente.
+
+A configuração está em `endCard`, no roteiro, e o compositor em `engine/end-card.mjs`. O navegador e a exportação MP4 desenham o mesmo encerramento. A arte de fundo foi composta a partir da imagem da marca enviada pelo autor; os textos dos perfis são renderizados pelo código para preservar a grafia. Prévia: `docs/encerramento.png`.
 
 ## Começar sem comandos
 
@@ -84,7 +96,7 @@ Abra uma nova sessão do seu assistente e use **`/alves-pop-up`** (no Codex, men
 
 O instalador acrescenta o motor em `.mira/extensions/alves-pop-up/`, o plugin em `mira-plugins/alves-pop-up/` e a skill nos diretórios configurados pelo Mira. Preserva a configuração do Mira e recusa sobrescrever uma instalação existente. O comando `plugin sync` registra a extensão no estado oficial do Mira. Para atualizar, preserve seus arquivos e remova somente a instalação anterior desta extensão antes de reinstalar.
 
-**Formato da extensão:** `dist/alves-pop-up-0.1.3.mplug` contém apenas o agente. Isso respeita a restrição oficial de plugins `prompt-only`; um `.mplug` não pode incluir JavaScript. Portanto instale o motor pelo procedimento acima. O pacote completo é `dist/alves-pop-up-0.1.3.zip`, com o motor, agente, arte e scripts. Ao usar o ZIP, descompacte e execute os comandos dentro da pasta `alves-pop-up/` (equivalente a `tools/mira-pop-up/` no repositório). Instalar apenas o `.mplug` não basta para renderizar.
+**Formato da extensão:** `dist/alves-pop-up-0.1.4.mplug` contém apenas o agente. Isso respeita a restrição oficial de plugins `prompt-only`; um `.mplug` não pode incluir JavaScript. Portanto instale o motor pelo procedimento acima. O pacote completo é `dist/alves-pop-up-0.1.4.zip`, com o motor, agente, arte e scripts. Ao usar o ZIP, descompacte e execute os comandos dentro da pasta `alves-pop-up/` (equivalente a `tools/mira-pop-up/` no repositório). Instalar apenas o `.mplug` não basta para renderizar.
 
 ## Gerar outra apresentação
 
@@ -111,7 +123,7 @@ O atalho **EXPORTAR-MP4.cmd** automatiza a instalação das dependências npm e 
 
 Saída padrão: `output/joao-pop-up.mp4`, 1280×720, H.264, 24 fps. O renderizador inicia e encerra seu próprio servidor local. `CHROME_PATH` e `FFMPEG_PATH` permitem indicar executáveis instalados, inclusive no Windows. Caso o ambiente de execução em contêiner exija, `POPUP_NO_SANDBOX=1` é um opt-in explícito para Chromium; não é necessário no uso normal. `--preview` gera uma imagem; `--duration 3` permite um teste curto. Renderizar por software pode levar vários minutos.
 
-**Áudio:** a versão 0.1.3 inclui geração de narração Thalita; os MP3s deste conto já estão incluídos; alterações de texto exigem gerar novamente. Não há trilha musical. Não precisa de chave de IA para executar o exemplo. Gerar ou dirigir novos roteiros com a skill depende do assistente usado no Mira.
+**Áudio:** a versão 0.1.4 inclui geração de narração Thalita; os MP3s deste conto já estão incluídos; alterações de texto exigem gerar novamente. A música Gaitolé, Gaitolé acompanha o conto e diminui durante as falas. Não precisa de chave de IA para executar o exemplo. Gerar ou dirigir novos roteiros com a skill depende do assistente usado no Mira.
 
 ## Validação
 

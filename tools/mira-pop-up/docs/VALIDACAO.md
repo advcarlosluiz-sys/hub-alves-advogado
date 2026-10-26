@@ -28,3 +28,16 @@
 - Quatro MP3s reais gerados: casa 7,224 s, crescimento 7,992 s, castelo 7,584 s e volta 7,992 s. Cadência -12%, tom -4 Hz. Nova execução reutilizou os quatro arquivos pelo cache.
 - MP4 final mantém os 1152 quadros H.264 já validados e acrescenta a narração AAC nos segundos 2, 14, 26 e 38. Resultado: 48 s, 1280×720, 24 fps. FFmpeg decodificou integralmente sem erros e a medição confirmou áudio não silencioso.
 - Acrescentado pacote somente de mídia, com vídeo ASSISTA-AQUI.mp4, MP3s e instruções. Esse pacote não contém atalhos, scripts ou instaladores e dispensa a execução de arquivos .cmd no Windows.
+
+## Atualização 0.1.4 — música Gaitolé, Gaitolé
+
+- MP3 fornecido pelo usuário copiado integralmente; SHA-256 do original e da cópia iguais. Duração original 168,384 s, estéreo/48 kHz. O vídeo usa os primeiros 48 segundos, com fade-in e fade-out.
+- Mixagem preserva a narração e aplica ganho 0,18 na música, reduzido para 0,035 nas falas (ataque 350 ms antes do início e recuperação de 700 ms). O envelope segue as durações reais dos quatro MP3s da Thalita.
+- Teste de integração com a faixa real mediu a relação RMS entre fonte e música processada em cinco instantes: normal/fala/normal/fala/normal. Tanto FFmpeg quanto navegador confirmaram 0,18/0,035/0,18/0,035/0,18, sem saturação da mistura.
+- MP4 final preserva os quadros de vídeo já validados, com nova mistura AAC. Decodificação integral pelo FFmpeg sem erros. Pacotes de mídia e ferramenta incluem a música, sem scripts executáveis no pacote de mídia.
+
+### Encerramento solicitado pelo autor
+
+- Acrescentados seis segundos após a história: marca Contos de Gaitolé, YouTube @gaitolé, TikTok @gaitole0 e “Inscreva-se e ative o sininho!”. Composição de fundo baseada na imagem enviada pelo autor; handles e chamada desenhados pelo código. Tela conferida visualmente.
+- Duração final 54 s / 1296 quadros a 24 fps. A história continua com 48 s e os mesmos quatro MP3s; o relógio de reprodução/exportação inclui a tela final. A música termina com fade-out no novo fim do vídeo.
+- Mixagem final AAC estéreo: voz central e música estéreo. Decodificação integral sem erros. Encerramento também validado no navegador e incluído no compositor de exportação MP4.

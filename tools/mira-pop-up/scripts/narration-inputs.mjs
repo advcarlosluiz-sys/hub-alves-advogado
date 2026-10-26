@@ -1,3 +1,4 @@
+import { validateMusic, musicVolumeExpression } from "../engine/music.mjs";
 import { readFileSync, existsSync } from "node:fs";
 import { resolve, join, sep } from "node:path";
 import { createHash } from "node:crypto";
@@ -48,13 +49,28 @@ export function narrationInputs(root, duration) {
     start += s.duration;
   }
   const labels = filters.map((_, i) => `[voz${i}]`).join("");
+  let combined =
+    filters.join(";") +
+    ";" +
+    labels +
+    `amix=inputs=${filters.length}:normalize=0,apad,atrim=duration=${duration}[narracao]`;
+  if (story.music) {
+    const music = validateMusic(story.music),
+      file = resolve(root, music.file);
+    if (!file.startsWith(resolve(root) + sep) || !existsSync(file))
+      throw Error("Arquivo de música ausente");
+    const musicIndex = inputs.length / 2 + 1;
+    inputs.push("-stream_loop", "-1", "-i", file);
+    const voice = combined.replace(/\[narracao\]$/, "[vozMixRaw]");
+    combined =
+      voice +
+      `;[vozMixRaw]aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo[vozMix];[${musicIndex}:a]aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo,atrim=duration=${duration},asetpts=PTS-STARTPTS,volume='${musicVolumeExpression(manifest.clips, music, duration)}':eval=frame[musica];[vozMix][musica]amix=inputs=2:normalize=0,atrim=duration=${duration}[narracao]`;
+  }
+
   return [
     ...inputs,
     "-filter_complex",
-    filters.join(";") +
-      ";" +
-      labels +
-      `amix=inputs=${filters.length}:normalize=0,apad,atrim=duration=${duration}[narracao]`,
+    combined,
     "-map",
     "0:v:0",
     "-map",

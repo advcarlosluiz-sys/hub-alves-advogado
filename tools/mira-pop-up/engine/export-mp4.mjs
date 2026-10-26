@@ -163,6 +163,8 @@ window.exportPopupMP4 = async ({
         text.forEach((line, n) => ctx.fillText(line, 640, y + 24 + n * 32));
         ctx.restore();
       }
+      if (window.popupEndCard?.style.display === "block")
+        ctx.drawImage(window.popupEndCard, 0, 0, 1280, 720);
       const frame = new VideoFrame(canvas, {
         timestamp: Math.round((i * 1000000) / fps),
         duration: Math.round(1000000 / fps),

@@ -1,3 +1,4 @@
+import { totalDuration, drawEndCard } from "./end-card.mjs";
 import * as THREE from "../vendor/three.module.js";
 import { validateStory, locateScene } from "./story.mjs";
 import { createNarrator } from "./narration.mjs";
@@ -58,6 +59,31 @@ try {
   const response = await fetch(u);
   if (!response.ok) throw Error("Roteiro não encontrado");
   const story = validateStory(await response.json());
+  const length = totalDuration(story);
+  const endCardCanvas = document.createElement("canvas");
+  endCardCanvas.id = "end-card";
+  endCardCanvas.width = 1280;
+  endCardCanvas.height = 720;
+  endCardCanvas.style.cssText =
+    "position:absolute;inset:0;pointer-events:none;display:none";
+  $("stage").append(endCardCanvas);
+  let brandPlate = null;
+  if (story.endCard?.image) {
+    if (!/^assets\/marca\/[a-zA-Z0-9_-]+\.(png|jpg)$/.test(story.endCard.image))
+      throw Error("Imagem de marca inválida");
+    brandPlate = new Image();
+    brandPlate.src = story.endCard.image;
+    await brandPlate.decode();
+  }
+  drawEndCard(
+    endCardCanvas.getContext("2d"),
+    story.endCard,
+    1280,
+    720,
+    brandPlate,
+  );
+  window.popupEndCard = endCardCanvas;
+
   window.popupNarrator = createNarrator(story);
   let voiceEnabled = false;
   $("narrate").onclick = async () => {
@@ -70,7 +96,7 @@ try {
         await window.popupNarrator.enable();
         voiceEnabled = true;
         playing = true;
-        if (position >= story.duration) position = 0;
+        if (position >= length) position = 0;
         $("play").textContent = "Pausar";
         $("narrate").textContent = "Silenciar";
         $("status").textContent = "Narração Thalita · português do Brasil";
@@ -328,10 +354,10 @@ try {
   let position = 0,
     playing = !rendering,
     last = performance.now();
-  $("seek").max = story.duration;
+  $("seek").max = length;
   window.renderAt = (time) => {
     const { index, scene: s, local: t } = locateScene(story, time);
-    position = Math.min(story.duration, Math.max(0, time));
+    position = Math.min(length, Math.max(0, time));
     const phase = t / s.duration;
     const pop = smooth((t - 0.25) / 1.5),
       closing =
@@ -373,8 +399,10 @@ try {
     $("caption").style.opacity = String(smooth((t - 1.5) / 0.5) * closing);
     $("caption").firstElementChild.textContent = s.caption;
     $("seek").value = position;
-    $("time").textContent =
-      Math.floor(position) + " / " + story.duration + " s";
+    $("time").textContent = Math.floor(position) + " / " + length + " s";
+    const showEnd = !!story.endCard && position >= story.duration;
+    endCardCanvas.style.display = showEnd ? "block" : "none";
+    if (showEnd) $("caption").style.opacity = "0";
     renderer.render(scene, camera);
     window.popupNarrator.sync(position, playing);
     window.popupState = {
@@ -390,7 +418,7 @@ try {
     $("play").textContent = "Reproduzir";
   };
   window.popupReady = true;
-  window.popupDuration = story.duration;
+  window.popupDuration = length;
   window.renderAt(0);
   $("status").textContent = "Three.js + GSAP do Mira · cenas 3D locais";
   if (story.narration)
@@ -408,7 +436,7 @@ try {
     playing = !playing;
     if (!playing) window.popupNarrator.pause();
     $("play").textContent = playing ? "Pausar" : "Reproduzir";
-    if (playing && position >= story.duration) position = 0;
+    if (playing && position >= length) position = 0;
   };
   $("restart").onclick = () => {
     position = 0;
@@ -423,9 +451,9 @@ try {
   };
   function animate(now) {
     if (playing) {
-      position = Math.min(story.duration, position + (now - last) / 1000);
+      position = Math.min(length, position + (now - last) / 1000);
       window.renderAt(position);
-      if (position >= story.duration) {
+      if (position >= length) {
         playing = false;
         $("play").textContent = "Reproduzir";
       }

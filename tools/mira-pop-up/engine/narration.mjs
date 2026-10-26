@@ -1,3 +1,5 @@
+import { totalDuration } from "./end-card.mjs";
+import { validateMusic, musicGainAt } from "./music.mjs";
 export async function narrationHash(text, voice, rate, pitch) {
   const bytes = new TextEncoder().encode([text, voice, rate, pitch].join("|"));
   return [...new Uint8Array(await crypto.subtle.digest("SHA-256", bytes))]
@@ -23,7 +25,7 @@ export async function loadNarration(story, base = location.href) {
   )
     throw Error("Narração desatualizada; gere a voz novamente");
   const rate = 48000,
-    frames = Math.ceil(story.duration * rate);
+    frames = Math.ceil(totalDuration(story) * rate);
   const offline = new OfflineAudioContext(2, frames, rate);
   let start = 0;
   for (const scene of story.scenes) {
@@ -61,7 +63,35 @@ export async function loadNarration(story, base = location.href) {
     source.start(clip.offset);
     start += scene.duration;
   }
-  return { buffer: await offline.startRendering(), manifest };
+  const buffer = await offline.startRendering();
+  if (story.music) {
+    const music = validateMusic(story.music),
+      url = new URL(music.file, base);
+    if (url.origin !== location.origin)
+      throw Error("Música externa não permitida");
+    const response = await fetch(url);
+    if (!response.ok) throw Error("Arquivo de música ausente");
+    const decoded = await offline.decodeAudioData(await response.arrayBuffer());
+    if (!decoded.length) throw Error("Música sem amostras");
+    // A soma usa o mesmo relógio da fala; o vídeo exportado recebe essa mistura.
+    const gains = new Float32Array(buffer.length);
+    for (let i = 0; i < gains.length; i++)
+      gains[i] = musicGainAt(
+        i / rate,
+        manifest.clips,
+        music,
+        totalDuration(story),
+      );
+    for (let channel = 0; channel < buffer.numberOfChannels; channel++) {
+      const dest = buffer.getChannelData(channel),
+        source = decoded.getChannelData(
+          Math.min(channel, decoded.numberOfChannels - 1),
+        );
+      for (let i = 0; i < dest.length; i++)
+        dest[i] += source[i % source.length] * gains[i];
+    }
+  }
+  return { buffer, manifest };
 }
 export function createNarrator(story) {
   let ready = loadNarration(story);
@@ -97,7 +127,7 @@ export function createNarrator(story) {
     },
     sync(time, playing) {
       if (!enabled || !ctx) return;
-      if (!playing || time >= story.duration) {
+      if (!playing || time >= totalDuration(story)) {
         this.pause();
         return;
       }

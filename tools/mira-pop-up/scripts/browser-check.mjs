@@ -69,6 +69,22 @@ try {
   });
   if (!existsSync(join(ROOT, "assets/narracao/manifest.json")))
     assert.match(missingVoice, /Thalita ainda não gerada/);
+  const closing = await page.evaluate(async () => {
+    const story = await (await fetch("stories/joao.json")).json();
+    if (!story.endCard) return null;
+    window.renderAt(story.duration + 1);
+    return {
+      visible: window.popupEndCard.style.display,
+      duration: window.popupDuration,
+      expected: story.duration + story.endCard.duration,
+      caption: document.getElementById("caption").style.opacity,
+    };
+  });
+  if (closing) {
+    assert.equal(closing.visible, "block");
+    assert.equal(closing.duration, closing.expected);
+    assert.equal(closing.caption, "0");
+  }
   const exported = await page.evaluate(async () => {
     const blob = await window.exportPopupMP4({
       duration: 3,

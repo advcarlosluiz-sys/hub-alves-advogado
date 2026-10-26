@@ -23,6 +23,7 @@ try {
   const story = JSON.parse(
     readFileSync(join(root, "stories/joao.json"), "utf8"),
   );
+  delete story.music;
   story.narration = {
     voice: "pt-BR-SINAL-DE-TESTE",
     rate: "-12%",

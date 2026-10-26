@@ -1,6 +1,6 @@
 {
   "name": "alves-mira-pop-up",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": true,
   "type": "module",
   "description": "Extensão pop-up 3D para Mira, com roteiro em dados e exportação de vídeo",
@@ -13,7 +13,8 @@
     "zip": "node scripts/package.mjs",
     "open": "node scripts/open.mjs",
     "narrate": "node scripts/narrate.mjs",
-    "test:audio": "node scripts/audio-check.mjs"
+    "test:audio": "node scripts/audio-check.mjs",
+    "test:music": "node scripts/music-check.mjs"
   },
   "engines": {
     "node": ">=22"

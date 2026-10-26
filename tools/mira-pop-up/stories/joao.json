@@ -286,5 +286,28 @@
     "pitch": "-4Hz",
     "manifest": "assets/narracao/manifest.json",
     "required": true
+  },
+  "music": {
+    "file": "assets/musica/gaitole.mp3",
+    "title": "Gaitolé, Gaitolé",
+    "volume": 0.18,
+    "duckVolume": 0.035,
+    "attack": 0.35,
+    "release": 0.7,
+    "fadeIn": 1,
+    "fadeOut": 2
+  },
+  "endCard": {
+    "duration": 6,
+    "youtube": {
+      "name": "Contos de Gaitolé",
+      "handle": "@gaitolé"
+    },
+    "tiktok": {
+      "handle": "@gaitole0",
+      "url": "https://www.tiktok.com/@gaitole0"
+    },
+    "callToAction": "Inscreva-se e ative o sininho!",
+    "image": "assets/marca/gaitole-final.png"
   }
 }

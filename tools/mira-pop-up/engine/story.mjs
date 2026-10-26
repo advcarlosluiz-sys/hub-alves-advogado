@@ -21,6 +21,16 @@ export function validateStory(story) {
     !story.scenes.length
   )
     throw Error("Roteiro precisa de título e cenas");
+  if (
+    story.endCard &&
+    (!Number.isFinite(story.endCard.duration) ||
+      story.endCard.duration < 3 ||
+      story.endCard.duration > 15 ||
+      typeof story.endCard.youtube?.name !== "string" ||
+      typeof story.endCard.youtube?.handle !== "string" ||
+      typeof story.endCard.tiktok?.handle !== "string")
+  )
+    throw Error("Tela final inválida");
   const ids = new Set();
   let duration = 0;
   for (const s of story.scenes) {

@@ -1,0 +1,4 @@
+Gaitolé, Gaitolé — MP3 fornecido pelo usuário para o fundo desta história.
+O arquivo gaitole.mp3 é uma cópia integral, sem alterações, do MP3 recebido.
+No vídeo: música mais baixa durante as falas da Thalita e mais alta nos intervalos.
+A configuração de volume e transições está em music, no roteiro stories/joao.json.

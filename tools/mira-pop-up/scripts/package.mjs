@@ -80,7 +80,7 @@ export function packageZip(root = ROOT, destination, mediaOnly = false) {
     return (
       p === mediaVideo ||
       name === "COMECE-AQUI-VIDEO.txt" ||
-      /^assets\/narracao\/[a-zA-Z0-9_-]+\.(mp3|json|txt)$/.test(name)
+      /^assets\/(narracao|musica)\/[a-zA-Z0-9_-]+\.(mp3|json|txt)$/.test(name)
     );
   });
   if (files.length > 65535)
