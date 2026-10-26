@@ -94,8 +94,14 @@ export async function loadNarration(story, base = location.href) {
   return { buffer, manifest };
 }
 export function createNarrator(story) {
-  let ready = loadNarration(story);
-  ready.catch(() => {});
+  let ready;
+  const ensure = () => {
+    if (!ready) {
+      ready = loadNarration(story);
+      ready.catch(() => {});
+    }
+    return ready;
+  };
   let ctx,
     source,
     origin = 0,
@@ -103,11 +109,11 @@ export function createNarrator(story) {
     revision = 0;
   return {
     async getAudio() {
-      const result = await ready;
+      const result = await ensure();
       return result?.buffer || null;
     },
     async enable() {
-      const result = await ready;
+      const result = await ensure();
       if (!result) throw Error("Este roteiro não tem narração configurada");
       ctx ??= new AudioContext();
       await ctx.resume();

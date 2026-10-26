@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "voice": "pt-BR-ThalitaMultilingualNeural",
+  "rate": "-12%",
+  "pitch": "-4Hz",
+  "duration": 175,
+  "clips": [
+    {
+      "scene": "partida",
+      "file": "assets/narracao/partida-2af53e750861.mp3",
+      "offset": 2,
+      "duration": 14.663999999999765,
+      "hash": "2af53e750861bcd449632cfe0fe17d553d83cc5b13dc87f9bf68f38d221c48d1"
+    },
+    {
+      "scene": "palha",
+      "file": "assets/narracao/palha-74d850886d19.mp3",
+      "offset": 20,
+      "duration": 13.41599999999981,
+      "hash": "74d850886d1911bef694baef6ff3da602cdadb2b56f0fe19111c49d58297c730"
+    },
+    {
+      "scene": "madeira",
+      "file": "assets/narracao/madeira-79ff47cc0a12.mp3",
+      "offset": 37,
+      "duration": 13.247999999999816,
+      "hash": "79ff47cc0a12e6682b51e3b75192d20c395c6af91adf1273210da74e45af71fd"
+    },
+    {
+      "scene": "tijolos",
+      "file": "assets/narracao/tijolos-28d5da75e1ca.mp3",
+      "offset": 54,
+      "duration": 15.287999999999743,
+      "hash": "28d5da75e1ca2cb91771138c064dd62eab5e544da2069a53a3e943e368dd30d4"
+    },
+    {
+      "scene": "lobo",
+      "file": "assets/narracao/lobo-07560c8867fd.mp3",
+      "offset": 73,
+      "duration": 11.327999999999886,
+      "hash": "07560c8867fda2c138353fad73cda2748d48cc4cb33e2275ee3adc6463d1b08e"
+    },
+    {
+      "scene": "sopro_palha",
+      "file": "assets/narracao/sopro_palha-8e0a8993f940.mp3",
+      "offset": 88,
+      "duration": 12.287999999999851,
+      "hash": "8e0a8993f94087dd416f05225e649b8d4f47703b10ae155346b33c7703412bde"
+    },
+    {
+      "scene": "sopro_madeira",
+      "file": "assets/narracao/sopro_madeira-4debc4cd0304.mp3",
+      "offset": 104,
+      "duration": 13.583999999999804,
+      "hash": "4debc4cd0304e28add68c1eaece3f387bc81bc3fd9e2484f46be5aaf20851bcc"
+    },
+    {
+      "scene": "casa_firme",
+      "file": "assets/narracao/casa_firme-c343f5f58bf0.mp3",
+      "offset": 121,
+      "duration": 14.78399999999976,
+      "hash": "c343f5f58bf0b4224ac426224ec9e98c5bf9887eaf14dfa0cf8606be789e9822"
+    },
+    {
+      "scene": "chamine",
+      "file": "assets/narracao/chamine-f9d433692c5e.mp3",
+      "offset": 139,
+      "duration": 14.759999999999762,
+      "hash": "f9d433692c5eeafe7310a73b78a966e1014fafe4efbcbf194844cf22c4943f0c"
+    },
+    {
+      "scene": "final_feliz",
+      "file": "assets/narracao/final_feliz-30b6c3ba3af8.mp3",
+      "offset": 157,
+      "duration": 16.151999999999724,
+      "hash": "30b6c3ba3af8fe4d397eea2e3c094fa5c0efc8ae8cdbaa1fc0e3c862091c3630"
+    }
+  ]
+}

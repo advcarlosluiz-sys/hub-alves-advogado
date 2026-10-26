@@ -1,0 +1,4 @@
+Ilustrações originais produzidas para esta adaptação de Os Três Porquinhos.
+Atlas personagens.png: porquinho vermelho, porquinho azul, porquinho verde, lobo.
+Atlas casas.png: palha, madeira, tijolos, árvore. Cada atlas tem quatro células.
+As ilustrações são recortes com transparência, posicionados no palco 3D.

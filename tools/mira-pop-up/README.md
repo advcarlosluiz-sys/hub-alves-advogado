@@ -6,6 +6,18 @@ Contos em um livro pop-up 3D: recortes ilustrados, peças com dobradiças, chão
 
 [Vídeo de exemplo — João e o Pé de Feijão, 54 s](docs/joao-pop-up.mp4)
 
+## Novo conto: Os Três Porquinhos
+
+Produção completa em `../../producoes/tres-porquinhos/`, com roteiro próprio, dez falas da Thalita e ilustrações novas. Duração: 3 min 1 s. Mantém música completa com ducking, marca e canais no encerramento.
+
+O roteiro está em `stories/tres-porquinhos.json`. Para criar uma cópia de desenvolvimento:
+
+```sh
+node scripts/create.mjs /caminho/decks/tres-porquinhos --story stories/tres-porquinhos.json
+```
+
+O criador prepara arquivos locais; gere a narração no deck novo antes de exportar. Os vídeos prontos são entregues em ZIP de mídia e dispensam comandos no computador do espectador. O motor continua limitado aos personagens e ações instalados; outras histórias precisam de arte e direção próprias.
+
 ## Narração Thalita — português do Brasil
 
 Voz configurada: **pt-BR-ThalitaMultilingualNeural**, com ritmo **-12%** e tom **-4 Hz**, seguindo o padrão de contos do `mira-history`.
@@ -96,7 +108,7 @@ Abra uma nova sessão do seu assistente e use **`/alves-pop-up`** (no Codex, men
 
 O instalador acrescenta o motor em `.mira/extensions/alves-pop-up/`, o plugin em `mira-plugins/alves-pop-up/` e a skill nos diretórios configurados pelo Mira. Preserva a configuração do Mira e recusa sobrescrever uma instalação existente. O comando `plugin sync` registra a extensão no estado oficial do Mira. Para atualizar, preserve seus arquivos e remova somente a instalação anterior desta extensão antes de reinstalar.
 
-**Formato da extensão:** `dist/alves-pop-up-0.1.5.mplug` contém apenas o agente. Isso respeita a restrição oficial de plugins `prompt-only`; um `.mplug` não pode incluir JavaScript. Portanto instale o motor pelo procedimento acima. O pacote completo é `dist/alves-pop-up-0.1.5.zip`, com o motor, agente, arte e scripts. Ao usar o ZIP, descompacte e execute os comandos dentro da pasta `alves-pop-up/` (equivalente a `tools/mira-pop-up/` no repositório). Instalar apenas o `.mplug` não basta para renderizar.
+**Formato da extensão:** `dist/alves-pop-up-0.1.6.mplug` contém apenas o agente. Isso respeita a restrição oficial de plugins `prompt-only`; um `.mplug` não pode incluir JavaScript. Portanto instale o motor pelo procedimento acima. O pacote completo é `dist/alves-pop-up-0.1.6.zip`, com o motor, agente, arte e scripts. Ao usar o ZIP, descompacte e execute os comandos dentro da pasta `alves-pop-up/` (equivalente a `tools/mira-pop-up/` no repositório). Instalar apenas o `.mplug` não basta para renderizar.
 
 ## Gerar outra apresentação
 
@@ -123,7 +135,7 @@ O atalho **EXPORTAR-MP4.cmd** automatiza a instalação das dependências npm e 
 
 Saída padrão: `output/joao-pop-up.mp4`, 1280×720, H.264, 24 fps. O renderizador inicia e encerra seu próprio servidor local. `CHROME_PATH` e `FFMPEG_PATH` permitem indicar executáveis instalados, inclusive no Windows. Caso o ambiente de execução em contêiner exija, `POPUP_NO_SANDBOX=1` é um opt-in explícito para Chromium; não é necessário no uso normal. `--preview` gera uma imagem; `--duration 3` permite um teste curto. Renderizar por software pode levar vários minutos.
 
-**Áudio:** a versão 0.1.5 inclui geração de narração Thalita; os MP3s deste conto já estão incluídos; alterações de texto exigem gerar novamente. A música Gaitolé, Gaitolé Completa (1) acompanha o conto e diminui durante as falas. Não precisa de chave de IA para executar o exemplo. Gerar ou dirigir novos roteiros com a skill depende do assistente usado no Mira.
+**Áudio:** a versão 0.1.6 inclui geração de narração Thalita; os MP3s deste conto já estão incluídos; alterações de texto exigem gerar novamente. A música Gaitolé, Gaitolé Completa (1) acompanha o conto e diminui durante as falas. Não precisa de chave de IA para executar o exemplo. Gerar ou dirigir novos roteiros com a skill depende do assistente usado no Mira.
 
 ## Validação
 

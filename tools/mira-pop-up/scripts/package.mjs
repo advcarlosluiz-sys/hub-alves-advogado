@@ -63,14 +63,21 @@ export function packageZip(root = ROOT, destination, mediaOnly = false) {
     central = [];
   let offset = 0;
   const allFiles = collectFiles(root);
-  const canonical = join(root, "docs/joao-pop-up.mp4");
-  const mediaVideo = existsSync(canonical)
-    ? canonical
-    : allFiles
-        .filter((p) =>
-          /^output\/.*\.mp4$/i.test(relative(root, p).split("\\").join("/")),
-        )
-        .sort((a, b) => lstatSync(b).mtimeMs - lstatSync(a).mtimeMs)[0];
+  let slug = "joao-pop-up";
+  try {
+    slug =
+      JSON.parse(readFileSync(join(root, "stories/joao.json"), "utf8")).slug ||
+      slug;
+  } catch {}
+  const canonical = existsSync(join(root, "docs", slug + ".mp4"))
+    ? join(root, "docs", slug + ".mp4")
+    : join(root, "docs/joao-pop-up.mp4");
+  const mediaVideo = [
+    ...(existsSync(canonical) ? [canonical] : []),
+    ...allFiles.filter((p) =>
+      /^output\/.*\.mp4$/i.test(relative(root, p).split("\\").join("/")),
+    ),
+  ].sort((a, b) => lstatSync(b).mtimeMs - lstatSync(a).mtimeMs)[0];
   if (mediaOnly && !mediaVideo)
     throw Error("Exporte um MP4 para output antes de criar o ZIP de mídia");
   const files = allFiles.filter((p) => {

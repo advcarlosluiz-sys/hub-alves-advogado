@@ -1,0 +1,3 @@
+Narração real de Os Três Porquinhos: dez MP3s da voz pt-BR-ThalitaMultilingualNeural.
+Ritmo -12%, tom -4Hz. Cada fala tem hash de texto e voz no manifesto.
+O vídeo pronto já inclui essa narração e a música de fundo com redução nas falas.

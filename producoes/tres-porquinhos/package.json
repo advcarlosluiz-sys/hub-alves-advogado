@@ -1,0 +1,26 @@
+{
+  "name": "alves-mira-pop-up",
+  "version": "0.1.6",
+  "private": true,
+  "type": "module",
+  "description": "Extensão pop-up 3D para Mira, com roteiro em dados e exportação de vídeo",
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "test": "node --test test/*.test.mjs",
+    "render": "node scripts/render.mjs",
+    "install:mira": "node scripts/install.mjs",
+    "test:browser": "node scripts/browser-check.mjs",
+    "zip": "node scripts/package.mjs",
+    "open": "node scripts/open.mjs",
+    "narrate": "node scripts/narrate.mjs",
+    "test:audio": "node scripts/audio-check.mjs",
+    "test:music": "node scripts/music-check.mjs",
+    "render:fast": "node scripts/render-webcodecs.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "puppeteer-core": "25.16.0"
+  }
+}

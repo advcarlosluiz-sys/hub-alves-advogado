@@ -37,6 +37,7 @@ export function install(project) {
   mkdirSync(runtime, { recursive: true });
   for (const item of [
     "index.html",
+    ".gitignore",
     "engine",
     "assets",
     "vendor",

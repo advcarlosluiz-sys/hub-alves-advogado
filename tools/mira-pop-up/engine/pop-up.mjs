@@ -1,6 +1,7 @@
 import { totalDuration, drawEndCard } from "./end-card.mjs";
 import * as THREE from "../vendor/three.module.js";
-import { validateStory, locateScene } from "./story.mjs";
+import { validateStory, locateScene, ASSET_FILES } from "./story.mjs";
+import { applyActorMotion } from "./actor-motion.mjs";
 import { createNarrator } from "./narration.mjs";
 const $ = (id) => document.getElementById(id);
 const params = new URLSearchParams(location.search);
@@ -31,26 +32,111 @@ function paperTexture() {
   t.repeat.set(3, 2);
   return t;
 }
+const imageCache = new Map();
 async function texture(name) {
-  const image = new Image();
-  image.src = new URL("../assets/" + name + ".svg", import.meta.url).href;
-  await image.decode();
-  const c = document.createElement("canvas");
-  c.width = image.naturalWidth;
+  const entry = ASSET_FILES[name],
+    path = entry?.file || "assets/" + name + ".svg";
+  if (!imageCache.has(path))
+    imageCache.set(
+      path,
+      (async () => {
+        const image = new Image();
+        image.src = new URL("../" + path, import.meta.url).href;
+        await image.decode();
+        return image;
+      })(),
+    );
+  const image = await imageCache.get(path);
+  const cellW = Math.floor(image.naturalWidth / (entry?.columns || 1));
+  let c = document.createElement("canvas");
+  c.width = cellW;
   c.height = image.naturalHeight;
-  const ctx = c.getContext("2d");
-  ctx.drawImage(image, 0, 0);
+  let ctx = c.getContext("2d");
+  ctx.drawImage(
+    image,
+    (entry?.cell || 0) * cellW,
+    0,
+    cellW,
+    image.naturalHeight,
+    0,
+    0,
+    cellW,
+    image.naturalHeight,
+  );
+  if (entry) {
+    const pixels = ctx.getImageData(0, 0, c.width, c.height).data;
+    let left = c.width,
+      top = c.height,
+      right = 0,
+      bottom = 0;
+    for (let y = 0; y < c.height; y++)
+      for (let x = 0; x < c.width; x++)
+        if (pixels[(y * c.width + x) * 4 + 3] > 16) {
+          left = Math.min(left, x);
+          right = Math.max(right, x);
+          top = Math.min(top, y);
+          bottom = Math.max(bottom, y);
+        }
+    if (right <= left || bottom <= top)
+      throw Error("Ilustração vazia: " + name);
+    const trim = document.createElement("canvas");
+    trim.width = right - left + 1;
+    trim.height = bottom - top + 1;
+    trim
+      .getContext("2d")
+      .drawImage(
+        c,
+        left,
+        top,
+        trim.width,
+        trim.height,
+        0,
+        0,
+        trim.width,
+        trim.height,
+      );
+    c = trim;
+    ctx = c.getContext("2d");
+  }
   ctx.globalCompositeOperation = "source-atop";
   for (let i = 0; i < 3500; i++) {
-    const x = (i * 139 + 37) % c.width,
-      y = (i * 173 + 59) % c.height;
-    ctx.fillStyle = "rgba(83,63,34,.065)";
-    ctx.fillRect(x, y, 1, 2);
+    ctx.fillStyle = "rgba(83,63,34,.04)";
+    ctx.fillRect((i * 139 + 37) % c.width, (i * 173 + 59) % c.height, 1, 2);
   }
   const t = new THREE.CanvasTexture(c);
   t.colorSpace = THREE.SRGBColorSpace;
   return t;
 }
+function paperPieces(pivot, width, height) {
+  const original = pivot.children[0],
+    material = original.material;
+  pivot.remove(original);
+  const pieces = [];
+  const cols = 3,
+    rows = 3;
+  for (let row = 0; row < rows; row++)
+    for (let col = 0; col < cols; col++) {
+      const g = new THREE.PlaneGeometry(width / cols, height / rows),
+        uv = g.attributes.uv;
+      for (let i = 0; i < uv.count; i++)
+        uv.setXY(i, (col + uv.getX(i)) / cols, (row + uv.getY(i)) / rows);
+      const mesh = new THREE.Mesh(g, material.clone());
+      mesh.castShadow = mesh.receiveShadow = true;
+      const base = {
+        x: -width / 2 + ((col + 0.5) * width) / cols,
+        y: ((row + 0.5) * height) / rows,
+        z: 0,
+        row,
+        h: height / rows,
+      };
+      mesh.userData.base = base;
+      mesh.position.set(base.x, base.y, base.z);
+      pivot.add(mesh);
+      pieces.push(mesh);
+    }
+  pivot.userData.pieces = pieces;
+}
+
 try {
   const storyUrl = params.get("story") || "stories/joao.json";
   const u = new URL(storyUrl, location.href);
@@ -59,6 +145,10 @@ try {
   const response = await fetch(u);
   if (!response.ok) throw Error("Roteiro não encontrado");
   const story = validateStory(await response.json());
+  document.title = story.title;
+  document.querySelector("h1").textContent = story.title;
+  window.popupSlug = story.slug || "joao-pop-up";
+  window.popupVideoBitrate = story.videoBitrate || 5000000;
   const length = totalDuration(story);
   const endCardCanvas = document.createElement("canvas");
   endCardCanvas.id = "end-card";
@@ -83,6 +173,12 @@ try {
     brandPlate,
   );
   window.popupEndCard = endCardCanvas;
+  const titleCanvas = document.createElement("canvas");
+  titleCanvas.width = 1280;
+  titleCanvas.height = 720;
+  titleCanvas.style.cssText = "position:absolute;inset:0;pointer-events:none";
+  $("stage").append(titleCanvas);
+  window.popupOpeningTitle = titleCanvas;
 
   window.popupNarrator = createNarrator(story);
   let voiceEnabled = false;
@@ -110,7 +206,7 @@ try {
   scene.fog = new THREE.Fog("#443326", 26, 55);
   const camera = new THREE.PerspectiveCamera(36, 16 / 9, 0.1, 100);
   const renderer = new THREE.WebGLRenderer({
-    antialias: true,
+    antialias: !params.has("video-only"),
     preserveDrawingBuffer: rendering,
   });
   renderer.setPixelRatio(rendering ? 1 : Math.min(devicePixelRatio, 1.5));
@@ -125,12 +221,13 @@ try {
   const light = new THREE.DirectionalLight(0xffedcf, 2.4);
   light.position.set(-5, 12, 7);
   light.castShadow = true;
-  light.shadow.mapSize.set(2048, 2048);
+  const fastRender = params.has("video-only");
+  light.shadow.mapSize.set(fastRender ? 1024 : 2048, fastRender ? 1024 : 2048);
   Object.assign(light.shadow.camera, {
-    left: -13,
-    right: 13,
-    top: 15,
-    bottom: -12,
+    left: fastRender ? -8 : -13,
+    right: fastRender ? 8 : 13,
+    top: fastRender ? 10 : 15,
+    bottom: fastRender ? -7 : -12,
     near: 0.5,
     far: 40,
   });
@@ -309,6 +406,9 @@ try {
     }
     const actors = s.actors.map((a, i) => {
       const pivot = card(a.asset, a.width, a.height);
+      if (["build", "destroy"].includes(a.motion?.type))
+        paperPieces(pivot, a.width, a.height);
+      pivot.scale.x = a.flip ? -1 : 1;
       pivot.position.set(a.x, a.y || 0.025, a.z);
       group.add(pivot);
       return { pivot, data: a, index: i };
@@ -377,6 +477,7 @@ try {
         (a.y || 0.025) +
         (a.walk && t > 2 && t < 7 ? Math.sin(t * 9) * 0.025 : 0);
       pivot.rotation.z = a.walk && t > 2 && t < 7 ? Math.sin(t * 9) * 0.025 : 0;
+      applyActorMotion(pivot, a, t);
     }
     if (current.stalk) {
       states[index].timeline.totalTime(t, false);
@@ -403,6 +504,19 @@ try {
     const showEnd = !!story.endCard && position >= story.duration;
     endCardCanvas.style.display = showEnd ? "block" : "none";
     if (showEnd) $("caption").style.opacity = "0";
+    const titleCtx = titleCanvas.getContext("2d");
+    titleCtx.clearRect(0, 0, 1280, 720);
+    if (story.showTitle && index === 0 && t < 6) {
+      titleCtx.save();
+      titleCtx.globalAlpha = 1 - smooth((t - 4.5) / 1.5);
+      titleCtx.textAlign = "center";
+      titleCtx.font = "48px Georgia";
+      titleCtx.fillStyle = "#fff0cd";
+      titleCtx.shadowColor = "#302118";
+      titleCtx.shadowBlur = 8;
+      titleCtx.fillText(story.title, 640, 85);
+      titleCtx.restore();
+    }
     renderer.render(scene, camera);
     window.popupNarrator.sync(position, playing);
     window.popupState = {
@@ -421,7 +535,7 @@ try {
   window.popupDuration = length;
   window.renderAt(0);
   $("status").textContent = "Three.js + GSAP do Mira · cenas 3D locais";
-  if (story.narration)
+  if (story.narration && !params.has("video-only"))
     window.popupNarrator
       .getAudio()
       .then((audio) => {

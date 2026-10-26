@@ -1,0 +1,13 @@
+OS TRÊS PORQUINHOS — CONTOS DE GAITOLÉ
+
+1. Extraia o ZIP para uma pasta no computador.
+2. Abra ASSISTA-AQUI.mp4.
+
+Duração: 3 minutos e 1 segundo. Vídeo 720p, 24 quadros por segundo.
+Narração Thalita em português do Brasil. Música Gaitolé, Gaitolé Completa (1),
+com volume reduzido durante as falas. Marca e canais ao final.
+Não precisa instalar nada nem executar arquivos .cmd.
+
+As falas separadas ficam em assets/narracao; a música original está em assets/musica.
+
+Para editar ou exportar novamente, consulte README.md.

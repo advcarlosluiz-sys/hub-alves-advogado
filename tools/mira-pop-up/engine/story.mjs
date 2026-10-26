@@ -1,3 +1,4 @@
+import { MOTIONS } from "./actor-motion.mjs";
 export const ASSETS = Object.freeze([
   "joao",
   "mae",
@@ -11,6 +12,15 @@ export const ASSETS = Object.freeze([
   "galinha",
   "feijao",
   "folha",
+  "porquinho_palha",
+  "porquinho_madeira",
+  "porquinho_tijolos",
+  "lobo",
+  "casa_palha",
+  "casa_madeira",
+  "casa_tijolos",
+  "arvore",
+  "vento",
 ]);
 export function validateStory(story) {
   if (
@@ -50,6 +60,24 @@ export function validateStory(story) {
     if (!Array.isArray(s.actors) || s.actors.length > 60)
       throw Error("Atores inválidos");
     for (const a of s.actors) {
+      if (a.motion) {
+        if (!MOTIONS.includes(a.motion.type))
+          throw Error("Movimento desconhecido");
+        if (
+          !Number.isFinite(a.motion.start) ||
+          !Number.isFinite(a.motion.end) ||
+          a.motion.start < 0 ||
+          a.motion.end <= a.motion.start
+        )
+          throw Error("Intervalo de movimento inválido");
+        for (const field of ["dx", "dy"])
+          if (
+            a.motion[field] !== undefined &&
+            !Number.isFinite(a.motion[field])
+          )
+            throw Error("Deslocamento inválido");
+      }
+
       if (!ASSETS.includes(a.asset))
         throw Error("Asset desconhecido: " + a.asset);
       for (const k of ["x", "z", "width", "height"])
@@ -79,3 +107,26 @@ export function locateScene(story, time) {
     start += scene.duration;
   }
 }
+
+export const ASSET_FILES = {
+  porquinho_palha: {
+    file: "assets/porquinhos/personagens.png",
+    cell: 0,
+    columns: 4,
+  },
+  porquinho_madeira: {
+    file: "assets/porquinhos/personagens.png",
+    cell: 1,
+    columns: 4,
+  },
+  porquinho_tijolos: {
+    file: "assets/porquinhos/personagens.png",
+    cell: 2,
+    columns: 4,
+  },
+  lobo: { file: "assets/porquinhos/personagens.png", cell: 3, columns: 4 },
+  casa_palha: { file: "assets/porquinhos/casas.png", cell: 0, columns: 4 },
+  casa_madeira: { file: "assets/porquinhos/casas.png", cell: 1, columns: 4 },
+  casa_tijolos: { file: "assets/porquinhos/casas.png", cell: 2, columns: 4 },
+  arvore: { file: "assets/porquinhos/casas.png", cell: 3, columns: 4 },
+};

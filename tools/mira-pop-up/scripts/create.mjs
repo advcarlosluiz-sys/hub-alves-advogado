@@ -19,6 +19,7 @@ export function createDeck(
   mkdirSync(dest, { recursive: true });
   for (const path of [
     "index.html",
+    ".gitignore",
     "LICENSE-MIRA",
     "engine",
     "assets",

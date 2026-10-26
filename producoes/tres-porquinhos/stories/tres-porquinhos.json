@@ -1,0 +1,959 @@
+{
+  "title": "Os Três Porquinhos",
+  "slug": "tres-porquinhos",
+  "author": "Adaptação original do conto tradicional — Contos de Gaitolé",
+  "showTitle": true,
+  "duration": 174,
+  "scenes": [
+    {
+      "id": "partida",
+      "duration": 17.4,
+      "caption": "Era uma vez três irmãos porquinhos que decidiram construir suas próprias casas perto da floresta. Antes da despedida, combinaram trabalhar com cuidado, ajudar uns aos outros e visitar os irmãos todos os dias.",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "colinas",
+          "x": 0,
+          "z": -3.05,
+          "width": 11.1,
+          "height": 2.5
+        },
+        {
+          "asset": "arvore",
+          "x": -4.5,
+          "z": -2.5,
+          "width": 2.3,
+          "height": 3.5
+        },
+        {
+          "asset": "arvore",
+          "x": 4.6,
+          "z": -2.6,
+          "width": 2.5,
+          "height": 3.8
+        },
+        {
+          "asset": "porquinho_palha",
+          "x": -3,
+          "z": 1.5,
+          "width": 1.25,
+          "height": 1.95,
+          "motion": {
+            "type": "walk",
+            "start": 2,
+            "end": 10,
+            "dx": 0.6
+          }
+        },
+        {
+          "asset": "porquinho_madeira",
+          "x": -0.7,
+          "z": 1.5,
+          "width": 1.25,
+          "height": 1.95,
+          "motion": {
+            "type": "walk",
+            "start": 3,
+            "end": 11,
+            "dx": 0.8
+          }
+        },
+        {
+          "asset": "porquinho_tijolos",
+          "x": 1.7,
+          "z": 1.5,
+          "width": 1.25,
+          "height": 1.95,
+          "motion": {
+            "type": "walk",
+            "start": 4,
+            "end": 12,
+            "dx": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "palha",
+      "duration": 17.4,
+      "caption": "O primeiro encontrou um monte de palha dourada e logo levantou uma casinha leve e amarela. Terminou tão depressa que saiu dançando pelo jardim, enquanto seus irmãos ainda trabalhavam na construção.",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "colinas",
+          "x": 0,
+          "z": -3.05,
+          "width": 11.1,
+          "height": 2.5
+        },
+        {
+          "asset": "arvore",
+          "x": -4.5,
+          "z": -2.5,
+          "width": 2.3,
+          "height": 3.5
+        },
+        {
+          "asset": "arvore",
+          "x": 4.6,
+          "z": -2.6,
+          "width": 2.5,
+          "height": 3.8
+        },
+        {
+          "asset": "casa_palha",
+          "x": -1.6,
+          "z": -0.5,
+          "width": 3.5,
+          "height": 3.25,
+          "motion": {
+            "type": "build",
+            "start": 2,
+            "end": 10
+          }
+        },
+        {
+          "asset": "porquinho_palha",
+          "x": 2.4,
+          "z": 1.5,
+          "width": 1.25,
+          "height": 1.95,
+          "motion": {
+            "type": "dance",
+            "start": 9,
+            "end": 16
+          }
+        }
+      ]
+    },
+    {
+      "id": "madeira",
+      "duration": 17.4,
+      "caption": "O segundo escolheu tábuas e galhos para montar uma casa de madeira, com uma janela redonda. Quando terminou, correu para brincar com o irmão, sem perceber que algumas paredes balançavam ao vento.",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "colinas",
+          "x": 0,
+          "z": -3.05,
+          "width": 11.1,
+          "height": 2.5
+        },
+        {
+          "asset": "arvore",
+          "x": -4.5,
+          "z": -2.5,
+          "width": 2.3,
+          "height": 3.5
+        },
+        {
+          "asset": "arvore",
+          "x": 4.6,
+          "z": -2.6,
+          "width": 2.5,
+          "height": 3.8
+        },
+        {
+          "asset": "casa_madeira",
+          "x": -1.6,
+          "z": -0.5,
+          "width": 3.5,
+          "height": 3.25,
+          "motion": {
+            "type": "build",
+            "start": 2,
+            "end": 10
+          }
+        },
+        {
+          "asset": "porquinho_madeira",
+          "x": 2.3,
+          "z": 1.5,
+          "width": 1.25,
+          "height": 1.95,
+          "motion": {
+            "type": "walk",
+            "start": 10,
+            "end": 16,
+            "dx": 0.9
+          }
+        },
+        {
+          "asset": "porquinho_palha",
+          "x": 3.8,
+          "z": 2,
+          "width": 1.25,
+          "height": 1.95,
+          "motion": {
+            "type": "dance",
+            "start": 10,
+            "end": 16
+          }
+        }
+      ]
+    },
+    {
+      "id": "tijolos",
+      "duration": 17.4,
+      "caption": "O terceiro preferiu tijolos, cimento e bastante dedicação, construindo devagar uma casa firme, com porta forte e chaminé. Os irmãos chamaram para brincar, mas ele sorriu e respondeu que terminaria primeiro.",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "colinas",
+          "x": 0,
+          "z": -3.05,
+          "width": 11.1,
+          "height": 2.5
+        },
+        {
+          "asset": "arvore",
+          "x": -4.5,
+          "z": -2.5,
+          "width": 2.3,
+          "height": 3.5
+        },
+        {
+          "asset": "arvore",
+          "x": 4.6,
+          "z": -2.6,
+          "width": 2.5,
+          "height": 3.8
+        },
+        {
+          "asset": "casa_tijolos",
+          "x": -1.6,
+          "z": -0.5,
+          "width": 3.5,
+          "height": 3.25,
+          "motion": {
+            "type": "build",
+            "start": 2,
+            "end": 12
+          }
+        },
+        {
+          "asset": "porquinho_tijolos",
+          "x": 0.9,
+          "z": 1.5,
+          "width": 1.25,
+          "height": 1.95,
+          "motion": {
+            "type": "walk",
+            "start": 2,
+            "end": 10,
+            "dx": -0.5
+          }
+        },
+        {
+          "asset": "porquinho_palha",
+          "x": 3.6,
+          "z": 2,
+          "width": 1.25,
+          "height": 1.95,
+          "motion": {
+            "type": "dance",
+            "start": 6,
+            "end": 13
+          }
+        },
+        {
+          "asset": "porquinho_madeira",
+          "x": 2.4,
+          "z": 2,
+          "width": 1.25,
+          "height": 1.95
+        }
+      ]
+    },
+    {
+      "id": "lobo",
+      "duration": 17.4,
+      "caption": "Na manhã seguinte, um lobo apareceu entre as árvores e sentiu o cheirinho dos porquinhos. Parou diante da casa de palha e chamou: porquinho, abra a porta para eu entrar!",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "colinas",
+          "x": 0,
+          "z": -3.05,
+          "width": 11.1,
+          "height": 2.5
+        },
+        {
+          "asset": "arvore",
+          "x": -4.5,
+          "z": -2.5,
+          "width": 2.3,
+          "height": 3.5
+        },
+        {
+          "asset": "arvore",
+          "x": 4.6,
+          "z": -2.6,
+          "width": 2.5,
+          "height": 3.8
+        },
+        {
+          "asset": "casa_palha",
+          "x": -1.6,
+          "z": -0.5,
+          "width": 3.5,
+          "height": 3.25
+        },
+        {
+          "asset": "porquinho_palha",
+          "x": -1.2,
+          "z": 0.5,
+          "width": 1.25,
+          "height": 1.95,
+          "motion": {
+            "type": "shake",
+            "start": 9,
+            "end": 16
+          }
+        },
+        {
+          "asset": "lobo",
+          "x": 4,
+          "z": 0.9,
+          "width": 1.7,
+          "height": 2.4,
+          "flip": true,
+          "motion": {
+            "type": "walk",
+            "start": 3,
+            "end": 10,
+            "dx": -1.1
+          }
+        }
+      ]
+    },
+    {
+      "id": "sopro_palha",
+      "duration": 17.4,
+      "caption": "O porquinho respondeu que não abriria, e o lobo encheu os pulmões para soprar com força. A palha voou pelo quintal, mas o irmão ligeiro escapou e correu até a casa de madeira.",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "colinas",
+          "x": 0,
+          "z": -3.05,
+          "width": 11.1,
+          "height": 2.5
+        },
+        {
+          "asset": "arvore",
+          "x": -4.5,
+          "z": -2.5,
+          "width": 2.3,
+          "height": 3.5
+        },
+        {
+          "asset": "arvore",
+          "x": 4.6,
+          "z": -2.6,
+          "width": 2.5,
+          "height": 3.8
+        },
+        {
+          "asset": "casa_palha",
+          "x": -1.6,
+          "z": -0.5,
+          "width": 3.5,
+          "height": 3.25,
+          "motion": {
+            "type": "destroy",
+            "start": 8,
+            "end": 12
+          }
+        },
+        {
+          "asset": "porquinho_palha",
+          "x": -1.1,
+          "z": 1.6,
+          "width": 1.25,
+          "height": 1.95,
+          "motion": {
+            "type": "run",
+            "start": 10,
+            "end": 15,
+            "dx": 4.5
+          }
+        },
+        {
+          "asset": "lobo",
+          "x": 3,
+          "z": 0.9,
+          "width": 1.7,
+          "height": 2.4,
+          "flip": true,
+          "motion": {
+            "type": "blow",
+            "start": 6,
+            "end": 11
+          }
+        },
+        {
+          "asset": "vento",
+          "x": 0.3,
+          "z": 0.8,
+          "width": 2.8,
+          "height": 1,
+          "y": 1.25,
+          "motion": {
+            "type": "wind",
+            "start": 6,
+            "end": 11
+          }
+        }
+      ]
+    },
+    {
+      "id": "sopro_madeira",
+      "duration": 17.4,
+      "caption": "Os dois fecharam a porta de madeira, abraçados e assustados, quando ouviram o lobo chegando outra vez. Um sopro comprido fez as tábuas caírem, e os irmãos fugiram para a casa de tijolos.",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "colinas",
+          "x": 0,
+          "z": -3.05,
+          "width": 11.1,
+          "height": 2.5
+        },
+        {
+          "asset": "arvore",
+          "x": -4.5,
+          "z": -2.5,
+          "width": 2.3,
+          "height": 3.5
+        },
+        {
+          "asset": "arvore",
+          "x": 4.6,
+          "z": -2.6,
+          "width": 2.5,
+          "height": 3.8
+        },
+        {
+          "asset": "casa_madeira",
+          "x": -1.6,
+          "z": -0.5,
+          "width": 3.5,
+          "height": 3.25,
+          "motion": {
+            "type": "destroy",
+            "start": 8,
+            "end": 12
+          }
+        },
+        {
+          "asset": "porquinho_palha",
+          "x": -1.7,
+          "z": 1.7,
+          "width": 1.25,
+          "height": 1.95,
+          "motion": {
+            "type": "run",
+            "start": 10,
+            "end": 15,
+            "dx": 4.6
+          }
+        },
+        {
+          "asset": "porquinho_madeira",
+          "x": -0.4,
+          "z": 1.8,
+          "width": 1.25,
+          "height": 1.95,
+          "motion": {
+            "type": "run",
+            "start": 10.5,
+            "end": 15.5,
+            "dx": 4.2
+          }
+        },
+        {
+          "asset": "lobo",
+          "x": 3,
+          "z": 0.9,
+          "width": 1.7,
+          "height": 2.4,
+          "flip": true,
+          "motion": {
+            "type": "blow",
+            "start": 6,
+            "end": 11
+          }
+        },
+        {
+          "asset": "vento",
+          "x": 0.3,
+          "z": 0.8,
+          "width": 2.8,
+          "height": 1,
+          "y": 1.25,
+          "motion": {
+            "type": "wind",
+            "start": 6,
+            "end": 11
+          }
+        }
+      ]
+    },
+    {
+      "id": "casa_firme",
+      "duration": 17.4,
+      "caption": "O terceiro acolheu os irmãos e trancou a porta, dizendo: aqui vocês estão seguros, podem respirar tranquilos! O lobo soprou uma vez, soprou outra, ficou cansado, mas nenhum tijolo saiu do lugar.",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "colinas",
+          "x": 0,
+          "z": -3.05,
+          "width": 11.1,
+          "height": 2.5
+        },
+        {
+          "asset": "arvore",
+          "x": -4.5,
+          "z": -2.5,
+          "width": 2.3,
+          "height": 3.5
+        },
+        {
+          "asset": "arvore",
+          "x": 4.6,
+          "z": -2.6,
+          "width": 2.5,
+          "height": 3.8
+        },
+        {
+          "asset": "casa_tijolos",
+          "x": -1.6,
+          "z": -0.5,
+          "width": 3.5,
+          "height": 3.25
+        },
+        {
+          "asset": "porquinho_palha",
+          "x": -2.6,
+          "z": 1.7,
+          "width": 1.25,
+          "height": 1.95,
+          "motion": {
+            "type": "hug",
+            "start": 2,
+            "end": 5,
+            "dx": 0.3
+          }
+        },
+        {
+          "asset": "porquinho_madeira",
+          "x": -1.3,
+          "z": 1.8,
+          "width": 1.25,
+          "height": 1.95
+        },
+        {
+          "asset": "porquinho_tijolos",
+          "x": 0,
+          "z": 1.7,
+          "width": 1.25,
+          "height": 1.95
+        },
+        {
+          "asset": "lobo",
+          "x": 3.5,
+          "z": 0.9,
+          "width": 1.7,
+          "height": 2.4,
+          "flip": true,
+          "motion": {
+            "type": "blow",
+            "start": 7,
+            "end": 15
+          }
+        },
+        {
+          "asset": "vento",
+          "x": 0.3,
+          "z": 0.8,
+          "width": 2.8,
+          "height": 1,
+          "y": 1.25,
+          "motion": {
+            "type": "wind",
+            "start": 7,
+            "end": 15
+          }
+        }
+      ]
+    },
+    {
+      "id": "chamine",
+      "duration": 17.4,
+      "caption": "Sem conseguir entrar, o lobo subiu no telhado e espiou pela chaminé, mas o ar quente provocou um espirro enorme. Assustado, escorregou até o jardim, levantou depressa e fugiu pela floresta.",
+      "camera": {
+        "from": [
+          8.6,
+          8,
+          14.8
+        ],
+        "to": [
+          7.2,
+          7.5,
+          14
+        ],
+        "target": [
+          0,
+          2,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "colinas",
+          "x": 0,
+          "z": -3.05,
+          "width": 11.1,
+          "height": 2.5
+        },
+        {
+          "asset": "arvore",
+          "x": -4.5,
+          "z": -2.5,
+          "width": 2.3,
+          "height": 3.5
+        },
+        {
+          "asset": "arvore",
+          "x": 4.6,
+          "z": -2.6,
+          "width": 2.5,
+          "height": 3.8
+        },
+        {
+          "asset": "casa_tijolos",
+          "x": -1.3,
+          "z": -0.9,
+          "width": 3.5,
+          "height": 3.25
+        },
+        {
+          "asset": "porquinho_palha",
+          "x": -2.7,
+          "z": 1.9,
+          "width": 1.25,
+          "height": 1.95
+        },
+        {
+          "asset": "porquinho_madeira",
+          "x": -1.5,
+          "z": 2,
+          "width": 1.25,
+          "height": 1.95
+        },
+        {
+          "asset": "porquinho_tijolos",
+          "x": -0.2,
+          "z": 1.9,
+          "width": 1.25,
+          "height": 1.95
+        },
+        {
+          "asset": "lobo",
+          "x": 1.9,
+          "z": -0.65,
+          "width": 1.7,
+          "height": 2.4,
+          "flip": true,
+          "motion": {
+            "type": "climbEscape",
+            "start": 2,
+            "end": 16
+          }
+        },
+        {
+          "asset": "nuvem",
+          "x": -0.6,
+          "z": -0.8,
+          "width": 1.3,
+          "height": 0.55,
+          "y": 3.4,
+          "motion": {
+            "type": "wind",
+            "start": 9.5,
+            "end": 11.5
+          }
+        }
+      ]
+    },
+    {
+      "id": "final_feliz",
+      "duration": 17.4,
+      "caption": "Os três saíram ao sol e abraçaram o irmão que trabalhara com cuidado, agradecidos pela proteção. Depois reconstruíram juntos as outras casas, aprendendo que paciência, capricho e união deixam qualquer lar mais forte.",
+      "camera": {
+        "from": [
+          6.5,
+          6.2,
+          11.8
+        ],
+        "to": [
+          8.5,
+          7.8,
+          14.5
+        ],
+        "target": [
+          0,
+          1.3,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "colinas",
+          "x": 0,
+          "z": -3.05,
+          "width": 11.1,
+          "height": 2.5
+        },
+        {
+          "asset": "arvore",
+          "x": -4.5,
+          "z": -2.5,
+          "width": 2.3,
+          "height": 3.5
+        },
+        {
+          "asset": "arvore",
+          "x": 4.6,
+          "z": -2.6,
+          "width": 2.5,
+          "height": 3.8
+        },
+        {
+          "asset": "casa_palha",
+          "x": -3.4,
+          "z": -1.5,
+          "width": 2.4,
+          "height": 2.3,
+          "motion": {
+            "type": "build",
+            "start": 9,
+            "end": 15
+          }
+        },
+        {
+          "asset": "casa_madeira",
+          "x": 3.4,
+          "z": -1.5,
+          "width": 2.4,
+          "height": 2.3,
+          "motion": {
+            "type": "build",
+            "start": 9,
+            "end": 15
+          }
+        },
+        {
+          "asset": "casa_tijolos",
+          "x": 0,
+          "z": -2,
+          "width": 2.8,
+          "height": 2.6
+        },
+        {
+          "asset": "porquinho_palha",
+          "x": -2.8,
+          "z": 1.5,
+          "width": 1.25,
+          "height": 1.95,
+          "motion": {
+            "type": "hug",
+            "start": 2,
+            "end": 8,
+            "dx": 1.5
+          }
+        },
+        {
+          "asset": "porquinho_madeira",
+          "x": 0,
+          "z": 1.6,
+          "width": 1.25,
+          "height": 1.95
+        },
+        {
+          "asset": "porquinho_tijolos",
+          "x": 2.8,
+          "z": 1.5,
+          "width": 1.25,
+          "height": 1.95,
+          "motion": {
+            "type": "hug",
+            "start": 2,
+            "end": 8,
+            "dx": -1.5
+          }
+        }
+      ]
+    }
+  ],
+  "narration": {
+    "voice": "pt-BR-ThalitaMultilingualNeural",
+    "rate": "-12%",
+    "pitch": "-4Hz",
+    "manifest": "assets/narracao/manifest.json",
+    "required": true
+  },
+  "music": {
+    "file": "assets/musica/gaitole.mp3",
+    "title": "Gaitolé, Gaitolé Completa (1)",
+    "volume": 0.18,
+    "duckVolume": 0.035,
+    "attack": 0.35,
+    "release": 0.7,
+    "fadeIn": 1,
+    "fadeOut": 2
+  },
+  "endCard": {
+    "duration": 6,
+    "youtube": {
+      "name": "Contos de Gaitolé",
+      "handle": "@gaitolé"
+    },
+    "tiktok": {
+      "handle": "@gaitole0",
+      "url": "https://www.tiktok.com/@gaitole0"
+    },
+    "callToAction": "Inscreva-se e ative o sininho!",
+    "image": "assets/marca/gaitole-final.png"
+  }
+}

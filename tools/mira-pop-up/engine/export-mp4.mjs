@@ -38,7 +38,7 @@ window.exportPopupMP4 = async ({
     codec: "avc1.42001f",
     width: 1280,
     height: 720,
-    bitrate: 5000000,
+    bitrate: window.popupVideoBitrate || 5000000,
     framerate: fps,
     avc: { format: "avc" },
   };
@@ -147,6 +147,8 @@ window.exportPopupMP4 = async ({
       if (failure) throw failure;
       window.renderAt(i / fps);
       ctx.drawImage(source, 0, 0, 1280, 720);
+      if (window.popupOpeningTitle)
+        ctx.drawImage(window.popupOpeningTitle, 0, 0, 1280, 720);
       const caption = document.getElementById("caption");
       if (Number(caption.style.opacity) > 0.01) {
         ctx.save();
@@ -172,6 +174,8 @@ window.exportPopupMP4 = async ({
       encoder.encode(frame, { keyFrame: i % (fps * 2) === 0 });
       frame.close();
       if (encoder.encodeQueueSize > 8) await encoder.flush();
+      if (window.popupReportProgress && i % (fps * 5) === 0)
+        await window.popupReportProgress(i, count);
       if (i % 8 === 0) {
         button.textContent =
           "Exportando " + Math.floor((i / count) * 100) + "%";
@@ -186,7 +190,7 @@ window.exportPopupMP4 = async ({
       const url = URL.createObjectURL(blob),
         a = document.createElement("a");
       a.href = url;
-      a.download = "joao-pop-up.mp4";
+      a.download = (window.popupSlug || "joao-pop-up") + ".mp4";
       a.click();
       setTimeout(() => URL.revokeObjectURL(url), 60000);
     }

@@ -1,0 +1,3 @@
+Fundo de encerramento composto a partir da imagem Contos de Gaitolé enviada pelo usuário.
+Os perfis e a chamada para inscrição são desenhados por engine/end-card.mjs.
+A ilustração não substitui os textos dos canais: a grafia vem do roteiro.
