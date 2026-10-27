@@ -1,0 +1,59 @@
+{
+  "original": true,
+  "rate": 48000,
+  "volume": 0.35,
+  "events": [
+    {
+      "type": "birds",
+      "time": 1
+    },
+    {
+      "type": "steps",
+      "time": 3
+    },
+    {
+      "type": "birds",
+      "time": 19
+    },
+    {
+      "type": "steps",
+      "time": 21
+    },
+    {
+      "type": "birds",
+      "time": 38
+    },
+    {
+      "type": "birds",
+      "time": 55
+    },
+    {
+      "type": "steps",
+      "time": 57
+    },
+    {
+      "type": "knock",
+      "time": 62
+    },
+    {
+      "type": "steps",
+      "time": 109
+    },
+    {
+      "type": "birds",
+      "time": 124
+    },
+    {
+      "type": "steps",
+      "time": 126
+    },
+    {
+      "type": "birds",
+      "time": 141
+    },
+    {
+      "type": "birds",
+      "time": 161
+    }
+  ]
+}

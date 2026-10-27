@@ -1,3 +1,4 @@
+import { validateEffects } from "./effects.mjs";
 import { totalDuration } from "./end-card.mjs";
 import { validateMusic, musicGainAt } from "./music.mjs";
 export async function narrationHash(text, voice, rate, pitch) {
@@ -89,6 +90,17 @@ export async function loadNarration(story, base = location.href) {
         );
       for (let i = 0; i < dest.length; i++)
         dest[i] += source[i % source.length] * gains[i];
+    }
+  }
+  if (story.effects) {
+    const config = validateEffects(story.effects);
+    const response = await fetch(new URL(config.file, base));
+    if (!response.ok) throw Error("Arquivo de efeitos ausente");
+    const decoded = await offline.decodeAudioData(await response.arrayBuffer());
+    if (decoded.duration + 0.1 < totalDuration(story)) throw Error("Trilha de efeitos incompleta");
+    for (let channel=0; channel<buffer.numberOfChannels; channel++) {
+      const dest=buffer.getChannelData(channel), source=decoded.getChannelData(Math.min(channel,decoded.numberOfChannels-1));
+      for (let i=0; i<dest.length; i++) dest[i]+=(source[i] || 0)*config.volume;
     }
   }
   return { buffer, manifest };

@@ -1,0 +1,12 @@
+1
+00:00:00,050 --> 00:00:05,482
+Enquanto Chapeuzinho observava uma borboleta, o lobo correu por um atalho.
+
+2
+00:00:05,482 --> 00:00:08,748
+Chegou primeiro à casinha e bateu à porta.
+
+3
+00:00:08,748 --> 00:00:12,739
+Lá dentro, a vovó estranhou aquela voz diferente.
+

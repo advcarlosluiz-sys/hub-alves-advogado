@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "voice": "pt-BR-ThalitaMultilingualNeural",
+  "rate": "-12%",
+  "pitch": "-4Hz",
+  "duration": 181,
+  "clips": [
+    {
+      "scene": "cesta",
+      "file": "assets/narracao/cesta-76b66e16b30b.mp3",
+      "offset": 2,
+      "duration": 14.327999999999777,
+      "hash": "76b66e16b30bea2edcaed17289abb4cd0ea31508fb698da01ebc8e98836a2a6f"
+    },
+    {
+      "scene": "floresta",
+      "file": "assets/narracao/floresta-9c9d10a89d6e.mp3",
+      "offset": 20,
+      "duration": 15.38399999999974,
+      "hash": "9c9d10a89d6e83625b59ff2dfc8c885e24dd02c5d91efeccccbe45b972eb388b"
+    },
+    {
+      "scene": "encontro",
+      "file": "assets/narracao/encontro-c9fdcf2e33bc.mp3",
+      "offset": 39,
+      "duration": 12.959999999999827,
+      "hash": "c9fdcf2e33bc356b6047fdda17fb043c592074b7d41a6fd8c4544caf0340db24"
+    },
+    {
+      "scene": "atalho",
+      "file": "assets/narracao/atalho-799ea1a20b0a.mp3",
+      "offset": 56,
+      "duration": 12.791999999999833,
+      "hash": "799ea1a20b0ad83a715f16602ed26e4246149c6a40d663e24360333ef3318a6f"
+    },
+    {
+      "scene": "esconderijo",
+      "file": "assets/narracao/esconderijo-7e7717d06413.mp3",
+      "offset": 72,
+      "duration": 11.375999999999884,
+      "hash": "7e7717d0641323e0a402fc0a77256f368acc9f866037a0c0a037577c06e43af4"
+    },
+    {
+      "scene": "olhos_orelhas",
+      "file": "assets/narracao/olhos_orelhas-595a96d6d1cb.mp3",
+      "offset": 89,
+      "duration": 15.239999999999744,
+      "hash": "595a96d6d1cbfcbc6675086042694a7269172429a6ebb6c5445d06fd0738c714"
+    },
+    {
+      "scene": "pedido_ajuda",
+      "file": "assets/narracao/pedido_ajuda-d2a8e52cc30f.mp3",
+      "offset": 108,
+      "duration": 13.607999999999803,
+      "hash": "d2a8e52cc30f19ecd678b06483a26f0011d9d2d608902fcd2a5f6cf8c25ed3ad"
+    },
+    {
+      "scene": "guarda",
+      "file": "assets/narracao/guarda-244e5587217e.mp3",
+      "offset": 125,
+      "duration": 13.175999999999819,
+      "hash": "244e5587217ebf9645b4865e443641d52a93e50c8a3a8f784b0fbb76dd82a5bc"
+    },
+    {
+      "scene": "lanche",
+      "file": "assets/narracao/lanche-4ba0efc59168.mp3",
+      "offset": 142,
+      "duration": 14.999999999999753,
+      "hash": "4ba0efc59168832f0324f65be52664a5be7b062547542d1292e9d56e8d692237"
+    },
+    {
+      "scene": "final",
+      "file": "assets/narracao/final-1a1fb886bee2.mp3",
+      "offset": 162,
+      "duration": 10.775999999999906,
+      "hash": "1a1fb886bee2927c1d5676993fdeec0e130aa925e1459bb02f9032f96d7ad932"
+    }
+  ]
+}

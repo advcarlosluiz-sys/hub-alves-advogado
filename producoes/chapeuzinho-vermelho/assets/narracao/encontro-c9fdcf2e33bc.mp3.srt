@@ -1,0 +1,12 @@
+1
+00:00:00,050 --> 00:00:03,961
+Atrás de uma árvore, apareceu um lobo curioso.
+
+2
+00:00:03,961 --> 00:00:07,867
+Ele perguntou aonde ela ia e onde morava sua família.
+
+3
+00:00:07,867 --> 00:00:12,897
+Sem perceber a intenção dele, a menina contou que visitaria a vovó.
+

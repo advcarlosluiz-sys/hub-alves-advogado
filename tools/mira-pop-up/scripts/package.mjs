@@ -40,7 +40,7 @@ export function collectFiles(root) {
     for (const entry of readdirSync(dir, { withFileTypes: true }).sort((a, b) =>
       a.name.localeCompare(b.name),
     )) {
-      if (excluded.has(entry.name) || secretName(entry.name)) continue;
+      if (excluded.has(entry.name) || secretName(entry.name) || /\.partial(?:\.|$)/i.test(entry.name)) continue;
       const path = join(dir, entry.name);
       if (lstatSync(path).isSymbolicLink()) continue;
       if (entry.isDirectory()) walk(path);
@@ -87,7 +87,7 @@ export function packageZip(root = ROOT, destination, mediaOnly = false) {
     return (
       p === mediaVideo ||
       name === "COMECE-AQUI-VIDEO.txt" ||
-      /^assets\/(narracao|musica)\/[a-zA-Z0-9_-]+\.(mp3|json|txt)$/.test(name)
+      /^assets\/(narracao|musica|efeitos)\/[a-zA-Z0-9_-]+\.(mp3|wav|srt|json|txt)$/.test(name)
     );
   });
   if (files.length > 65535)

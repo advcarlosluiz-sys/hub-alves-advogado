@@ -19,3 +19,11 @@ arvore_outono e arvore_inverno. Os atlas locais ficam em assets/patinho.
 Cenas podem usar lake: true e season: spring/autumn/winter para o chão
 ilustrado; cisnes no lago recebem reflexo de papel. subtitles contém
 {start,end,text} em segundos locais; sem esse campo, exibe caption inteira.
+
+Chapeuzinho Vermelho: assets chapeuzinho, mae_chapeuzinho, vovo, guarda,
+lobo_floresta, lobo_cama, casa_vovo, arvore_floresta, biombo, mesa_lanche,
+passarinho e borboleta. Os atlas estão em assets/chapeuzinho.
+O mapa ASSET_FILES aceita cell/columns ou rect:[x,y,largura,altura] em pixels.
+room:true usa piso e painel de quarto. soundEvents:[{type,time}] usa segundos
+locais e tipos birds/steps/knock; effects:{file,volume} aponta a trilha WAV
+sintetizada por scripts/effects.mjs. O volume máximo aceito é 0.5.

@@ -1,3 +1,4 @@
+import { validateEffects } from "../engine/effects.mjs";
 import { validateMusic, musicVolumeExpression } from "../engine/music.mjs";
 import { readFileSync, existsSync } from "node:fs";
 import { resolve, join, sep } from "node:path";
@@ -67,6 +68,13 @@ export function narrationInputs(root, duration) {
       `;[vozMixRaw]aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo[vozMix];[${musicIndex}:a]aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo,atrim=duration=${duration},asetpts=PTS-STARTPTS,volume='${musicVolumeExpression(manifest.clips, music, duration)}':eval=frame[musica];[vozMix][musica]amix=inputs=2:normalize=0,atrim=duration=${duration}[narracao]`;
   }
 
+  if (story.effects) {
+    const config=validateEffects(story.effects), file=resolve(root,config.file);
+    if (!file.startsWith(resolve(root)+sep) || !existsSync(file)) throw Error("Arquivo de efeitos ausente");
+    const index=inputs.filter(x=>x==="-i").length+1;
+    inputs.push("-i",file);
+    combined=combined.replace(/\[narracao\]$/, "[baseMix]") + `;[${index}:a]aformat=sample_fmts=fltp:sample_rates=48000:channel_layouts=stereo,volume=${config.volume},apad,atrim=duration=${duration}[efeitos];[baseMix][efeitos]amix=inputs=2:normalize=0,atrim=duration=${duration}[narracao]`;
+  }
   return [
     ...inputs,
     "-filter_complex",

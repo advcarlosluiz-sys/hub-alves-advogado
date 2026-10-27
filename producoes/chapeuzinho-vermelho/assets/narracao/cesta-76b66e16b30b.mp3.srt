@@ -1,0 +1,12 @@
+1
+00:00:00,050 --> 00:00:04,669
+Numa manhã ensolarada, a mãe preparou uma cesta para a vovó.
+
+2
+00:00:04,669 --> 00:00:07,896
+Chapeuzinho vestiu sua capa vermelha.
+
+3
+00:00:07,896 --> 00:00:14,261
+Antes de sair, combinaram seguir pelo caminho conhecido e visitar a avó sem desvios.
+

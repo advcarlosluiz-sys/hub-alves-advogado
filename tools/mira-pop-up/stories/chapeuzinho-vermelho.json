@@ -1,0 +1,979 @@
+{
+  "title": "Chapeuzinho Vermelho",
+  "slug": "chapeuzinho-vermelho",
+  "author": "Adaptação original do conto tradicional — Contos de Gaitolé",
+  "showTitle": true,
+  "duration": 181,
+  "scenes": [
+    {
+      "id": "cesta",
+      "duration": 18,
+      "caption": "Numa manhã ensolarada, a mãe preparou uma cesta para a vovó. Chapeuzinho vestiu sua capa vermelha. Antes de sair, combinaram seguir pelo caminho conhecido e visitar a avó sem desvios.",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "arvore_floresta",
+          "x": -4.4,
+          "z": -2.5,
+          "width": 2.8,
+          "height": 4
+        },
+        {
+          "asset": "arvore_floresta",
+          "x": 4.2,
+          "z": -2.5,
+          "width": 2.7,
+          "height": 3.8
+        },
+        {
+          "asset": "casa_vovo",
+          "x": 0,
+          "z": -2.5,
+          "width": 4,
+          "height": 3.8
+        },
+        {
+          "asset": "mae_chapeuzinho",
+          "x": -1.8,
+          "z": 0.5,
+          "width": 1.7,
+          "height": 2.8
+        },
+        {
+          "asset": "chapeuzinho",
+          "x": 0.5,
+          "z": 1,
+          "width": 1.4,
+          "height": 2.2,
+          "motion": {
+            "type": "walk",
+            "start": 3,
+            "end": 12,
+            "dx": 1
+          }
+        }
+      ],
+      "soundEvents": [
+        {
+          "type": "birds",
+          "time": 1
+        },
+        {
+          "type": "steps",
+          "time": 3
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2.05,
+          "end": 6.669,
+          "text": "Numa manhã ensolarada, a mãe preparou uma cesta para a vovó."
+        },
+        {
+          "start": 6.669,
+          "end": 9.896,
+          "text": "Chapeuzinho vestiu sua capa vermelha."
+        },
+        {
+          "start": 9.896,
+          "end": 16.261,
+          "text": "Antes de sair, combinaram seguir pelo caminho conhecido e visitar a avó sem desvios."
+        }
+      ]
+    },
+    {
+      "id": "floresta",
+      "duration": 19,
+      "caption": "Na floresta, passarinhos cantavam entre as folhas. Chapeuzinho caminhava devagar, admirando flores coloridas. O sol desenhava pequenas luzes no chão, e a cesta balançava suavemente em seu braço.",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "arvore_floresta",
+          "x": -4.4,
+          "z": -2.5,
+          "width": 2.8,
+          "height": 4
+        },
+        {
+          "asset": "arvore_floresta",
+          "x": 4.2,
+          "z": -2.5,
+          "width": 2.7,
+          "height": 3.8
+        },
+        {
+          "asset": "chapeuzinho",
+          "x": -2,
+          "z": 1.1,
+          "width": 1.5,
+          "height": 2.3,
+          "motion": {
+            "type": "walk",
+            "start": 3,
+            "end": 12,
+            "dx": 3
+          }
+        },
+        {
+          "asset": "passarinho",
+          "x": 1.5,
+          "z": -1.5,
+          "width": 0.7,
+          "height": 0.6,
+          "y": 2.3,
+          "motion": {
+            "type": "walk",
+            "start": 3,
+            "end": 11,
+            "dx": -2
+          }
+        },
+        {
+          "asset": "borboleta",
+          "x": -0.5,
+          "z": -0.8,
+          "width": 0.55,
+          "height": 0.6,
+          "y": 1.8,
+          "motion": {
+            "type": "walk",
+            "start": 4,
+            "end": 12,
+            "dx": 2
+          }
+        }
+      ],
+      "soundEvents": [
+        {
+          "type": "birds",
+          "time": 1
+        },
+        {
+          "type": "steps",
+          "time": 3
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2.05,
+          "end": 6.174,
+          "text": "Na floresta, passarinhos cantavam entre as folhas."
+        },
+        {
+          "start": 6.174,
+          "end": 10.764,
+          "text": "Chapeuzinho caminhava devagar, admirando flores coloridas."
+        },
+        {
+          "start": 10.764,
+          "end": 17.339,
+          "text": "O sol desenhava pequenas luzes no chão, e a cesta balançava suavemente em seu braço."
+        }
+      ]
+    },
+    {
+      "id": "encontro",
+      "duration": 17,
+      "caption": "Atrás de uma árvore, apareceu um lobo curioso. Ele perguntou aonde ela ia e onde morava sua família. Sem perceber a intenção dele, a menina contou que visitaria a vovó.",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "arvore_floresta",
+          "x": -4.4,
+          "z": -2.5,
+          "width": 2.8,
+          "height": 4
+        },
+        {
+          "asset": "arvore_floresta",
+          "x": 4.2,
+          "z": -2.5,
+          "width": 2.7,
+          "height": 3.8
+        },
+        {
+          "asset": "chapeuzinho",
+          "x": -1.5,
+          "z": 1.1,
+          "width": 1.5,
+          "height": 2.3
+        },
+        {
+          "asset": "lobo_floresta",
+          "x": 2,
+          "z": -0.1,
+          "width": 1.7,
+          "height": 2.7,
+          "flip": true,
+          "motion": {
+            "type": "walk",
+            "start": 3,
+            "end": 12,
+            "dx": -1
+          }
+        }
+      ],
+      "soundEvents": [
+        {
+          "type": "birds",
+          "time": 1
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2.05,
+          "end": 5.961,
+          "text": "Atrás de uma árvore, apareceu um lobo curioso."
+        },
+        {
+          "start": 5.961,
+          "end": 9.867,
+          "text": "Ele perguntou aonde ela ia e onde morava sua família."
+        },
+        {
+          "start": 9.867,
+          "end": 14.897,
+          "text": "Sem perceber a intenção dele, a menina contou que visitaria a vovó."
+        }
+      ]
+    },
+    {
+      "id": "atalho",
+      "duration": 16,
+      "caption": "Enquanto Chapeuzinho observava uma borboleta, o lobo correu por um atalho. Chegou primeiro à casinha e bateu à porta. Lá dentro, a vovó estranhou aquela voz diferente.",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "arvore_floresta",
+          "x": -4.4,
+          "z": -2.5,
+          "width": 2.8,
+          "height": 4
+        },
+        {
+          "asset": "arvore_floresta",
+          "x": 4.2,
+          "z": -2.5,
+          "width": 2.7,
+          "height": 3.8
+        },
+        {
+          "asset": "casa_vovo",
+          "x": 0,
+          "z": -2.5,
+          "width": 4,
+          "height": 3.8
+        },
+        {
+          "asset": "lobo_floresta",
+          "x": -3.4,
+          "z": 0.5,
+          "width": 1.7,
+          "height": 2.7,
+          "motion": {
+            "type": "run",
+            "start": 2,
+            "end": 8,
+            "dx": 3
+          }
+        },
+        {
+          "asset": "vovo",
+          "x": 2,
+          "z": -0.7,
+          "width": 1.4,
+          "height": 2.5
+        },
+        {
+          "asset": "borboleta",
+          "x": -3,
+          "z": 1.5,
+          "width": 0.5,
+          "height": 0.6,
+          "y": 1.6
+        }
+      ],
+      "soundEvents": [
+        {
+          "type": "birds",
+          "time": 1
+        },
+        {
+          "type": "steps",
+          "time": 3
+        },
+        {
+          "type": "knock",
+          "time": 8
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2.05,
+          "end": 7.482,
+          "text": "Enquanto Chapeuzinho observava uma borboleta, o lobo correu por um atalho."
+        },
+        {
+          "start": 7.482,
+          "end": 10.748,
+          "text": "Chegou primeiro à casinha e bateu à porta."
+        },
+        {
+          "start": 10.748,
+          "end": 14.739,
+          "text": "Lá dentro, a vovó estranhou aquela voz diferente."
+        }
+      ]
+    },
+    {
+      "id": "esconderijo",
+      "duration": 17,
+      "caption": "Pela janela, a vovó viu o visitante e se escondeu em segurança atrás de um biombo. O lobo entrou pela porta entreaberta, colocou uma touca e se deitou na cama.",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "vovo",
+          "x": -2.4,
+          "z": -1.3,
+          "width": 1.4,
+          "height": 2.5,
+          "motion": {
+            "type": "walk",
+            "start": 2,
+            "end": 5,
+            "dx": -1
+          }
+        },
+        {
+          "asset": "lobo_cama",
+          "x": 1.2,
+          "z": 0.1,
+          "width": 3.9,
+          "height": 3,
+          "enter": 5
+        },
+        {
+          "asset": "biombo",
+          "x": -3.4,
+          "z": -0.5,
+          "width": 2.4,
+          "height": 2.8
+        }
+      ],
+      "soundEvents": [],
+      "room": true,
+      "subtitles": [
+        {
+          "start": 2.05,
+          "end": 8.107,
+          "text": "Pela janela, a vovó viu o visitante e se escondeu em segurança atrás de um biombo."
+        },
+        {
+          "start": 8.107,
+          "end": 13.319,
+          "text": "O lobo entrou pela porta entreaberta, colocou uma touca e se deitou na cama."
+        }
+      ]
+    },
+    {
+      "id": "olhos_orelhas",
+      "duration": 19,
+      "caption": "Chapeuzinho chegou e olhou com atenção. Vovó, que olhos grandes! São para enxergar melhor, respondeu o lobo. E essas orelhas? Para ouvir melhor! A menina achou tudo muito estranho.",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "lobo_cama",
+          "x": 1.2,
+          "z": -0.3,
+          "width": 4,
+          "height": 3.2
+        },
+        {
+          "asset": "chapeuzinho",
+          "x": -2,
+          "z": 1.1,
+          "width": 1.5,
+          "height": 2.3,
+          "motion": {
+            "type": "walk",
+            "start": 2,
+            "end": 6,
+            "dx": 0.8
+          }
+        },
+        {
+          "asset": "biombo",
+          "x": -3.4,
+          "z": -0.5,
+          "width": 2.4,
+          "height": 2.8
+        }
+      ],
+      "soundEvents": [],
+      "room": true,
+      "subtitles": [
+        {
+          "start": 2.05,
+          "end": 5.2509999999999994,
+          "text": "Chapeuzinho chegou e olhou com atenção."
+        },
+        {
+          "start": 5.2509999999999994,
+          "end": 7.68,
+          "text": "Vovó, que olhos grandes!"
+        },
+        {
+          "start": 7.68,
+          "end": 11.176,
+          "text": "São para enxergar melhor, respondeu o lobo."
+        },
+        {
+          "start": 11.176,
+          "end": 12.807,
+          "text": "E essas orelhas?"
+        },
+        {
+          "start": 12.807,
+          "end": 14.5,
+          "text": "Para ouvir melhor!"
+        },
+        {
+          "start": 14.5,
+          "end": 17.17,
+          "text": "A menina achou tudo muito estranho."
+        }
+      ]
+    },
+    {
+      "id": "pedido_ajuda",
+      "duration": 17,
+      "caption": "Quando reparou nos dentes, Chapeuzinho percebeu que precisava de ajuda. Deu passos para trás, saiu pela porta e chamou bem alto. Um guarda florestal que passava por perto escutou.",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "lobo_cama",
+          "x": 1.2,
+          "z": -0.3,
+          "width": 4,
+          "height": 3.2
+        },
+        {
+          "asset": "chapeuzinho",
+          "x": -2,
+          "z": 1.1,
+          "width": 1.5,
+          "height": 2.3,
+          "motion": {
+            "type": "walk",
+            "start": 4,
+            "end": 9,
+            "dx": -1.1
+          }
+        },
+        {
+          "asset": "guarda",
+          "x": -4,
+          "z": -0.9,
+          "width": 1.7,
+          "height": 2.9,
+          "enter": 8,
+          "motion": {
+            "type": "walk",
+            "start": 9,
+            "end": 14,
+            "dx": 1
+          }
+        },
+        {
+          "asset": "biombo",
+          "x": -3.4,
+          "z": -0.5,
+          "width": 2.4,
+          "height": 2.8
+        }
+      ],
+      "soundEvents": [
+        {
+          "type": "steps",
+          "time": 3
+        }
+      ],
+      "room": true,
+      "subtitles": [
+        {
+          "start": 2.05,
+          "end": 7.142,
+          "text": "Quando reparou nos dentes, Chapeuzinho percebeu que precisava de ajuda."
+        },
+        {
+          "start": 7.142,
+          "end": 11.872,
+          "text": "Deu passos para trás, saiu pela porta e chamou bem alto."
+        },
+        {
+          "start": 11.872,
+          "end": 15.551,
+          "text": "Um guarda florestal que passava por perto escutou."
+        }
+      ]
+    },
+    {
+      "id": "guarda",
+      "duration": 17,
+      "caption": "O guarda se aproximou e ficou ao lado da menina. Ao vê-lo, o lobo disparou para longe. Então a vovó saiu do esconderijo, aliviada, e abraçou sua neta com carinho.",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "arvore_floresta",
+          "x": -4.4,
+          "z": -2.5,
+          "width": 2.8,
+          "height": 4
+        },
+        {
+          "asset": "arvore_floresta",
+          "x": 4.2,
+          "z": -2.5,
+          "width": 2.7,
+          "height": 3.8
+        },
+        {
+          "asset": "casa_vovo",
+          "x": 0,
+          "z": -2.5,
+          "width": 4,
+          "height": 3.8
+        },
+        {
+          "asset": "lobo_floresta",
+          "x": 1.5,
+          "z": 1,
+          "width": 1.7,
+          "height": 2.7,
+          "motion": {
+            "type": "run",
+            "start": 2,
+            "end": 8,
+            "dx": 5
+          }
+        },
+        {
+          "asset": "guarda",
+          "x": -1.5,
+          "z": 0.2,
+          "width": 1.7,
+          "height": 2.9
+        },
+        {
+          "asset": "chapeuzinho",
+          "x": -0.4,
+          "z": 1.1,
+          "width": 1.4,
+          "height": 2.2
+        },
+        {
+          "asset": "vovo",
+          "x": 2,
+          "z": -0.8,
+          "width": 1.6,
+          "height": 2.5,
+          "enter": 5,
+          "motion": {
+            "type": "walk",
+            "start": 7,
+            "end": 13,
+            "dx": -1
+          }
+        }
+      ],
+      "soundEvents": [
+        {
+          "type": "birds",
+          "time": 1
+        },
+        {
+          "type": "steps",
+          "time": 3
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2.05,
+          "end": 5.551,
+          "text": "O guarda se aproximou e ficou ao lado da menina."
+        },
+        {
+          "start": 5.551,
+          "end": 9.030999999999999,
+          "text": "Ao vê-lo, o lobo disparou para longe."
+        },
+        {
+          "start": 9.030999999999999,
+          "end": 15.137,
+          "text": "Então a vovó saiu do esconderijo, aliviada, e abraçou sua neta com carinho."
+        }
+      ]
+    },
+    {
+      "id": "lanche",
+      "duration": 20,
+      "caption": "Juntas, abriram a cesta. A vovó explicou: guarde informações pessoais e peça ajuda quando algo parecer estranho. Você pode nos contar tudo, sem medo. A culpa pela mentira é de quem enganou.",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "arvore_floresta",
+          "x": -4.4,
+          "z": -2.5,
+          "width": 2.8,
+          "height": 4
+        },
+        {
+          "asset": "arvore_floresta",
+          "x": 4.2,
+          "z": -2.5,
+          "width": 2.7,
+          "height": 3.8
+        },
+        {
+          "asset": "casa_vovo",
+          "x": 0,
+          "z": -2.5,
+          "width": 4,
+          "height": 3.8
+        },
+        {
+          "asset": "vovo",
+          "x": 0.8,
+          "z": 0.3,
+          "width": 1.7,
+          "height": 2.7
+        },
+        {
+          "asset": "chapeuzinho",
+          "x": -1.3,
+          "z": 1,
+          "width": 1.5,
+          "height": 2.3
+        },
+        {
+          "asset": "guarda",
+          "x": 3.1,
+          "z": -0.6,
+          "width": 1.5,
+          "height": 2.6
+        },
+        {
+          "asset": "mesa_lanche",
+          "x": 0.1,
+          "z": 1.9,
+          "width": 2.4,
+          "height": 1.4
+        }
+      ],
+      "soundEvents": [
+        {
+          "type": "birds",
+          "time": 1
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2.05,
+          "end": 4.88,
+          "text": "Juntas, abriram a cesta."
+        },
+        {
+          "start": 4.88,
+          "end": 11.003,
+          "text": "A vovó explicou: guarde informações pessoais e peça ajuda quando algo parecer estranho."
+        },
+        {
+          "start": 11.003,
+          "end": 13.915,
+          "text": "Você pode nos contar tudo, sem medo."
+        },
+        {
+          "start": 13.915,
+          "end": 16.941000000000003,
+          "text": "A culpa pela mentira é de quem enganou."
+        }
+      ]
+    },
+    {
+      "id": "final",
+      "duration": 21,
+      "caption": "E assim, Chapeuzinho descobriu que pedir ajuda é um gesto de coragem! Para ouvir mais histórias, inscreva-se no Contos de Gaitolé e ative o sininho!",
+      "camera": {
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ],
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ]
+      },
+      "actors": [
+        {
+          "asset": "arvore_floresta",
+          "x": -4.4,
+          "z": -2.5,
+          "width": 2.8,
+          "height": 4
+        },
+        {
+          "asset": "arvore_floresta",
+          "x": 4.2,
+          "z": -2.5,
+          "width": 2.7,
+          "height": 3.8
+        },
+        {
+          "asset": "casa_vovo",
+          "x": 0,
+          "z": -2.5,
+          "width": 4,
+          "height": 3.8
+        },
+        {
+          "asset": "vovo",
+          "x": 0.8,
+          "z": 0.3,
+          "width": 1.7,
+          "height": 2.7
+        },
+        {
+          "asset": "chapeuzinho",
+          "x": -1.3,
+          "z": 1,
+          "width": 1.5,
+          "height": 2.3,
+          "motion": {
+            "type": "dance",
+            "start": 4,
+            "end": 12
+          }
+        },
+        {
+          "asset": "guarda",
+          "x": 3.1,
+          "z": -0.6,
+          "width": 1.5,
+          "height": 2.6
+        },
+        {
+          "asset": "mesa_lanche",
+          "x": 0.1,
+          "z": 1.9,
+          "width": 2.4,
+          "height": 1.4
+        }
+      ],
+      "soundEvents": [
+        {
+          "type": "birds",
+          "time": 1
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2.05,
+          "end": 7.028,
+          "text": "E assim, Chapeuzinho descobriu que pedir ajuda é um gesto de coragem!"
+        },
+        {
+          "start": 7.028,
+          "end": 12.71,
+          "text": "Para ouvir mais histórias, inscreva-se no Contos de Gaitolé e ative o sininho!"
+        }
+      ]
+    }
+  ],
+  "narration": {
+    "voice": "pt-BR-ThalitaMultilingualNeural",
+    "rate": "-12%",
+    "pitch": "-4Hz",
+    "manifest": "assets/narracao/manifest.json",
+    "required": true
+  },
+  "music": {
+    "file": "assets/musica/gaitole.mp3",
+    "title": "Gaitolé, Gaitolé Completa (1)",
+    "volume": 0.18,
+    "duckVolume": 0.035,
+    "attack": 0.35,
+    "release": 0.7,
+    "fadeIn": 1,
+    "fadeOut": 2
+  },
+  "endCard": {
+    "duration": 6,
+    "youtube": {
+      "name": "Contos de Gaitolé",
+      "handle": "@gaitolé"
+    },
+    "tiktok": {
+      "handle": "@gaitole0",
+      "url": "https://www.tiktok.com/@gaitole0"
+    },
+    "callToAction": "Inscreva-se e ative o sininho!",
+    "image": "assets/marca/gaitole-final.png"
+  },
+  "videoBitrate": 2600000,
+  "effects": {
+    "file": "assets/efeitos/ambiente.wav",
+    "volume": 0.35
+  },
+  "subtitleTiming": "sentence-boundaries-from-tts"
+}

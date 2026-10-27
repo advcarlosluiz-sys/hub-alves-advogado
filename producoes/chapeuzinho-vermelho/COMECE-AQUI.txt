@@ -1,0 +1,15 @@
+CHAPEUZINHO VERMELHO — CONTOS DE GAITOLÉ
+
+PARA ASSISTIR: abra docs/chapeuzinho-vermelho.mp4 no seu reprodutor.
+No ZIP de mídia, o vídeo se chama alves-pop-up/ASSISTA-AQUI.mp4.
+Não é necessário executar arquivos .cmd ou instalar programas para assistir.
+
+Duração: 3 minutos e 7 segundos. Formato: 1280 x 720, horizontal, 24 fps.
+Voz: Thalita em português do Brasil.
+Música: Gaitolé, Gaitolé Completa (1), reduzida durante as falas.
+Efeitos suaves originais: passarinhos, passos e batidas na porta.
+Legendas por frase com os tempos fornecidos pelo serviço de voz.
+
+A pasta publicacao contém miniatura, título e descrição para o YouTube.
+O ZIP completo preserva o roteiro, o motor, a arte e todos os áudios.
+Para editar e renderizar outros vídeos, consulte README.md.

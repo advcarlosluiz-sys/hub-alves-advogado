@@ -21,6 +21,9 @@ export const ASSETS = Object.freeze([
   "casa_tijolos",
   "arvore",
   "vento",
+  "biombo", "mesa_lanche", "passarinho", "borboleta",
+  "chapeuzinho", "mae_chapeuzinho", "vovo", "guarda",
+  "lobo_floresta", "lobo_cama", "casa_vovo", "arvore_floresta",
   "pata", "patinho_amarelo", "patinho_cinza", "cisne",
   "celeiro", "arvore_verde", "arvore_outono", "arvore_inverno",
 ]);
@@ -135,3 +138,13 @@ export const ASSET_FILES = {
 
 Object.assign(ASSET_FILES, Object.fromEntries(["pata", "patinho_amarelo", "patinho_cinza", "cisne"].map((name, cell) => [name, {file: "assets/patinho/personagens.png", cell, columns: 4}])));
 Object.assign(ASSET_FILES, Object.fromEntries(["celeiro", "arvore_verde", "arvore_outono", "arvore_inverno"].map((name, cell) => [name, {file: "assets/patinho/cenarios.png", cell, columns: 4}])));
+
+Object.assign(ASSET_FILES, Object.fromEntries(["chapeuzinho", "mae_chapeuzinho", "vovo", "guarda"].map((name, cell) => [name, {file: "assets/chapeuzinho/personagens.png", cell, columns: 4}])));
+Object.assign(ASSET_FILES, Object.fromEntries(["lobo_floresta", "lobo_cama", "casa_vovo", "arvore_floresta"].map((name, cell) => [name, {file: "assets/chapeuzinho/cenarios.png", cell, columns: 4}])));
+
+Object.assign(ASSET_FILES, {
+  biombo: {file:"assets/chapeuzinho/objetos.png",rect:[0,0,647,724]},
+  mesa_lanche: {file:"assets/chapeuzinho/objetos.png",rect:[648,0,570,724]},
+  passarinho: {file:"assets/chapeuzinho/objetos.png",rect:[1218,0,505,724]},
+  borboleta: {file:"assets/chapeuzinho/objetos.png",rect:[1723,0,449,724]},
+});

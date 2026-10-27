@@ -1,0 +1,4 @@
+Narração real gerada com pt-BR-ThalitaMultilingualNeural, ritmo -12%, tom -4Hz.
+Os quatro MP3s e o manifesto já estão incluídos. O vídeo em docs/joao-pop-up.mp4
+já contém essa narração. Não é necessário executar o gerador para assistir.
+Para reutilizar a narração, mantenha texto, voz e cadência do manifesto.

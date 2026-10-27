@@ -46,3 +46,16 @@ Roteiro em stories/patinho-feio.json e produção em producoes/patinho-feio.
 Dez cenas, com atlas original de patos, cisnes, celeiro e árvores nas estações,
 lago e reflexos de papel. Preserve a mensagem de valor desde o nascimento.
 Legendas por frase em subtitles usam tempo proporcional estimado da fala.
+
+## Chapeuzinho Vermelho
+
+Roteiro em stories/chapeuzinho-vermelho.json e produção em producoes/chapeuzinho-vermelho.
+Dez cenas, 181 segundos de história e seis de encerramento. Adaptação sem violência:
+vovó protegida, menina pede ajuda, guarda sem arma e lobo foge vivo.
+Arte original em assets/chapeuzinho; quarto de papel com room:true.
+A geração de Thalita grava também os SRT por frase. Execute scripts/subtitles.mjs
+para aplicar os tempos reais da voz ao roteiro antes de exportar. Áudios em cache
+sem SRT precisam de nova geração para usar esse recurso.
+Efeitos originais (passarinhos, passos e batidas) usam soundEvents por cena e
+scripts/effects.mjs para sintetizar assets/efeitos/ambiente.wav. A mistura nativa
+e a do navegador incluem a mesma trilha discreta. Preserve a música fornecida.

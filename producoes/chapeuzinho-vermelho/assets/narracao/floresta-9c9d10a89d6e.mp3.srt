@@ -1,0 +1,12 @@
+1
+00:00:00,050 --> 00:00:04,174
+Na floresta, passarinhos cantavam entre as folhas.
+
+2
+00:00:04,174 --> 00:00:08,764
+Chapeuzinho caminhava devagar, admirando flores coloridas.
+
+3
+00:00:08,764 --> 00:00:15,339
+O sol desenhava pequenas luzes no chão, e a cesta balançava suavemente em seu braço.
+

@@ -60,10 +60,6 @@ try {
   mkdirSync(dir, { recursive: true });
   const clips = [];
   let start = 0;
-  let cached = {};
-  try {
-    cached = JSON.parse(readFileSync(join(dir, "manifest.json"), "utf8"));
-  } catch {}
   for (const s of story.scenes) {
     if (!/^[a-zA-Z0-9_-]+$/.test(s.id)) throw Error("ID de cena inválido");
     const text = s.caption,
@@ -72,11 +68,12 @@ try {
         .digest("hex"),
       file = "assets/narracao/" + s.id + "-" + hash.slice(0, 12) + ".mp3",
       dest = join(root, file);
-    const old = cached.clips?.find((c) => c.scene === s.id && c.hash === hash);
-    if (!old || !existsSync(dest)) {
+    if (!existsSync(dest)) {
       const temp = dest + ".partial";
       rmSync(temp, { force: true });
-      run(exe, [
+      for (let attempt=1; attempt<=3; attempt++) {
+        try {
+          run(exe, [
         join(root, "scripts/edge-voice.py"),
         "--voice",
         voice,
@@ -86,7 +83,17 @@ try {
         text,
         "--write-media",
         temp,
+        "--write-subtitles",
+        dest + ".srt",
       ]);
+          if (mp3Duration(readFileSync(temp)) <= 0) throw Error("Áudio vazio");
+          break;
+        } catch (error) {
+          rmSync(temp, {force:true});
+          if (attempt===3) throw error;
+          console.log("Nova tentativa de síntese: " + s.id);
+        }
+      }
       const measured = mp3Duration(readFileSync(temp));
       if (measured <= 0) throw Error("Áudio inválido recebido para " + s.id);
       renameSync(temp, dest);

@@ -47,21 +47,21 @@ async function texture(name) {
       })(),
     );
   const image = await imageCache.get(path);
-  const cellW = Math.floor(image.naturalWidth / (entry?.columns || 1));
+  const cellW = entry?.rect?.[2] || Math.floor(image.naturalWidth / (entry?.columns || 1));
   let c = document.createElement("canvas");
   c.width = cellW;
-  c.height = image.naturalHeight;
+  c.height = entry?.rect?.[3] || image.naturalHeight;
   let ctx = c.getContext("2d");
   ctx.drawImage(
     image,
-    (entry?.cell || 0) * cellW,
+    entry?.rect?.[0] ?? (entry?.cell || 0) * cellW,
+    entry?.rect?.[1] || 0,
+    cellW,
+    c.height,
+    0,
     0,
     cellW,
-    image.naturalHeight,
-    0,
-    0,
-    cellW,
-    image.naturalHeight,
+    c.height,
   );
   if (entry) {
     const pixels = ctx.getImageData(0, 0, c.width, c.height).data;
@@ -376,6 +376,12 @@ try {
       x.strokeStyle = "#c4e3df"; x.lineWidth = 3;
       for (let i=0;i<35;i++) {let xx=200+(i*113)%610, yy=180+(i*71)%320; x.beginPath(); x.ellipse(xx,yy,25,4,0,0,Math.PI); x.stroke();}
     }
+    if (setting.room) {
+      x.fillStyle="#c59972"; x.fillRect(0,0,1024,640);
+      x.strokeStyle="#a77b59"; x.lineWidth=3;
+      for(let yy=0;yy<640;yy+=70){x.beginPath();x.moveTo(0,yy);x.lineTo(1024,yy);x.stroke();}
+      for(let xx=0;xx<1024;xx+=160){x.beginPath();x.moveTo(xx,0);x.lineTo(xx,640);x.stroke();}
+    }
     const t = new THREE.CanvasTexture(c);
     t.colorSpace = THREE.SRGBColorSpace;
     return t;
@@ -401,7 +407,7 @@ try {
         const panel = new THREE.Mesh(
           new THREE.PlaneGeometry(5.7, 3.7),
           new THREE.MeshStandardMaterial({
-            color: "#abc9c4",
+            color: s.room ? "#e6cbb6" : "#abc9c4",
             roughness: 1,
             side: THREE.DoubleSide,
           }),

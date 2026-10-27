@@ -1,0 +1,24 @@
+1
+00:00:00,050 --> 00:00:03,251
+Chapeuzinho chegou e olhou com atenção.
+
+2
+00:00:03,251 --> 00:00:05,680
+Vovó, que olhos grandes!
+
+3
+00:00:05,680 --> 00:00:09,176
+São para enxergar melhor, respondeu o lobo.
+
+4
+00:00:09,176 --> 00:00:10,807
+E essas orelhas?
+
+5
+00:00:10,807 --> 00:00:12,500
+Para ouvir melhor!
+
+6
+00:00:12,500 --> 00:00:15,170
+A menina achou tudo muito estranho.
+

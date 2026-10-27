@@ -22,6 +22,8 @@ test("ZIP inclui roteiro, Unicode e vídeo, exclui dependências, segredos comun
     writeFileSync(join(root, "private.key"), "SECRET");
     writeFileSync(join(root, "node_modules/lib.js"), "ignored");
     writeFileSync(join(root, "dist/old.zip"), "ignored");
+    writeFileSync(join(root, "voice.mp3.partial"), "unfinished");
+    writeFileSync(join(root, "video.partial.mp4"), "unfinished");
     const result = packageZip(root, join(root, "dist/new.zip"));
     assert.equal(result.files, 2);
     const zip = readFileSync(result.path),
@@ -60,12 +62,15 @@ test("pacote de mídia entrega MP4 na raiz e exclui todos os executáveis", () =
     writeFileSync(join(root, "COMECE-AQUI-VIDEO.txt"), "Abra o MP4");
     writeFileSync(join(root, "atalho.cmd"), "nao incluir");
     writeFileSync(join(root, "script.py"), "nao incluir");
+    mkdirSync(join(root, "assets/efeitos"), {recursive:true});
+    writeFileSync(join(root, "assets/efeitos/ambiente.wav"), "audio");
     const result = packageZip(root, join(root, "dist/media.zip"), true);
-    assert.equal(result.files, 2);
+    assert.equal(result.files, 3);
     const archive = readFileSync(result.path);
     assert.ok(archive.includes(Buffer.from("alves-pop-up/ASSISTA-AQUI.mp4")));
     assert.equal(archive.includes(Buffer.from("atalho.cmd")), false);
     assert.equal(archive.includes(Buffer.from("script.py")), false);
+    assert.ok(archive.includes(Buffer.from("assets/efeitos/ambiente.wav")));
   } finally {
     rmSync(root, { recursive: true, force: true });
   }

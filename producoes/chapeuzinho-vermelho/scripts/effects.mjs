@@ -1,0 +1,14 @@
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {resolve,join} from 'node:path';
+import {ROOT} from './create.mjs';
+import {validateEffects,synthesizeEffects,effectEvents} from '../engine/effects.mjs';
+const at=process.argv.indexOf('--deck'), root=resolve(at<0?ROOT:process.argv[at+1]);
+const story=JSON.parse(readFileSync(join(root,'stories/joao.json')));
+const config=validateEffects(story.effects), rate=48000, samples=synthesizeEffects(story,rate);
+const data=Buffer.alloc(samples.length*4), header=Buffer.alloc(44);
+for(let i=0;i<samples.length;i++)for(let c=0;c<2;c++)data.writeInt16LE(Math.round(Math.max(-1,Math.min(1,samples[i]))*32767),i*4+c*2);
+header.write('RIFF');header.writeUInt32LE(36+data.length,4);header.write('WAVEfmt ',8);header.writeUInt32LE(16,16);header.writeUInt16LE(1,20);header.writeUInt16LE(2,22);header.writeUInt32LE(rate,24);header.writeUInt32LE(rate*4,28);header.writeUInt16LE(4,32);header.writeUInt16LE(16,34);header.write('data',36);header.writeUInt32LE(data.length,40);
+mkdirSync(join(root,'assets/efeitos'),{recursive:true});
+writeFileSync(join(root,config.file),Buffer.concat([header,data]));
+writeFileSync(join(root,'assets/efeitos/eventos.json'),JSON.stringify({original:true,rate,volume:config.volume,events:effectEvents(story)},null,2)+'\n');
+console.log('PASS: passarinhos, passos e batidas originais sincronizados com as cenas.');

@@ -1,0 +1,9 @@
+{
+  "id": "alves-pop-up",
+  "name": "Alves · Livro pop-up",
+  "version": "0.1.6",
+  "author": "advcarlosluiz-sys",
+  "description": "Direção e geração de contos em livro pop-up 3D com os recursos do Mira e motor Alves Pop-up.",
+  "tier": "prompt-only",
+  "miraMin": "0.1.69"
+}
