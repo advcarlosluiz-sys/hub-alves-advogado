@@ -1,4 +1,4 @@
 node_modules/
 output/
-.tts-venv/
+.tts-venv
 *.partial
