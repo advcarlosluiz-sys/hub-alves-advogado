@@ -13,6 +13,7 @@ Narração: `pt-BR-ThalitaMultilingualNeural`, cadência -12%, tom -4Hz. Música
 Com Node 22+, Python, Chromium e FFmpeg instalados:
 
 ```
+npm ci
 node scripts/narrate.mjs --deck .
 node scripts/subtitles.mjs --deck .
 node scripts/effects.mjs --deck .
