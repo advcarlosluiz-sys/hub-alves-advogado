@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "voice": "pt-BR-ThalitaMultilingualNeural",
+  "rate": "-12%",
+  "pitch": "-4Hz",
+  "duration": 200,
+  "clips": [
+    {
+      "scene": "ninho",
+      "file": "assets/narracao/ninho-861c72f5a4c0.mp3",
+      "offset": 2,
+      "duration": 14.735999999999763,
+      "hash": "861c72f5a4c0bbf7cb54310b143af9cb6fc4564b815f973599e06819e99e6942"
+    },
+    {
+      "scene": "nascimento",
+      "file": "assets/narracao/nascimento-12f6fa84272c.mp3",
+      "offset": 20,
+      "duration": 16.511999999999738,
+      "hash": "12f6fa84272cb193c2dad20c041038017eb2481024839e8f8bebd23415353e33"
+    },
+    {
+      "scene": "diferente",
+      "file": "assets/narracao/diferente-98b9f64bb3be.mp3",
+      "offset": 40,
+      "duration": 16.07999999999972,
+      "hash": "98b9f64bb3befc9d8f00e8af8fb9229ef5c06ba17bcfa5e69ac9184dc4d3bc4a"
+    },
+    {
+      "scene": "partida",
+      "file": "assets/narracao/partida-d2f8e68ddd49.mp3",
+      "offset": 59,
+      "duration": 14.687999999999764,
+      "hash": "d2f8e68ddd49449e0b0da77cc2d9f660bb8dd03692bf560dd1c1e804e501eadb"
+    },
+    {
+      "scene": "verao",
+      "file": "assets/narracao/verao-d77784879093.mp3",
+      "offset": 77,
+      "duration": 16.391999999999733,
+      "hash": "d777848790932388060475a64cbfe989766e8e2778621d5531a0345e49e10230"
+    },
+    {
+      "scene": "outono",
+      "file": "assets/narracao/outono-eb4ad6dc3565.mp3",
+      "offset": 97,
+      "duration": 17.975999999999793,
+      "hash": "eb4ad6dc3565ea63134a9a576bf7ceba32215124c079019e5784b85c891263c0"
+    },
+    {
+      "scene": "inverno",
+      "file": "assets/narracao/inverno-71ed41ff8ec2.mp3",
+      "offset": 118,
+      "duration": 16.175999999999725,
+      "hash": "71ed41ff8ec24b5dedd2ebfc33ebcef25c4c9805720590c3c1671b20eb48fb91"
+    },
+    {
+      "scene": "primavera",
+      "file": "assets/narracao/primavera-53526e1af7a6.mp3",
+      "offset": 138,
+      "duration": 16.103999999999722,
+      "hash": "53526e1af7a62e5652286c3742cf6301d24c732e66ddc27a734e6c0f67ff38d8"
+    },
+    {
+      "scene": "reflexo",
+      "file": "assets/narracao/reflexo-9a004781771c.mp3",
+      "offset": 158,
+      "duration": 18.1679999999998,
+      "hash": "9a004781771cfcf043446fd6f2e104f49f849e815db0109bff8547069f7b0c8d"
+    },
+    {
+      "scene": "acolhimento",
+      "file": "assets/narracao/acolhimento-97415dd0a479.mp3",
+      "offset": 180,
+      "duration": 14.855999999999758,
+      "hash": "97415dd0a479e0998f1ba441fdab38de3f17da8a0cb1dcbbaa8aef6b426a4c32"
+    }
+  ]
+}

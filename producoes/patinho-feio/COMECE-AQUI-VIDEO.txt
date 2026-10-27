@@ -1,0 +1,17 @@
+JOÃO E O PÉ DE FEIJÃO — NARRAÇÃO THALITA EM PORTUGUÊS DO BRASIL
+
+1. Extraia o ZIP para uma pasta no computador.
+2. Dê dois cliques em ASSISTA-AQUI.mp4 para assistir ao vídeo já narrado.
+   No pacote completo da ferramenta, o vídeo está em docs/joao-pop-up.mp4.
+3. Se desejar ouvir só as falas, abra os MP3s em assets/narracao.
+
+Duração: 54 segundos. Vídeo 720p, 24 quadros por segundo.
+Voz: pt-BR-ThalitaMultilingualNeural (Thalita), português do Brasil.
+Não precisa executar comandos, instalar Python ou Node nem desativar a
+proteção do Windows. Este pacote de mídia não contém scripts ou instaladores.
+
+MÚSICA: Gaitolé, Gaitolé Completa (1) acompanha a história, com volume reduzido
+durante as falas da Thalita. A música original está em assets/musica.
+
+ENCERRAMENTO: marca Contos de Gaitolé, YouTube @gaitolé, TikTok @gaitole0
+e a chamada Inscreva-se e ative o sininho!

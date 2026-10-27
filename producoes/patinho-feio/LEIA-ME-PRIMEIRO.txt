@@ -1,0 +1,20 @@
+O PATINHO FEIO — CONTOS DE GAITOLÉ
+
+Para assistir, abra docs/patinho-feio.mp4 no seu reprodutor de vídeo.
+Não é necessário executar arquivos .cmd nem instalar programas.
+No ZIP de mídia, o mesmo vídeo se chama ASSISTA-AQUI.mp4.
+
+O projeto completo inclui as ilustrações, o roteiro, o motor de livro
+pop-up e os arquivos de voz Thalita e da música fornecida pelo autor.
+A pasta publicacao contém miniatura, título e descrição para o YouTube.
+
+Narração: pt-BR-ThalitaMultilingualNeural.
+Música: Gaitolé, Gaitolé Completa (1), com redução nas falas.
+Formato: horizontal 1280 x 720, 24 quadros por segundo.
+
+As legendas são segmentadas por frase, com duração estimada proporcional
+à fala de cada cena. Não são uma transcrição alinhada palavra por palavra.
+
+Para editar e produzir novos vídeos, consulte README.md e o plugin
+alves-pop-up. O projeto usa bibliotecas locais do Mira e preserva suas
+licenças. Assistir ao MP4 não exige abrir ou executar o projeto.

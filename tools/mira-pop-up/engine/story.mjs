@@ -21,6 +21,8 @@ export const ASSETS = Object.freeze([
   "casa_tijolos",
   "arvore",
   "vento",
+  "pata", "patinho_amarelo", "patinho_cinza", "cisne",
+  "celeiro", "arvore_verde", "arvore_outono", "arvore_inverno",
 ]);
 export function validateStory(story) {
   if (
@@ -130,3 +132,6 @@ export const ASSET_FILES = {
   casa_tijolos: { file: "assets/porquinhos/casas.png", cell: 2, columns: 4 },
   arvore: { file: "assets/porquinhos/casas.png", cell: 3, columns: 4 },
 };
+
+Object.assign(ASSET_FILES, Object.fromEntries(["pata", "patinho_amarelo", "patinho_cinza", "cisne"].map((name, cell) => [name, {file: "assets/patinho/personagens.png", cell, columns: 4}])));
+Object.assign(ASSET_FILES, Object.fromEntries(["celeiro", "arvore_verde", "arvore_outono", "arvore_inverno"].map((name, cell) => [name, {file: "assets/patinho/cenarios.png", cell, columns: 4}])));

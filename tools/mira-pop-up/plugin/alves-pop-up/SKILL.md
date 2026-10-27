@@ -39,3 +39,10 @@ Preserve a tela final configurada no roteiro: Contos de Gaitolé, YouTube @gaito
 Roteiro em stories/tres-porquinhos.json; produção pronta em producoes/tres-porquinhos no repositório. A adaptação tem dez cenas, 175 segundos de história e seis de encerramento. Novas ilustrações de papel: três porquinhos, lobo, casas de palha/madeira/tijolos e árvore. As casas são divididas em peças no palco 3D para construção e desabamento. Movimentos suportados: walk, run, dance, build, destroy, blow, wind, shake, climbEscape, hug. O lobo foge vivo e os irmãos terminam seguros.
 
 Para renderização por software use scripts/render-webcodecs.mjs: conserva 720p/24fps e mistura áudio AAC pelo FFmpeg. O vídeo é codificado sem áudio somente como intermediário interno; a entrega final deve conter fala e música. Não entregue esse intermediário ao usuário como resultado final.
+
+## O Patinho Feio
+
+Roteiro em stories/patinho-feio.json e produção em producoes/patinho-feio.
+Dez cenas, com atlas original de patos, cisnes, celeiro e árvores nas estações,
+lago e reflexos de papel. Preserve a mensagem de valor desde o nascimento.
+Legendas por frase em subtitles usam tempo proporcional estimado da fala.

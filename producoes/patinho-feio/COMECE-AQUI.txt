@@ -1,0 +1,24 @@
+ALVES POP-UP 0.1.6 — JOÃO E O PÉ DE FEIJÃO COM THALITA
+
+PARA ASSISTIR, SEM EXECUTAR PROGRAMAS:
+1. Extraia o ZIP inteiro para uma pasta no computador.
+2. Abra docs/joao-pop-up.mp4. O vídeo já tem a voz Thalita em português do Brasil.
+3. Os MP3s separados estão em assets/narracao.
+
+Não precisa executar GERAR-VOZ-THALITA nem instalar Python/Node para assistir.
+Não desative o Controle Inteligente de Aplicativos do Windows.
+
+O pacote só de mídia traz o mesmo vídeo como ASSISTA-AQUI.mp4 e não contém
+scripts executáveis. Use esse pacote se quiser apenas assistir e guardar.
+
+PARA EDITAR OU GERAR OUTRAS HISTÓRIAS:
+Consulte README.md. A ferramenta de desenvolvimento usa Node, navegador e,
+para gerar novas falas, Python e internet. Os atalhos .cmd não possuem
+assinatura digital e podem ser bloqueados pelo Windows; não force a execução.
+O MP4 pronto funciona independentemente desses atalhos.
+
+MÚSICA: Gaitolé, Gaitolé Completa (1) acompanha a história, com volume reduzido
+durante as falas da Thalita. A música original está em assets/musica.
+
+O vídeo termina com a marca do canal, YouTube @gaitolé, TikTok @gaitole0
+e o convite Inscreva-se e ative o sininho! Duração final: 54 segundos.

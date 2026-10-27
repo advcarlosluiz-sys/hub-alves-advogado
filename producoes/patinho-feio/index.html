@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+  <meta charset="utf-8" /><meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  /><link rel="icon" href="data:," /><title>Mira · João e o Pé de Feijão</title
+  ><style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      background: #241c18;
+      color: #ead9b4;
+      font-family: Georgia, serif;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      padding: 18px 28px;
+      font: 11px system-ui;
+      letter-spacing: 3px;
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: normal;
+      margin: 6px 28px 18px;
+    }
+    #stage {
+      position: relative;
+      aspect-ratio: 16/9;
+      width: 100%;
+      max-height: 80vh;
+      margin: auto;
+      background: #31231a;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    #caption {
+      position: absolute;
+      bottom: 5%;
+      left: 15%;
+      right: 15%;
+      text-align: center;
+      line-height: 1.45;
+      font-size: clamp(13px, 1.8vw, 23px);
+      text-shadow: 0 1px 3px #000;
+    }
+    #caption span {
+      background: #251f19dd;
+      padding: 5px 12px;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+    nav {
+      padding: 15px 28px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      font: 13px system-ui;
+    }
+    button {
+      background: #443429;
+      border: 1px solid #9d8155;
+      border-radius: 24px;
+      color: #f6e6c6;
+      padding: 10px 18px;
+      cursor: pointer;
+    }
+    input {
+      flex: 1;
+      accent-color: #ba9a60;
+    }
+    #status {
+      padding: 0 28px;
+      font: 12px system-ui;
+      color: #bda888;
+    }
+    .render header,
+    .render h1,
+    .render nav,
+    .render #status {
+      display: none;
+    }
+    .render #stage {
+      width: 1280px;
+      height: 720px;
+      max-height: none;
+    }
+    .render #caption {
+      font-size: 23px;
+    }
+    #error {
+      padding: 20px;
+      color: #ffd2b4;
+    }
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid #d7bc82;
+    }
+  </style>
+  <header>
+    <span>MIRA + ALVES POP-UP</span><span>LIVRO DE HISTÓRIAS · 01</span>
+  </header>
+  <h1>João e o Pé de Feijão</h1>
+  <div id="stage">
+    <div id="caption"><span></span></div>
+  </div>
+  <nav>
+    <button id="narrate">Ouvir narração</button>
+    <button id="export-mp4">Exportar MP4</button>
+    <button id="play">Pausar</button><button id="restart">Recomeçar</button
+    ><input
+      aria-label="Tempo"
+      type="range"
+      id="seek"
+      min="0"
+      value="0"
+      step=".01"
+    /><output id="time"></output>
+  </nav>
+  <p id="status">Carregando o livro e suas ilustrações…</p>
+  <div id="error" hidden></div>
+  <script src="vendor/gsap.min.js"></script>
+  <script src="vendor/mp4-muxer.js"></script>
+  <script type="module" src="engine/pop-up.mjs"></script>
+  <script type="module" src="engine/export-mp4.mjs"></script>
+</html>

@@ -328,7 +328,7 @@ try {
     pivot.add(mesh);
     return pivot;
   }
-  function floorTexture(clouds) {
+  function floorTexture(clouds, setting = {}) {
     const c = document.createElement("canvas");
     c.width = 1024;
     c.height = 640;
@@ -368,6 +368,14 @@ try {
         x.fill();
       }
     }
+    if (setting.lake) {
+      x.fillStyle = setting.season === "winter" ? "#edf0e8" : setting.season === "autumn" ? "#c8a571" : "#a5ba80";
+      x.fillRect(0, 0, 1024, 640);
+      x.fillStyle = setting.season === "winter" ? "#b6d4da" : "#75b4bf";
+      x.beginPath(); x.ellipse(510, 345, 420, 240, 0, 0, Math.PI * 2); x.fill();
+      x.strokeStyle = "#c4e3df"; x.lineWidth = 3;
+      for (let i=0;i<35;i++) {let xx=200+(i*113)%610, yy=180+(i*71)%320; x.beginPath(); x.ellipse(xx,yy,25,4,0,0,Math.PI); x.stroke();}
+    }
     const t = new THREE.CanvasTexture(c);
     t.colorSpace = THREE.SRGBColorSpace;
     return t;
@@ -378,7 +386,7 @@ try {
     const ground = new THREE.Mesh(
       new THREE.PlaneGeometry(11.6, 7.35),
       new THREE.MeshStandardMaterial({
-        map: floorTexture(s.id === "castelo"),
+        map: floorTexture(s.id === "castelo", s),
         roughness: 1,
       }),
     );
@@ -408,6 +416,12 @@ try {
       const pivot = card(a.asset, a.width, a.height);
       if (["build", "destroy"].includes(a.motion?.type))
         paperPieces(pivot, a.width, a.height);
+      if (s.lake && a.asset === "cisne") {
+        const reflection = new THREE.Mesh(new THREE.PlaneGeometry(a.width, a.height), new THREE.MeshBasicMaterial({map: textures[a.asset], transparent: true, opacity: 0.22, depthWrite: false, side: THREE.DoubleSide}));
+        reflection.rotation.x = -Math.PI / 2;
+        reflection.position.set(0, 0.015, a.height / 2);
+        pivot.add(reflection);
+      }
       pivot.scale.x = a.flip ? -1 : 1;
       pivot.position.set(a.x, a.y || 0.025, a.z);
       group.add(pivot);
@@ -498,7 +512,8 @@ try {
     turnPivot.visible = t < 1.2;
     turnPivot.rotation.z = Math.PI * (1 - smooth(t / 1.2));
     $("caption").style.opacity = String(smooth((t - 1.5) / 0.5) * closing);
-    $("caption").firstElementChild.textContent = s.caption;
+    const segments = s.subtitles;
+    $("caption").firstElementChild.textContent = segments?.find(c => t >= c.start && t < c.end)?.text || (segments ? "" : s.caption);
     $("seek").value = position;
     $("time").textContent = Math.floor(position) + " / " + length + " s";
     const showEnd = !!story.endCard && position >= story.duration;

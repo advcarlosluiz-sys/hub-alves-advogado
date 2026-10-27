@@ -1,0 +1,907 @@
+{
+  "title": "O Patinho Feio",
+  "slug": "patinho-feio",
+  "author": "Adaptação original do conto tradicional — Contos de Gaitolé",
+  "showTitle": true,
+  "duration": 200,
+  "scenes": [
+    {
+      "id": "ninho",
+      "duration": 18,
+      "caption": "Numa fazenda cercada de flores, uma pata cuidava de seu ninho. Um a um, os ovos começaram a se abrir. Pequenos patinhos amarelos espiaram o mundo, enquanto o maior ovo continuava quietinho.",
+      "camera": {
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ],
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ]
+      },
+      "season": "spring",
+      "lake": false,
+      "actors": [
+        {
+          "asset": "arvore_verde",
+          "x": -4,
+          "z": -2.4,
+          "width": 2.8,
+          "height": 3.7
+        },
+        {
+          "asset": "arvore_verde",
+          "x": 4.3,
+          "z": -2.8,
+          "width": 2.4,
+          "height": 3.3
+        },
+        {
+          "asset": "celeiro",
+          "x": 0,
+          "z": -2.3,
+          "width": 4,
+          "height": 3.4
+        },
+        {
+          "asset": "pata",
+          "x": -2.6,
+          "z": 0.4,
+          "width": 1.9,
+          "height": 2.3
+        },
+        {
+          "asset": "patinho_amarelo",
+          "x": -0.6,
+          "z": 1.2,
+          "width": 1.1,
+          "height": 1.4
+        },
+        {
+          "asset": "patinho_amarelo",
+          "x": 0.9,
+          "z": 1.1,
+          "width": 1.1,
+          "height": 1.4
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2,
+          "end": 7.065,
+          "text": "Numa fazenda cercada de flores, uma pata cuidava de seu ninho."
+        },
+        {
+          "start": 7.065,
+          "end": 11.21,
+          "text": "Um a um, os ovos começaram a se abrir."
+        },
+        {
+          "start": 11.21,
+          "end": 16.736,
+          "text": "Pequenos patinhos amarelos espiaram o mundo, enquanto o maior ovo continuava quietinho."
+        }
+      ]
+    },
+    {
+      "id": "nascimento",
+      "duration": 20,
+      "caption": "Até que uma casquinha estalou. De dentro surgiu um filhote cinzento, de pescoço comprido e passos desajeitados. A mãe o recebeu debaixo da asa. Ele era diferente, mas também precisava de aconchego e proteção.",
+      "camera": {
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ],
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ]
+      },
+      "season": "spring",
+      "lake": false,
+      "actors": [
+        {
+          "asset": "arvore_verde",
+          "x": -4,
+          "z": -2.4,
+          "width": 2.8,
+          "height": 3.7
+        },
+        {
+          "asset": "arvore_verde",
+          "x": 4.3,
+          "z": -2.8,
+          "width": 2.4,
+          "height": 3.3
+        },
+        {
+          "asset": "celeiro",
+          "x": 0,
+          "z": -2.3,
+          "width": 4,
+          "height": 3.4
+        },
+        {
+          "asset": "pata",
+          "x": -2.6,
+          "z": 0.4,
+          "width": 1.9,
+          "height": 2.3
+        },
+        {
+          "asset": "patinho_amarelo",
+          "x": -0.6,
+          "z": 1.2,
+          "width": 1.1,
+          "height": 1.4
+        },
+        {
+          "asset": "patinho_amarelo",
+          "x": 0.9,
+          "z": 1.1,
+          "width": 1.1,
+          "height": 1.4
+        },
+        {
+          "asset": "patinho_cinza",
+          "x": 1.8,
+          "z": 1.2,
+          "width": 1.5,
+          "height": 1.8,
+          "motion": {
+            "type": "walk",
+            "start": 3,
+            "end": 13,
+            "dx": 0.9
+          }
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2,
+          "end": 4.428,
+          "text": "Até que uma casquinha estalou."
+        },
+        {
+          "start": 4.428,
+          "end": 10.256,
+          "text": "De dentro surgiu um filhote cinzento, de pescoço comprido e passos desajeitados."
+        },
+        {
+          "start": 10.256,
+          "end": 13.656,
+          "text": "A mãe o recebeu debaixo da asa."
+        },
+        {
+          "start": 13.656,
+          "end": 18.512,
+          "text": "Ele era diferente, mas também precisava de aconchego e proteção."
+        }
+      ]
+    },
+    {
+      "id": "diferente",
+      "duration": 19,
+      "caption": "No quintal, alguns animais estranharam aquele filhote e se afastaram. Quando ninguém o chamava para brincar, ele ficava triste. Sua mãe dizia: Você merece carinho. Ser diferente não faz ninguém valer menos.",
+      "camera": {
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ],
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ]
+      },
+      "season": "spring",
+      "lake": false,
+      "actors": [
+        {
+          "asset": "arvore_verde",
+          "x": -4,
+          "z": -2.4,
+          "width": 2.8,
+          "height": 3.7
+        },
+        {
+          "asset": "arvore_verde",
+          "x": 4.3,
+          "z": -2.8,
+          "width": 2.4,
+          "height": 3.3
+        },
+        {
+          "asset": "celeiro",
+          "x": 0,
+          "z": -2.3,
+          "width": 4,
+          "height": 3.4
+        },
+        {
+          "asset": "pata",
+          "x": -2.6,
+          "z": 0.4,
+          "width": 1.9,
+          "height": 2.3
+        },
+        {
+          "asset": "patinho_amarelo",
+          "x": -0.6,
+          "z": 1.2,
+          "width": 1.1,
+          "height": 1.4
+        },
+        {
+          "asset": "patinho_amarelo",
+          "x": 0.9,
+          "z": 1.1,
+          "width": 1.1,
+          "height": 1.4
+        },
+        {
+          "asset": "patinho_cinza",
+          "x": 1.8,
+          "z": 1.2,
+          "width": 1.5,
+          "height": 1.8,
+          "motion": {
+            "type": "walk",
+            "start": 3,
+            "end": 13,
+            "dx": -0.8
+          }
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2,
+          "end": 7.025,
+          "text": "No quintal, alguns animais estranharam aquele filhote e se afastaram."
+        },
+        {
+          "start": 7.025,
+          "end": 11.547,
+          "text": "Quando ninguém o chamava para brincar, ele ficava triste."
+        },
+        {
+          "start": 11.547,
+          "end": 14.562,
+          "text": "Sua mãe dizia: Você merece carinho."
+        },
+        {
+          "start": 14.562,
+          "end": 18.08,
+          "text": "Ser diferente não faz ninguém valer menos."
+        }
+      ]
+    },
+    {
+      "id": "partida",
+      "duration": 18,
+      "caption": "Mesmo assim, o pequeno queria encontrar amigos que o acolhessem. Numa manhã tranquila, seguiu o riacho além da fazenda. Levava no coração as palavras da mãe e a esperança de conhecer novos caminhos.",
+      "camera": {
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ],
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ]
+      },
+      "season": "spring",
+      "lake": true,
+      "actors": [
+        {
+          "asset": "arvore_verde",
+          "x": -4,
+          "z": -2.4,
+          "width": 2.8,
+          "height": 3.7
+        },
+        {
+          "asset": "arvore_verde",
+          "x": 4.3,
+          "z": -2.8,
+          "width": 2.4,
+          "height": 3.3
+        },
+        {
+          "asset": "celeiro",
+          "x": 0,
+          "z": -2.3,
+          "width": 4,
+          "height": 3.4
+        },
+        {
+          "asset": "patinho_cinza",
+          "x": -1.2,
+          "z": 1.2,
+          "width": 1.5,
+          "height": 1.8,
+          "motion": {
+            "type": "walk",
+            "start": 3,
+            "end": 13,
+            "dx": 0.9
+          }
+        },
+        {
+          "asset": "pata",
+          "x": -3,
+          "z": 0.3,
+          "width": 1.5,
+          "height": 1.9
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2,
+          "end": 6.451,
+          "text": "Mesmo assim, o pequeno queria encontrar amigos que o acolhessem."
+        },
+        {
+          "start": 6.451,
+          "end": 10.457,
+          "text": "Numa manhã tranquila, seguiu o riacho além da fazenda."
+        },
+        {
+          "start": 10.457,
+          "end": 16.688,
+          "text": "Levava no coração as palavras da mãe e a esperança de conhecer novos caminhos."
+        }
+      ]
+    },
+    {
+      "id": "verao",
+      "duration": 20,
+      "caption": "Durante o verão, atravessou campos verdes e descobriu um lago cheio de libélulas. Descansava entre os juncos, nadava devagar e observava as nuvens. A natureza lhe oferecia companhia, mas ainda sentia falta de amigos.",
+      "camera": {
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ],
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ]
+      },
+      "season": "spring",
+      "lake": true,
+      "actors": [
+        {
+          "asset": "arvore_verde",
+          "x": -4,
+          "z": -2.4,
+          "width": 2.8,
+          "height": 3.7
+        },
+        {
+          "asset": "arvore_verde",
+          "x": 4.3,
+          "z": -2.8,
+          "width": 2.4,
+          "height": 3.3
+        },
+        {
+          "asset": "patinho_cinza",
+          "x": -1.2,
+          "z": 1.2,
+          "width": 1.5,
+          "height": 1.8,
+          "motion": {
+            "type": "walk",
+            "start": 3,
+            "end": 13,
+            "dx": 0.9
+          }
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2,
+          "end": 8.268,
+          "text": "Durante o verão, atravessou campos verdes e descobriu um lago cheio de libélulas."
+        },
+        {
+          "start": 8.268,
+          "end": 13.089,
+          "text": "Descansava entre os juncos, nadava devagar e observava as nuvens."
+        },
+        {
+          "start": 13.089,
+          "end": 18.392,
+          "text": "A natureza lhe oferecia companhia, mas ainda sentia falta de amigos."
+        }
+      ]
+    },
+    {
+      "id": "outono",
+      "duration": 21,
+      "caption": "O outono pintou as árvores de dourado. Certo dia, grandes aves brancas cruzaram o céu. Seus pescoços desenhavam curvas elegantes. O filhote acompanhou o voo encantado, sem imaginar por que sentia tanta vontade de segui-las.",
+      "camera": {
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ],
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ]
+      },
+      "season": "autumn",
+      "lake": true,
+      "actors": [
+        {
+          "asset": "arvore_outono",
+          "x": -4,
+          "z": -2.4,
+          "width": 2.8,
+          "height": 3.7
+        },
+        {
+          "asset": "arvore_outono",
+          "x": 4.3,
+          "z": -2.8,
+          "width": 2.4,
+          "height": 3.3
+        },
+        {
+          "asset": "patinho_cinza",
+          "x": -1.2,
+          "z": 1.2,
+          "width": 1.5,
+          "height": 1.8,
+          "motion": {
+            "type": "walk",
+            "start": 3,
+            "end": 13,
+            "dx": 0.9
+          }
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2,
+          "end": 5.595,
+          "text": "O outono pintou as árvores de dourado."
+        },
+        {
+          "start": 5.595,
+          "end": 9.704,
+          "text": "Certo dia, grandes aves brancas cruzaram o céu."
+        },
+        {
+          "start": 9.704,
+          "end": 12.272,
+          "text": "Seus pescoços desenhavam curvas elegantes."
+        },
+        {
+          "start": 12.272,
+          "end": 19.976,
+          "text": "O filhote acompanhou o voo encantado, sem imaginar por que sentia tanta vontade de segui-las."
+        }
+      ]
+    },
+    {
+      "id": "inverno",
+      "duration": 20,
+      "caption": "Então chegou o inverno. Num abrigo de folhas, protegido do vento, o pequeno esperou os dias frios passarem. A cada manhã buscava alimento e um raio de sol. Aos poucos, crescia e ganhava novas penas.",
+      "camera": {
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ],
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ]
+      },
+      "season": "winter",
+      "lake": true,
+      "actors": [
+        {
+          "asset": "arvore_inverno",
+          "x": -4,
+          "z": -2.4,
+          "width": 2.8,
+          "height": 3.7
+        },
+        {
+          "asset": "arvore_inverno",
+          "x": 4.3,
+          "z": -2.8,
+          "width": 2.4,
+          "height": 3.3
+        },
+        {
+          "asset": "patinho_cinza",
+          "x": -1.2,
+          "z": 1.2,
+          "width": 1.8,
+          "height": 2.1,
+          "motion": {
+            "type": "walk",
+            "start": 3,
+            "end": 13,
+            "dx": 0.9
+          }
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2,
+          "end": 3.849,
+          "text": "Então chegou o inverno."
+        },
+        {
+          "start": 3.849,
+          "end": 10.319,
+          "text": "Num abrigo de folhas, protegido do vento, o pequeno esperou os dias frios passarem."
+        },
+        {
+          "start": 10.319,
+          "end": 14.941,
+          "text": "A cada manhã buscava alimento e um raio de sol."
+        },
+        {
+          "start": 14.941,
+          "end": 18.176,
+          "text": "Aos poucos, crescia e ganhava novas penas."
+        }
+      ]
+    },
+    {
+      "id": "primavera",
+      "duration": 20,
+      "caption": "Na primavera, flores nasceram na margem do lago. As aves brancas estavam de volta: eram cisnes! O jovem se aproximou com cuidado. Para sua alegria, abriram espaço e o convidaram a nadar junto deles.",
+      "camera": {
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ],
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ]
+      },
+      "season": "spring",
+      "lake": true,
+      "actors": [
+        {
+          "asset": "arvore_verde",
+          "x": -4,
+          "z": -2.4,
+          "width": 2.8,
+          "height": 3.7
+        },
+        {
+          "asset": "arvore_verde",
+          "x": 4.3,
+          "z": -2.8,
+          "width": 2.4,
+          "height": 3.3
+        },
+        {
+          "asset": "patinho_cinza",
+          "x": -1.2,
+          "z": 1.2,
+          "width": 1.8,
+          "height": 2.1,
+          "motion": {
+            "type": "walk",
+            "start": 3,
+            "end": 13,
+            "dx": 0.9
+          }
+        },
+        {
+          "asset": "cisne",
+          "x": -3,
+          "z": -0.9,
+          "width": 1.8,
+          "height": 2.2
+        },
+        {
+          "asset": "cisne",
+          "x": 2.6,
+          "z": -0.2,
+          "width": 2,
+          "height": 2.4
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2,
+          "end": 5.789,
+          "text": "Na primavera, flores nasceram na margem do lago."
+        },
+        {
+          "start": 5.789,
+          "end": 9.578,
+          "text": "As aves brancas estavam de volta: eram cisnes!"
+        },
+        {
+          "start": 9.578,
+          "end": 12.42,
+          "text": "O jovem se aproximou com cuidado."
+        },
+        {
+          "start": 12.42,
+          "end": 18.104,
+          "text": "Para sua alegria, abriram espaço e o convidaram a nadar junto deles."
+        }
+      ]
+    },
+    {
+      "id": "reflexo",
+      "duration": 22,
+      "caption": "Ao olhar a água, viu seu reflexo: também era um cisne! Agora entendia sua história. Não tinha passado a merecer amor naquele instante. Desde o nascimento, já merecia respeito. Feliz, encontrou amizade e um lugar para pertencer.",
+      "camera": {
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ],
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ]
+      },
+      "season": "spring",
+      "lake": true,
+      "actors": [
+        {
+          "asset": "arvore_verde",
+          "x": -4,
+          "z": -2.4,
+          "width": 2.8,
+          "height": 3.7
+        },
+        {
+          "asset": "arvore_verde",
+          "x": 4.3,
+          "z": -2.8,
+          "width": 2.4,
+          "height": 3.3
+        },
+        {
+          "asset": "cisne",
+          "x": -1,
+          "z": 1.1,
+          "width": 2.3,
+          "height": 2.6,
+          "motion": {
+            "type": "dance",
+            "start": 3,
+            "end": 16
+          }
+        },
+        {
+          "asset": "cisne",
+          "x": -3,
+          "z": -0.9,
+          "width": 1.8,
+          "height": 2.2
+        },
+        {
+          "asset": "cisne",
+          "x": 2.6,
+          "z": -0.2,
+          "width": 2,
+          "height": 2.4
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2,
+          "end": 7.401,
+          "text": "Ao olhar a água, viu seu reflexo: também era um cisne!"
+        },
+        {
+          "start": 7.401,
+          "end": 9.365,
+          "text": "Agora entendia sua história."
+        },
+        {
+          "start": 9.365,
+          "end": 13.294,
+          "text": "Não tinha passado a merecer amor naquele instante."
+        },
+        {
+          "start": 13.294,
+          "end": 16.24,
+          "text": "Desde o nascimento, já merecia respeito."
+        },
+        {
+          "start": 16.24,
+          "end": 20.168,
+          "text": "Feliz, encontrou amizade e um lugar para pertencer."
+        }
+      ]
+    },
+    {
+      "id": "acolhimento",
+      "duration": 22,
+      "caption": "Entre novos amigos, aprendeu que acolher é abrir espaço para cada um ser quem é. Você merece carinho e respeito do jeitinho que é! Para ouvir mais histórias, inscreva-se no Contos de Gaitolé e ative o sininho!",
+      "camera": {
+        "to": [
+          5.8,
+          5.7,
+          11.2
+        ],
+        "target": [
+          0,
+          1.25,
+          0
+        ],
+        "from": [
+          7.8,
+          6.9,
+          12.8
+        ]
+      },
+      "season": "spring",
+      "lake": true,
+      "actors": [
+        {
+          "asset": "arvore_verde",
+          "x": -4,
+          "z": -2.4,
+          "width": 2.8,
+          "height": 3.7
+        },
+        {
+          "asset": "arvore_verde",
+          "x": 4.3,
+          "z": -2.8,
+          "width": 2.4,
+          "height": 3.3
+        },
+        {
+          "asset": "cisne",
+          "x": -1,
+          "z": 1.1,
+          "width": 2.3,
+          "height": 2.6,
+          "motion": {
+            "type": "dance",
+            "start": 3,
+            "end": 16
+          }
+        },
+        {
+          "asset": "cisne",
+          "x": -3,
+          "z": -0.9,
+          "width": 1.8,
+          "height": 2.2
+        },
+        {
+          "asset": "cisne",
+          "x": 2.6,
+          "z": -0.2,
+          "width": 2,
+          "height": 2.4
+        },
+        {
+          "asset": "patinho_cinza",
+          "x": 3.5,
+          "z": 1.8,
+          "width": 1,
+          "height": 1.2
+        }
+      ],
+      "subtitles": [
+        {
+          "start": 2,
+          "end": 8.023,
+          "text": "Entre novos amigos, aprendeu que acolher é abrir espaço para cada um ser quem é."
+        },
+        {
+          "start": 8.023,
+          "end": 11.636,
+          "text": "Você merece carinho e respeito do jeitinho que é!"
+        },
+        {
+          "start": 11.636,
+          "end": 16.856,
+          "text": "Para ouvir mais histórias, inscreva-se no Contos de Gaitolé e ative o sininho!"
+        }
+      ]
+    }
+  ],
+  "narration": {
+    "voice": "pt-BR-ThalitaMultilingualNeural",
+    "rate": "-12%",
+    "pitch": "-4Hz",
+    "manifest": "assets/narracao/manifest.json",
+    "required": true
+  },
+  "music": {
+    "file": "assets/musica/gaitole.mp3",
+    "title": "Gaitolé, Gaitolé Completa (1)",
+    "volume": 0.18,
+    "duckVolume": 0.035,
+    "attack": 0.35,
+    "release": 0.7,
+    "fadeIn": 1,
+    "fadeOut": 2
+  },
+  "endCard": {
+    "duration": 6,
+    "youtube": {
+      "name": "Contos de Gaitolé",
+      "handle": "@gaitolé"
+    },
+    "tiktok": {
+      "handle": "@gaitole0",
+      "url": "https://www.tiktok.com/@gaitole0"
+    },
+    "callToAction": "Inscreva-se e ative o sininho!",
+    "image": "assets/marca/gaitole-final.png"
+  },
+  "videoBitrate": 3000000
+}
